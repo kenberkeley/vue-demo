@@ -1,0 +1,36 @@
+<div class="panel panel-warning">
+  <div class="panel-heading">
+    标题：
+    <strong>{{ msg.title }}</strong>
+    
+    <span class="badge pull-right">
+      {{ msg.time | dateTimeFormatter }}
+    </span>
+
+    <br/>
+    
+    发布者：
+    <!-- v-link的用法有很多种，详情http://router.vuejs.org/zh-cn/link.html -->
+    <!-- 实际上这里建议使用encodeURI进行URL编码避免乱码的问题 -->
+    <a v-link="{ name: 'msgIndex', query: { author: msg.author } }">
+      <i>{{ msg.author }}</i>
+    </a>
+
+    <opt-btn-group
+      :is-author="$root.userData && msg.author === $root.userData.username"
+      :msg-id="msg.id">
+
+      <!-- 下面是slot，详情请看http://cn.vuejs.org/api/#slot -->
+      <button
+        class="btn btn-primary btn-xs"
+        slot="goBackBtn"
+        @click="goBack">
+        返回
+      </button>
+    </opt-btn-group>
+  </div>
+
+  <div class="panel-body">
+    {{ msg.content }}
+  </div>
+</div>

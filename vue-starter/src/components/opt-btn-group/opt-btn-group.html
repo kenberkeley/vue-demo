@@ -1,0 +1,19 @@
+<div role="group" class="btn-group btn-group-xs pull-right">
+  
+  <slot name="detailMsgBtn"></slot>
+  <slot name="goBackBtn"></slot>
+
+  <a v-if="isAuthor"
+    class="btn btn-warning"
+    v-link="{ name: 'modifyMsg', params: { msgId: msgId } }"
+    @click.stop>
+    修改
+  </a>
+
+  <button v-if="isAuthor"
+    class="btn btn-danger"
+    @click="delMsg">
+    删除
+  </button>
+
+</div>
