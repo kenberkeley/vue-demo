@@ -1,9 +1,3 @@
----
-date: 2016-06-20 09:11
-status: public
-title: VueJS的坑
----
-
 ## CROS（跨域）
 本示例项目前后端异服务器，因此后端Node.js服务器必须设置跨域相关项：
 ```javascript
