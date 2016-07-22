@@ -40,11 +40,11 @@
 本示例项目**前后端分离**，包含 `vue-starter`（前端）和 `vue-starter-backend`（RESTful API 后端，一般情况下您无需理会）两个文件夹，请打开两个命令窗口（ Windows 下推荐使用 `Cygwin`）分别切换到上述两者的目录下，敲下 `npm install` 安装依赖（为避免 Windows 下的 npm 软链接问题，您可以加上 `--no-bin-link` 完全解构所有依赖）。
 
 ### <a name="start">启动</a>
-首先，在 `vue-starter-backend` 的命令窗口下，敲下 `npm start`
-随后，在 `vue-starter` 的命令窗口下，敲下 `npm run dev`
-如无意外，默认浏览器就会自动打开 `localhost:8080`，您立即可以看到效果。
-若浏览器没有自动弹出，则请自行手动访问。
-（开发过程中，通过 Webpack 处理的静态资源都由基于内存的 `webpack-dev-server` 提供）
+首先，在 `vue-starter-backend` 的命令窗口下，敲下 `npm start`  
+随后，在 `vue-starter` 的命令窗口下，敲下 `npm run dev`  
+如无意外，默认浏览器就会自动打开 `localhost:8080`，您立即可以看到效果  
+若浏览器没有自动弹出，则请自行手动访问  
+（开发过程中，通过 Webpack 处理的静态资源都由基于内存的 `webpack-dev-server` 提供）  
 ***
 
 ## <a name="architecture">&sect; 项目架构</a>
