@@ -23,9 +23,8 @@ export default {
           return console.info('尚未登录')
         }
 
-        // 写入服务便于全局通信，之后立即更新顶级用户数据（请注意顺序）
-        userService.data = userSessData
-        this.updUserData()
+        // 写入服务便于全局通信，手动更新顶级用户数据
+        this.userData = userService.data = userSessData
 
         console.info('当前用户已登录')
         console.info('Appx broadcast LOG_IN')
