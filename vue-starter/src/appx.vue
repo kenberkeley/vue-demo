@@ -23,7 +23,7 @@ export default {
           return console.info('尚未登录')
         }
 
-        // 写入服务便于全局通信，手动更新顶级用户数据
+        // 同步全局用户状态
         this.userData = userService.data = userSessData
 
         console.info('当前用户已登录')
