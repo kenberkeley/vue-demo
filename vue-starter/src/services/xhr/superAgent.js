@@ -11,7 +11,7 @@ const xhr = ({ url, body = null, method = 'get' }) => {
   return new Promise((resolve, reject) => {
     request[method.toLowerCase()](rootPath + url)
       .send(body)
-      .withCredentials()
+      // .withCredentials()
       .end((err, re) => {
         if (err)
           return errHandler(err)
