@@ -45,8 +45,7 @@ export default {
           quantity: this.quantity
         })
         .then((msgs) => {
-          // 后端无msg则返回null
-          this.msgs = msgs || []
+          this.msgs = msgs
         })
     }
   },

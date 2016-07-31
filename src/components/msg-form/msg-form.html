@@ -1,4 +1,4 @@
-<form>
+<form @submit.prevent>
   <div class="form-group">
     <label for="title">标题</label>
     <input
@@ -31,9 +31,9 @@
     </div>
     <div class="btn-group" role="group">
       <button
-        type="button"
+        type="submit"
         class="btn btn-success"
-        @click="addOrModMsg">
+        @click="handleSubmit">
         提交 <span class="glyphicon glyphicon-ok"></span>
       </button>
     </div>

@@ -1,15 +1,15 @@
 {
-  "name": "vue-starter",
-  "description": "a starter for vue",
+  "name": "vue-demo",
+  "description": "A message board demo developed by Vue",
   "author": "Ken Berkeley <kenberkeley@foxmail.com>",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "scripts": {
-    "dev": "node build/dev-server.js",
+    "start": "node build/dev-server.js",
     "build": "rimraf dist && webpack --progress --hide-modules --config build/webpack.prod.conf.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kenberkeley/vue-starter.git"
+    "url": "https://github.com/kenberkeley/vue-demo.git"
   },
   "dependencies": {
     "lodash": "^4.12.0",

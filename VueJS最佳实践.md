@@ -35,6 +35,7 @@
 * 秉承**代码分离**的最佳实践，单文件代码量请尽量控制在**百行以内**。官方的做法是一个 vue 文件对应一个组件，而我们的规范是**一个文件夹对应一个组件**，把 HTML 模板与 CSS 样式拆出来再由 vue 文件引入，避免单文件代码量过大
 * 严禁把任何状态挂载到全局（亦即 window 下不能自行赋予自定义属性）
 * 但如果组件逻辑的确非常简单，代码量少，则可以一起写，但还是需要**使用文件夹**包含一个 `index.vue` ：
+
 ```vue
 <template>
   <router-view></router-view>
@@ -44,19 +45,25 @@
 export default {}
 </script>
 ```
+
 * 路径的引入，若是引入的是目录，须显式在末尾加斜杠，以便一眼区分：
+
 ```javascript
 import file from '../../file' // 引入js文件请忽略后缀.js
 import lib from '../../../lib/' // 默认引入该目录下的index.js。若该目录下存在package.json，里面的main字段指定其他文件，则引入该文件
 ```
+
 * 若遇到使用极度频繁的路径，可向项目负责人申请添加 Webpack 路径别名`alias`
 * HTML 模板中，较长的内容，请注释闭标签：
+
 ```html
 <div class="container">
   ...
 </div><!-- .container -->
 ```
+
 * HTML 模板请分行拆写，而不是都堆在一行。Vue 指令后置。
+
 ```html
 <form
   role="search"
@@ -86,18 +93,22 @@ import lib from '../../../lib/' // 默认引入该目录下的index.js。若该�
   </button>
 </form>
 ```
+
 * 模板中使用简写 `:[XXX]`取代`v-bind:XXX`（P.S：注意页面闪烁问题），使用简写 `@verb`取代`v-on:[verb]`
 * 涉及到逻辑方面的都必须用 `v-if`，视觉样式等才用 `v-show`。例如，用户必须登录后才能查看的，请用 `v-if`，而视觉呈现等与业务逻辑无关的，采用 `v-show`
 * 使用 Bable 转码，的确可以使用各种炫酷的新特性。这对于后端 Node.js 而言，问题不大。但对于前端而言，这是一个坑。最基本的，您只要在项目中使用 `Promise`，那么最终生成的打包文件就多了十多 KB 的 Promise 实现。若还玩上了 `Generator`，打包文件的体积又会继续增长。而且 Babel 对某些新特性的转换相当冗余（详情请看 [babel到底将代码转换成什么鸟样？](https://github.com/lcxfs1991/blog/issues/9)）。一句话：Babel 虽好，但别贪杯哦。（推荐把玩在线实时编译：http://babeljs.io/repl/）
 * 最小化引入库。例如，需要使用工具库（例如 lodash ），请尽量使用最小化引入：
+
 ```javascript
 import _ from 'lodash' // 恭喜您，您成功地引入了全家桶，打包文件徒增几十KB
 import isEmpty from 'lodash/isEmpty' // 最佳实践！
 ```
+
 > 库的引入需要项目负责人的批准
 
 * 事件传递数据，一般是传**引用**（对象、数组等）而非传值
 * 请勿把所有组件全局化（为了懒加载），何况也并不是所有组件都有必要全局化：
+
 ```javascript
 import LoginForm from './login-form/'
 import LogoutDropdown from './logout-dropdown/'
@@ -107,8 +118,10 @@ export default {
   components: { LoginForm, LogoutDropdown },
   ...
 }
-```  
+```
+  
 上面的目录结构树如下（私有组件可放置在于父组件目录中）：
+
 ```
 .
 ├── navbar/

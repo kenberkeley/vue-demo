@@ -1,29 +1,35 @@
+# Vue 示例项目
+
 ## 目录
-&sect; [技术栈](#features)  
+&sect; [技术栈](#features)
+
 &sect; [快速开始](#getting-started)
+
   * [安装](#installation)
   * [启动](#start)
   
 &sect; [项目架构](#architecture)
+
   * [目录结构](#tree)
   * [与官方示例项目的区别](#difference)
   * [谈谈状态管理](#state-management)
   
 &sect; [开发](#development)
+
   * [配置Webpack](#webpack-configure)
   * [规范](#standard)
-  * [坑](#troubleshooting)
   
 &sect; [测试](#testing)  
 &sect; [部署](#deployment)
 
-***
+****
 
 ## <a name="features">&sect; 技术栈</a>
 (详情可参阅`package.json`)
+
 * vue 1.0.18
 * vue-router
-* vue-resource / superagent
+* vue-resource / superagent / ...
 * webpack
 * ES6 + babel
 * (UI) jQuery + BootStrap
@@ -34,16 +40,17 @@
 > 在开始前，您需要通读 [Vue.js Guide](http://cn.vuejs.org/guide/)、[Vue.js API](http://cn.vuejs.org/api/)、[Vue-Router文档](http://router.vuejs.org/zh-cn/index.html) 才能有更好的理解
 
 ### <a name="installation">安装</a>
-> 推荐升级到 node 5.x + npm 3.x 环境
-> 推荐使用 `cnpm` 或手动切换到淘宝 npm 源`npm set registry https://registry.npm.taobao.org/`
+> 推荐升级到 node 5.x + npm 3.x 环境  
+> 推荐使用 `cnpm` 或手动切换到淘宝 npm 源  
+> `npm set registry https://registry.npm.taobao.org/`
 
-本示例项目为模拟前后端开发分离，分为 `vue-starter`（前端）和 `vue-starter-backend`（RESTful API ）两个文件夹  
-请打开**两个**命令窗口（ Windows 下推荐使用 `Cygwin`）分别切换到上述两者的目录下  
-**分别**敲下 `npm install` 安装依赖（为避免 Windows 下的 npm 软链接问题，您可以加上 `--no-bin-link` 完全解构所有依赖）  
+本示例项目需要 [简易留言板 RESTful API](https://github.com/kenberkeley/msg-board-api) 作为后端，模拟前后端分离开发   
+请分别 `git clone`，打开**两个**命令窗口（ Windows 下推荐使用 `Cygwin`）**分别**切换到两者的目录下  
+敲下 `npm install` 安装依赖（为避免 Windows 下的 npm 软链接问题，您可以加上 `--no-bin-link` 完全解构所有依赖）  
   
 ### <a name="start">启动</a>
-首先，在 `vue-starter-backend` 的命令窗口下，敲下 `npm start`  
-随后，在 `vue-starter` 的命令窗口下，敲下 `npm run dev`  
+首先，在 `msg-board-api` 的命令窗口下，敲下 `npm start`  
+随后，在 `vue-demo` 的命令窗口下，敲下 `npm start`  
 如无意外，默认浏览器就会自动打开 `localhost:8080`，您立即可以看到效果  
 若浏览器没有自动弹出，则请自行手动访问  
 （开发过程中，通过 Webpack 处理的静态资源都由基于内存的 `webpack-dev-server` 提供）  
@@ -117,16 +124,14 @@ React 作为一个 View 层，不具备数据的双向绑定能力，其数据�
 > 开发规范请参考 [**VueJS最佳实践**](./VueJS最佳实践.md)  
 > 本示例项目的代码极尽详细地添加了注释，其中不乏最佳实践提示
 
-### <a name="troubleshooting">坑</a>
-> Vue.js 的坑总结在 [**VueJS的坑**](./VueJS的坑.md)
 
 ***
 
 ## <a name="testing">&sect; 测试</a>
-(TODO)
+> 请自行选择测试工具
 
 ***
 
 ## <a name="deployment">&sect; 部署</a>
-在 `vue-starter` 的命令窗口下，敲下 `npm run build`，将会在项目根目录下生成 `dist/`
+在 `vue-demo` 的命令窗口下，敲下 `npm run build`，将会在项目根目录下生成 `dist/`
 > 关于生产环境下的部署与优化，已超出本文档的论述范围，请自行查阅相关资料
