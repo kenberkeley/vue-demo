@@ -4,7 +4,7 @@ export default {
     
     // 基页
     component (resolve) {
-      require(['VIEWS/msg/'], resolve)
+      require(['VIEW/msg/'], resolve)
     },
 
     // 子路由
@@ -12,26 +12,26 @@ export default {
       '/': {
         name: 'msgIndex',
         component (resolve) {
-          require(['COMPONENTS/msg-list/'], resolve)
+          require(['COMPONENT/msg-list/'], resolve)
         }
       },
       '/add': {
         name: 'addMsg',
         component (resolve) {
-          require(['COMPONENTS/msg-form/'], resolve)
+          require(['COMPONENT/msg-form/'], resolve)
         },
         needToLogin: true
       },
       '/detail/:msgId': {
         name: 'detailMsg',
         component (resolve) {
-          require(['COMPONENTS/msg-detail/'], resolve)
+          require(['COMPONENT/msg-detail/'], resolve)
         }
       },
       '/modify/:msgId': {
         name: 'modifyMsg',
         component (resolve) {
-          require(['COMPONENTS/msg-form/'], resolve)
+          require(['COMPONENT/msg-form/'], resolve)
         },
         needToLogin: true
       }

@@ -26,7 +26,7 @@ export default {
     name: 'welcome',
     component (resolve) {
       // 使用Webpack的lazyLoad
-      require(['VIEWS/welcome/'], resolve)
+      require(['VIEW/welcome/'], resolve)
     }
   },
 

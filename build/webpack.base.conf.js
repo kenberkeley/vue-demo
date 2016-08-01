@@ -14,9 +14,9 @@ module.exports = {
     alias: {
       src: path.resolve(__dirname, '../src'),
       // 自定义路径别名
-      COMPONENTS: path.resolve(__dirname, '../src/components'),
-      SERVICES: path.resolve(__dirname, '../src/services'),
-      VIEWS: path.resolve(__dirname, '../src/views')
+      COMPONENT: path.resolve(__dirname, '../src/components'),
+      SERVICE: path.resolve(__dirname, '../src/services'),
+      VIEW: path.resolve(__dirname, '../src/views')
     }
   },
   resolveLoader: {

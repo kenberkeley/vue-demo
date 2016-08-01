@@ -1,6 +1,6 @@
 <template src="./opt-btn-group.html"></template>
 <script>
-import msgService from 'SERVICES/msgService'
+import msgService from 'SERVICE/msgService'
 
 /**
  * 该组件由MsgList与修改信息(/msg/detail/:msgId)所共用

@@ -1,5 +1,5 @@
 <script>
-import userService from 'SERVICES/userService'
+import userService from 'SERVICE/userService'
 /**
  * Appx的作用相当于Vuex，实际上更像是AngularJS的$rootScope
  */

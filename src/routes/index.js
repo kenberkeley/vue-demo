@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import routesMap from './map/'
-import userService from 'SERVICES/userService'
+import userService from 'SERVICE/userService'
 
 Vue.use(VueRouter)
 

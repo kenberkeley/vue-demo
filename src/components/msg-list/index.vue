@@ -1,7 +1,7 @@
 <template src="./msg-list.html"></template>
 <script>
-import optBtnGroup from 'COMPONENTS/opt-btn-group/'
-import msgService from 'SERVICES/msgService'
+import optBtnGroup from 'COMPONENT/opt-btn-group/'
+import msgService from 'SERVICE/msgService'
 
 export default {
   components: { optBtnGroup },

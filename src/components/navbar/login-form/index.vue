@@ -1,6 +1,6 @@
 <template src="./login-form.html"></template>
 <script>
-import userService from 'SERVICES/userService'
+import userService from 'SERVICE/userService'
 
 export default {
   data () {
