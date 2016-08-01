@@ -8,8 +8,8 @@ import userService from 'SERVICE/userService'
  * 为区分状态，使用isAddMode来标识
  */
 export default {
-  // 关键点：设置本组价不可复用
-  // 否则 /msg/add <=> /msg/modify/:msgId 的跳转，状态会保留
+  // 关键点：设置本组件不可复用
+  // 否则 /msg/add <=> /msg/modify/:msgId 间跳转，状态会保留
   route: { canReuse: false },
 
   data () {

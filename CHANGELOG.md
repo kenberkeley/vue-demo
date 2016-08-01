@@ -4,4 +4,4 @@
 
 2016/7/30 将后端 API 拆出独立成一个项目 [简易留言板](https://github.com/kenberkeley/msg-board-api)
 
-2016/8/1 组件命名形式从 msg-list 改为 MsgList；拆分 MsgList
+2016/8/1 组件命名形式从 msg-list 改为 MsgList；修改 `webpack.dev.conf.js` 中有关 BrowserSync 与 HMR 的配置

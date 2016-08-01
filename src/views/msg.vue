@@ -1,4 +1,5 @@
 <template>
+  
   <a
     type="button"
     class="btn btn-default btn-lg btn-block"
@@ -11,4 +12,5 @@
   <br/>
   
   <router-view></router-view>
+
 </template>

@@ -1,4 +1,5 @@
 <template>
+
   <div class="jumbotron">
     <h1>Welcome to Vue Demo</h1>
     <p>
@@ -10,4 +11,5 @@
       </a>
     </p>
   </div>
+  
 </template>

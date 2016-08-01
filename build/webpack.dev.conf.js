@@ -13,7 +13,7 @@ config.devtool = SOURCE_MAP ? 'eval-source-map' : false;
 // add hot-reload related code to entry chunk
 config.entry.app = [
   'eventsource-polyfill',
-  'webpack-hot-middleware/client?quiet=true&reload=true',
+  'webpack-hot-middleware/client',
   config.entry.app
 ];
 
@@ -44,18 +44,15 @@ config.plugins = (config.plugins || []).concat([
     filename: 'index.html',
     template: 'src/index.html'
   }),
-  new BrowserSyncPlugin(
-    // BrowserSync options
-    {
-      host: '127.0.0.1',
-      port: 8080,
-      proxy: 'http://127.0.0.1:8000/',
-      logConnections: false,
-      notify: false
-    }, {
-      reload: true
-    }
-  )
+  new BrowserSyncPlugin({
+    host: '127.0.0.1',
+    port: 8080,
+    proxy: 'http://127.0.0.1:8000/',
+    logConnections: false,
+    notify: false
+  }, {
+    reload: false
+  })
 ]);
 
 module.exports = config;
