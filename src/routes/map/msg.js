@@ -4,7 +4,7 @@ export default {
     
     // 基页
     component (resolve) {
-      require(['VIEW/msg/'], resolve)
+      require(['VIEW/msg'], resolve)
     },
 
     // 子路由
@@ -12,26 +12,27 @@ export default {
       '/': {
         name: 'msgIndex',
         component (resolve) {
-          require(['COMPONENT/msg-list/'], resolve)
+          require(['COMPONENT/MsgList/'], resolve)
         }
-      },
-      '/add': {
-        name: 'addMsg',
-        component (resolve) {
-          require(['COMPONENT/msg-form/'], resolve)
-        },
-        needToLogin: true
       },
       '/detail/:msgId': {
         name: 'detailMsg',
         component (resolve) {
-          require(['COMPONENT/msg-detail/'], resolve)
+          require(['COMPONENT/MsgDetail/'], resolve)
         }
+      },
+      // 下面两个路由共用同一个组件
+      '/add': {
+        name: 'addMsg',
+        component (resolve) {
+          require(['COMPONENT/MsgForm/'], resolve)
+        },
+        needToLogin: true
       },
       '/modify/:msgId': {
         name: 'modifyMsg',
         component (resolve) {
-          require(['COMPONENT/msg-form/'], resolve)
+          require(['COMPONENT/MsgForm/'], resolve)
         },
         needToLogin: true
       }

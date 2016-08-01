@@ -1,7 +1,7 @@
 <template src="./navbar.html"></template>
 <script>
-import LoginForm from './login-form/'
-import LogoutDropdown from './logout-dropdown/'
+import LoginForm from './LoginForm/'
+import LogoutDropdown from './LogoutDropdown/'
 
 export default {
   components: { LoginForm, LogoutDropdown },

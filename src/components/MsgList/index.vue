@@ -1,10 +1,10 @@
 <template src="./msg-list.html"></template>
 <script>
-import optBtnGroup from 'COMPONENT/opt-btn-group/'
+import OptBtnGroup from 'COMPONENT/OptBtnGroup/'
 import msgService from 'SERVICE/msgService'
 
 export default {
-  components: { optBtnGroup },
+  components: { OptBtnGroup },
 
   route: {
     // 路由变化则重取数据

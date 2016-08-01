@@ -1,10 +1,10 @@
 <template src="./msg-detail.html"></template>
 <script>
-import optBtnGroup from 'COMPONENT/opt-btn-group/'
+import OptBtnGroup from 'COMPONENT/OptBtnGroup/'
 import msgService from 'SERVICE/msgService'
 
 export default {
-  components: { optBtnGroup },
+  components: { OptBtnGroup },
 
   // 设置默认值（Vue不会像Angular那样吞掉异常）
   data () {

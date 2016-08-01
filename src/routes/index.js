@@ -22,7 +22,7 @@ router.map(routesMap)
 //   '*': '/'
 // })
 
-// 拦截机
+// 拦截器
 router.beforeEach(({ to, from, abort, redirect, next }) => {
   console.info(`${from.path || ''} => ${to.path}`)
 
