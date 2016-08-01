@@ -191,7 +191,7 @@ const xhr = ({ url, body = null, method = 'get' }) => {
 > 本示例项目的代码极尽详细地添加了注释，其中不乏最佳实践提示
 
 ### <a name="devtools">⊙ DevTools</a>
-> [Github地址](https://github.com/vuejs/vue-devtools)
+> [vue-devtools Github 地址](https://github.com/vuejs/vue-devtools)
 
 ***
 
