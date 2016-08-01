@@ -2,28 +2,28 @@
 ![应用截图](./screenshot.png)
 
 ## 目录
-##### &sect; [技术栈](#features)
-##### &sect; [快速开始](#getting-started)
+#### &sect; [技术栈](#features)
+#### &sect; [快速开始](#getting-started)
   * [安装](#installation)
   * [启动](#start)
 
-##### &sect; [项目架构](#architecture)
+#### &sect; [项目架构](#architecture)
   * [目录结构](#tree)
   * [与官方示例项目的区别](#difference)
 
-##### &sect; [深入设计](#deep-in-design)
+#### &sect; [深入设计](#deep-in-design)
   * [谈谈状态管理](#state-management)
   * [引入服务层](#service-layer)
   * [Ajax](#global-ajax)
 
-##### &sect; [开发](#development)
+#### &sect; [开发](#development)
   * [Webpack 配置](#webpack-configure)
   * [开发工具](#devtools)
   * [规范](#standard)
   
-##### &sect; [测试](#testing)  
-##### &sect; [部署](#deployment)
-##### &sect; [参考](#reference)
+#### &sect; [测试](#testing)  
+#### &sect; [部署](#deployment)
+#### &sect; [参考](#reference)
 
 ****
 
