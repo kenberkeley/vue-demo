@@ -2,32 +2,33 @@
 ![应用截图](./screenshot.png)
 
 ## 目录
-#### &sect; [技术栈](#features)
-#### &sect; [快速开始](#getting-started)
+##### &sect; [技术栈](#features)
+##### &sect; [快速开始](#getting-started)
   * [安装](#installation)
   * [启动](#start)
 
-#### &sect; [项目架构](#architecture)
+##### &sect; [项目架构](#architecture)
   * [目录结构](#tree)
   * [与官方示例项目的区别](#difference)
 
-#### &sect; [深入设计](#deep-in-design)
+##### &sect; [深入设计](#deep-in-design)
   * [谈谈状态管理](#state-management)
   * [引入服务层](#service-layer)
+  * [Ajax](#global-ajax)
 
-#### &sect; [开发](#development)
+##### &sect; [开发](#development)
   * [Webpack 配置](#webpack-configure)
   * [开发工具](#devtools)
   * [规范](#standard)
   
-#### &sect; [测试](#testing)  
-#### &sect; [部署](#deployment)
-#### &sect; [参考](#reference)
+##### &sect; [测试](#testing)  
+##### &sect; [部署](#deployment)
+##### &sect; [参考](#reference)
 
 ****
 
 ## <a name="features">&sect; 技术栈</a>
-(详情可参阅 `package.json` )
+> 详情可参阅 `package.json`
 
 * Vue 1.0.18
 * Vue Router
@@ -44,33 +45,32 @@
 > * [Vue.js API](http://cn.vuejs.org/api/)
 > * [Vue-Router 文档](http://router.vuejs.org/zh-cn/index.html)
 
-### <a name="installation">安装</a>
-> 推荐升级到 node 5.x + npm 3.x 环境
-> 推荐使用 `cnpm` 或手动切换到淘宝 npm 源
+### <a name="installation">⊙ 安装</a>
+> 推荐升级到 node 5.x + npm 3.x 环境  
+> 推荐使用 `cnpm` 或手动切换到淘宝 npm 源  
 > `npm set registry https://registry.npm.taobao.org/`
 
-本示例项目需要 [简易留言板 RESTful API](https://github.com/kenberkeley/msg-board-api) 作为后端，模拟前后端分离开发
-（将后端独立开来，还为了与 [React Demo](https://github.com/kenberkeley/react-demo) 共用）
-请分别 `git clone`，打开**两个**命令窗口（ Windows 下推荐使用 `Cygwin`）**分别**切换到两者的目录下
-敲下 `npm install` 安装依赖（为避免 Windows 下的 npm 软链接问题，您可以加上 `--no-bin-link` 完全解构所有依赖）
+本示例项目需要结合 [简易留言板 RESTful API](https://github.com/kenberkeley/msg-board-api)  
+模拟前后端分离开发（还为了与 [React Demo](https://github.com/kenberkeley/react-demo) 共用）  
+请分别 `git clone`，打开**两个**命令窗口（ Windows 下推荐使用 `Cygwin`）**分别**切换到两者的目录下  
+敲下 `npm install` 安装依赖（为避免 Windows 下的 npm 软链接问题，可加上 `--no-bin-link` 完全解构所有依赖）
 
-### <a name="start">启动</a>
-首先，在 `msg-board-api` 的命令窗口下，敲下 `npm start`
-随后，在 `vue-demo` 的命令窗口下，敲下 `npm start`
-如无意外，默认浏览器就会自动打开 `localhost:8080`，您立即可以看到效果
-若浏览器没有自动弹出，则请自行手动访问
-（开发过程中，通过 Webpack 处理的静态资源都由基于内存的 `webpack-dev-server` 提供）
+### <a name="start">⊙ 启动</a>
+先后在 `msg-board-api`、`vue-demo`的命令窗口下，敲下 `npm start`  
+如无意外，默认浏览器就会自动打开 `localhost:8080`，您立即可以看到效果  
+若浏览器没有自动弹出，则请自行手动访问  
+> 开发过程中，通过 Webpack 处理的静态资源都由基于内存的 `webpack-dev-server` 提供
 
 ***
 
 ## <a name="architecture">&sect; 项目架构</a>
-### <a name="tree">目录结构</a>
+### <a name="tree">⊙ 目录结构</a>
 ```
 .
-├── build/               # Webpack配置目录
-├── dist/                # build生成的生产环境下的项目
+├── build/               # Webpack 配置目录
+├── dist/                # build 生成的生产环境下的项目
 ├── src/                 # 源码目录（开发都在这里进行）
-│   ├── assets/            # 放置需要经由Webpack处理的静态文件（font等）
+│   ├── assets/            # 放置需要经由 Webpack 处理的静态文件（font 等）
 │   ├── components/        # 组件
 │   ├── directives/        # 指令
 │   ├── filters/           # 过滤器
@@ -80,24 +80,24 @@
 │   ├── app.js             # 启动文件
 │   ├── appx.vue           # 根组件
 │   ├── index.html         # 静态基页
-├── static/              # 放置无需经由Webpack处理的静态文件
-├── .babelrc             # babel转码配置
-├── .eslintignore        # （配置）ESLint检查中需忽略的文件（夹）
-├── .eslintrc            # ESLint配置
-├── .gitignore           # （配置）需被Git忽略的文件（夹）
+├── static/              # 放置无需经由 Webpack 处理的静态文件
+├── .babelrc             # Babel 转码配置
+├── .eslintignore        # （配置）ESLint 检查中需忽略的文件（夹）
+├── .eslintrc            # ESLint 配置
+├── .gitignore           # （配置）需被 Git 忽略的文件（夹）
 ├── package.json         # （这个就不用多解释了吧）
 ```
-### <a name="difference">与官方示例项目的区别</a>
-* 本示例项目秉承最佳实践，高度洁癖地实现代码分离/复用
+### <a name="difference">⊙ 与官方示例项目的区别</a>
+* 本示例项目秉承最佳实践，**高度洁癖**地实现代码分离/复用
 * 优化目录结构，更好的模块分离
-* 引入服务层（详细内容在下面的[深入设计·服务层](#service-layer)）
+* 引入服务层（详细内容在下面的[深入设计·引入服务层](#service-layer)）
 * 引入路径别名（详细内容在下面的 [Webpack 配置](#webpack-configure)）
 
 ***
 
 ## <a name="deep-in-design">&sect; 深入设计</a>
-### <a name="state-management">谈谈状态管理</a>
-Vue.js 参照 [Flux](https://github.com/facebook/flux) / [Redux](https://github.com/reactjs/redux)，实现出 [Vuex](https://github.com/vuejs/vuex)，专注于**应用层级**的状态管理。
+### <a name="state-management">⊙ 谈谈状态管理</a>
+Vue 参照 [Flux](https://github.com/facebook/flux) / [Redux](https://github.com/reactjs/redux)，实现出 [Vuex](https://github.com/vuejs/vuex)，专注于**应用层级**的状态管理。
 本示例项目并没有引入 Vuex ，主要是基于以下考量：
 
 如果您看过文档中的[简易教程·计数器](http://vuex.vuejs.org/zh-cn/tutorial.html)，您应该会觉得 Vuex 把简单问题复杂化了（的确如此）。为了实现全局状态管理，把原本简单纯粹的双向绑定以及操作方法都剥离开来，抽象成 Vuex 的 `state / mutation / action`。对于绝大部分中小型项目而言，这显然是过度设计，牛刀杀鸡。
@@ -107,72 +107,89 @@ Vue.js 参照 [Flux](https://github.com/facebook/flux) / [Redux](https://github.
 &nbsp;&nbsp;&nbsp;我们在单独使用 Vue.js 的时候，通常会把状态储存在组件的内部。也就是说，每一个组件都拥有当前应用状态的一部分，整个应用的状态是分散在各个角落的。然而我们经常会需要把状态的一部分共享给多个组件。一个常见的解决策略为：使用定制的事件系统，让一个组件把一些状态“发送”到其他组件中。这种模式的问题在于，大型组件树中的事件流会很快变得非常繁杂，并且调试时很难去找出究竟哪错了。  
 &nbsp;&nbsp;&nbsp;为了更好的解决在大型应用中状态的共用问题，我们需要对组件的 组件本地状态(component local state) 和 应用层级状态(application level state) 进行区分。应用级的状态不属于任何特定的组件，但每一个组件仍然可以监视（Observe）其变化从而响应式地更新 DOM。通过汇总应用的状态管理于一处，我们就不必到处传递事件。因为任何牵扯到一个以上组件的逻辑，都应该写在这里。此外，这样做也能让我们更容易地记录并观察状态的变更（Mutation，原意为突变），甚至可以实现出华丽如时光旅行一般的调试效果。
 
-React 作为一个 View 层，不具备数据的双向绑定能力，其数据流是**单向**的。既然是**单向数据流**，那么将整个应用状态汇于一处集中管理（这就是传统意义上的 Model 层，只是改名为 Store 层罢了），抽离出操作方法等（Controller 层，在此为 Action 与 Reducer 层），也是自然而然的。这是基于大型项目协作开发中，前人踩坑后的最佳经验总结，同时也是当前前端 MVC 的最佳实践。
-但 Vue.js 乃轻量级的 MVVM 框架，若完全照搬相对抽象的 React + Flux / Redux 架构，未免有点**舍本逐末**了。私认为，对于一个使用 MVVM 模式构建的单页应用而言，需要置于 Store 层的，仅限于**全局通用**且**状态持久**的数据（例如用户认证信息）。若把所有应用数据都糅合在一处，那就像是把所有变量都挂载到全局。
+React 作为一个 View 层，不具备数据的双向绑定能力，其数据流是单向的。既然是**单向数据流**，那么将整个应用状态汇于一处集中管理（这就是传统意义上的 Model 层，只是改名为 Store 层罢了），抽离出操作方法等（Controller 层，在此为 Action 与 Reducer 层），也是自然而然的。这是基于大型项目协作开发中，前人踩坑后的最佳经验总结，同时也是当前前端 MVC 的最佳实践。
 
-结合作者尤雨溪的说法，Vue.js 状态管理的最佳实践应为：**组件自包含状态数据（组件本地状态），全局持久性通用数据（应用层级状态）集中管理**。
+但 Vue 乃轻量级的 MVVM 框架，若完全照搬相对抽象的 React + Flux / Redux 架构，未免有点舍本逐末了。私认为，对于一个使用 MVVM 模式构建的单页应用而言，需要置于 `store` 层的，仅限于**全局通用**且**状态持久**的数据（例如用户认证信息）。若把所有应用数据（尤指一些实时性较高的数据以及非共享的数据）都糅合在一处，那就像是把所有变量都挂载到全局。
+
+结合作者尤雨溪的说法，Vue 状态管理的最佳实践应为：**组件自包含状态数据（组件本地状态），全局持久性通用数据（应用层级状态）集中管理**。
 
 可是，**全局通用**且**状态持久**的数据占极少数，若为此而引入 Vuex，实在是太不值得了。这个时候，就需要借鉴 AngularJS 的一些经验实践来实现 Vuex 的功能。
 
-### <a name="service-layer">引入服务层，联合根组件替代 Vuex</a>
+### <a name="service-layer">⊙ 引入服务层，联合根组件替代 Vuex</a>
 在 Angular 中，组件间的数据传递一般是使用服务（Service），有时也会使用事件传递。若是全局通用（包括模板中）需要用到的状态数据，就挂载到 `$rootScope` 上。参照上述实践，我们让 Vue 的根组件（赐名为 `Appx`，位于 `src/appx.vue`）充当 Vuex 的 `store`，但省去各种繁琐抽象的概念，直接把**全局通用**的数据挂载到根组件的 data 属性（相当于 `$rootScope`）上。这样一来，在子组件中直接使用 `this.$root` 即可访问。同样地，**全局单例**的 Service 也可存储数据，直接挂载到其 data 属性即可。
-> 例如，本示例中，`Appx` 与 `userService.data` 均存储着用户的 session （二者是**手动**同步的）
-> 但 `Appx` 的仅能在组件内部通过 `this.$root.userData` 访问
-> 而 `userService` 的则可以在**任何地方**访问
+> 例如，本示例中，`Appx` 与 `userService.data` 均存储着用户的 session （二者是**手动**同步的）  
+> 但 `Appx` 的仅能在组件内部通过 `this.$root.userData` 访问  
+> 而 `userService` 的则可以在**任何地方**访问  
 > 仅需要 `import userService from 'SERVICE/userService'` 即可
 
 虽说 Service 可以存储数据，但这并不是它主要的功能。对于那些**状态毋须持久**的数据（例如表单项），请直接存储在组件内部（`data`）。
-其在组件间的传递，也可以直接使用事件传递（`dispatch`）或 `props` 即可。
+在组件间的传递这些数据，也可以直接使用事件传递（`dispatch`）或 `props` 即可。
 
-Service 在 Angular 中还有一个很重要的作用，就是**封装 Ajax 请求**。
-> 例如，小明和小刚分工合作一个项目，分别负责 Foo 与 Bar 模块
-> 在 Foo 的控制器中，需要请求用户 session，于是小明自己在控制器中引入 `$http` 请求
-> 在 Bar 的控制器中，又需要请求用户 session，于是小刚又自己写了一遍
-> 这其实有点像在后端开发中，将 M 层的代码直接写在 C 层，导致代码冗余揉杂
+Service 在 Angular 中还有一个很重要的作用，就是封装 Ajax 请求。
+> 例如，小明和小刚分工合作一个项目，分别负责 Foo 与 Bar 模块  
+> 在 Foo 的控制器中，需要请求用户 session，于是小明自己在控制器中引入 `$http` 请求  
+> 在 Bar 的控制器中，又需要请求用户 session，于是小刚又自己写了一遍  
+> 这其实有点像在后端开发中，将 M 层的代码直接写在 C 层，导致代码冗余揉杂  
 > 因此在 Angular 中，在控制器中实现 Ajax 请求是反模式，应当把这部分封装成 Service 以便复用
 
 在本示例项目中，Service 层的主要功能是：**封装好与后端 API 一一对应的函数。**
-> 例如，后端用于用户登录的API为 `/login`
-> 那么前端 `services/userService.js` 这个服务类中就对应存在一个名为 `login` 的函数
+> 例如，后端用于用户登录的API为 `/login`  
+> 那么前端 `services/userService.js` 这个服务类中就对应存在一个名为 `login` 的函数  
 > 只需要调用 `userService.login({ 用户帐号密码 })` 即可实现请求
 
-引入服务层的主要作用就是为了**轻量化组件，统一管理 XHR 请求，提高代码复用**，避免在组件中分别实现请求而导致管理上的混乱。
+引入服务层的主要作用就是为了**轻量化组件，统一管理 XHR 请求，提高代码复用**，避免在组件中分别实现请求而导致管理上的混乱。  
 而且，**前端的服务与后端的 API 一一对应**，在理解上也会变得更加容易。
 
-更重要的是，服务层与 Vue 技术栈并没有太大关系（前提是您没有用 Vue Resource）。
+更重要的是，服务层与 Vue 技术栈并没有太大关系（前提是您没有用 Vue Resource）。  
 以后前端改用其他技术栈（React 等）时，服务层可直接复制过去，毋须改动任何代码。
-> 我的 [React Demo](https://github.com/kenberkeley/react-demo) 就是直接克隆本示例项目的服务层
+> 我的 [React Demo](https://github.com/kenberkeley/react-demo) 就是直接复制本示例项目的 `services/` 目录
+
+### <a name="ajax">⊙ Ajax</a>
+本示例项目封装出 `xhr` 函数提供 Ajax 请求：
+```javascript
+// 详见 services/xhr/
+const xhr = ({ url, body = null, method = 'get' }) => {
+  return <then>
+}
+```
+服务层直接引入该 `xhr` 函数即可  
+毋须理会底层封装的是什么库  
+
+> 例如，一开始用 jQuery 的 `$.ajax`  
+> 之后项目升级，已经不需要 jQuery 了，改用 Superagent  
+> 那么也就是用 Superagent 重新实现 `xhr` 函数即可  
+> 服务层不需要更改任何代码  
+> 可以把 `xhr` 理解成是一个 **接口**  
 
 ***
 
 ## <a name="development">&sect; 开发</a>
-### <a name="webpack-configure">配置 Webpack</a>
+### <a name="webpack-configure">⊙ 配置 Webpack</a>
 > 由于项目本身已经拥有相对成熟的 Webpack 配置，因此在一定程度上您可以不求甚解，但了解其配置会更能把握整体开发
 
 * 默认的前端服务器为 `localhost:8080`，可在 `build/webpack.config.dev.js` 中找到
-* 后端 RESTful API 服务器基地址写在了 `src/services/xhr/config.js` 中，请根据实际自行修改
+* 后端 RESTful API 基地址写在了 `src/services/xhr/config.js` 中，请根据实际自行修改
 * 路径别名常量的定义位于 `build/webpack.base.conf.js`，好处就是**引入与重构都很方便**
-> 例如，在某组件中，引入 `userService` 需要 `import userService from '../../../services/userService'`
-> 但有了路径别名后，只需要 `import userService from 'SERVICE/userService'`
-> 相比于 AngularJS 中的**依赖注入**，这种方式依赖于构建工具，显得更为简单
+> 例如，在某组件中，引入 `userService` 需要 `import userService from '../../../services/userService'`  
+> 但有了路径别名后，只需要 `import userService from 'SERVICE/userService'`  
+> 相比于 AngularJS 中的依赖注入，这种方式依赖于构建工具，显得更为简单  
 > ***
-> 您可能会说，Webpack 只需要设定了 `root`属性为 `src/`
-> 就可以 `import userService from 'services/userService'`
-> 但在这里其实是有歧义的
-> 例如，`import createBrowserHistory from 'history/lib/createBrowserHistory'`
-> 请问该文件在哪里？
-> 您可能会回答是 `src/history/lib/createBrowserHistory.js`
-> 但实际上 [history](https://github.com/ReactTraining/history) 是一个 npm package
-> 同样地，您又怎么知道 `services` 不是一个 npm package？
-> 而且重构之后，文件夹的变动会导致相对路径的变化，`services/` 目录未必仍在 `src/` 下
-> 因此，路径别名相当有必要。其常量的形式，让人一看就知道不是一个 npm package
+> 您可能会说，Webpack 只需要设定了 `root`属性为 `src/`  
+> 就可以 `import userService from 'services/userService'`  
+> 但在这里其实是会引起歧义的（不过这属于强迫症的范畴。。。）  
+> 例如，`import createBrowserHistory from 'history/lib/createBrowserHistory'`  
+> 您可能会觉得这是 `src/history/lib/createBrowserHistory.js`  
+> 但实际上 [history](https://github.com/ReactTraining/history) 是一个 npm package  
+> 同样地，您又怎么知道 `services` 不是一个 npm package？  
+> 而且重构之后，文件夹的变动会导致相对路径的变化，`services/` 目录未必仍在 `src/` 下    
+> 因此，路径别名相当有必要。其**常量**的形式，让人一看就知道不是一个 npm package
 
 
-### <a name="standard">规范</a>
+### <a name="standard">⊙ 规范</a>
 > 开发规范请参考 [**VueJS最佳实践**](./best-practice.md)  
 > 本示例项目的代码极尽详细地添加了注释，其中不乏最佳实践提示
 
-### <a name="devtools">DevTools</a>
+### <a name="devtools">⊙ DevTools</a>
 > [Github地址](https://github.com/vuejs/vue-devtools)
 
 ***
