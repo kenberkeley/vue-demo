@@ -14,7 +14,7 @@
 #### &sect; [深入设计](#deep-in-design)
   * [谈谈状态管理](#state-management)
   * [引入服务层](#service-layer)
-  * [Ajax](#global-ajax)
+  * [Ajax](#ajax)
 
 #### &sect; [开发](#development)
   * [Webpack 配置](#webpack-configure)
