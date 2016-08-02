@@ -32,7 +32,7 @@
 ## &sect; 团队开发规范
 * 请勿随意更改开发配置，例如 Webpack 的配置，`.eslintrc` 等。若要修改，团队协商后统一更改
 * 请勿随心所欲地使用其他 Package 。例如，既然用了 `vue-router` 就不要自行引入 `ui-router`
-* 单文件代码量请尽量控制在**百行以内**。官方的做法是一个 vue 文件对应一个组件。而我们的规范是，对于代码行数过多的组件，请自建独立文件夹，把 HTML 模板与 CSS 样式拆出来，再由 `index.vue` 引入
+* **单文件代码量请尽量控制在 *百行* 以内。官方的做法是一个 vue 文件对应一个组件。而我们的规范是，对于代码行数过多的组件，请自建独立文件夹，把 HTML 模板与 CSS 样式拆出来，再由 `index.vue` 引入**
 * 严禁把任何状态挂载到全局（亦即 window 下不能自行赋予自定义属性）
 * 路径的引入，若是引入的是目录，须显式在末尾加斜杠，以便一眼区分：
 
@@ -47,7 +47,7 @@ import lib from '../../../lib/' // 默认引入该目录下的index.js
 ```html
 <div class="container">
   ...
-</div><!-- .container -->
+</div><!-- /.container -->
 ```
 
 * HTML 模板请分行拆写，Vue 指令后置
@@ -96,8 +96,8 @@ import isEmpty from 'lodash/isEmpty' // Good！
 * 请勿把所有组件全局化（为了懒加载），何况也并不是所有组件都有必要全局化：
 
 ```javascript
-import LoginForm from './login-form/'
-import LogoutDropdown from './logout-dropdown/'
+import LoginForm from './LoginForm'
+import LogoutDropdown from './LogoutDropdown'
 
 export default {
   // “私有化”引入
@@ -106,15 +106,15 @@ export default {
 }
 ```
   
-上面的目录结构树如下（绝对私有的组件可放置在于父组件目录中）：
+上面的目录结构树如下（**绝对私有**的组件可放置在于父组件目录中）：
 
 ```
 .
-├── navbar/
-│   ├── login-form/
-│   ├── logout-dropdown/
+├── Navbar/
+│   ├── index.vue
+│   ├── LoginForm.vue
+│   ├── LogoutDropdown.vue
 ```
-> 这里涉及到组件的划分问题，需要实际问题实际分析。一般的划分的依据是：①功能 ②是否重用
 
 * 请尽量保证数据流的可追踪性。尽量不要使用 `$parent`，而是通过 `props` 属性接收父组件的传入
 * 在 Vue 层面上，提高效能的优化手段有很多，例如 `keep-alive`、`canReuse`、`track-by` 等

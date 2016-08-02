@@ -115,7 +115,7 @@ React 作为一个 View 层，不具备数据的双向绑定能力，其数据�
 可是，**全局通用**且**状态持久**的数据占极少数，若为此而引入 Vuex，实在是太不值得了。这个时候，就需要借鉴 AngularJS 的一些经验实践来实现 Vuex 的功能。
 
 ### <a name="service-layer">⊙ 引入服务层</a>
-> 您无需有 Angular 的开发经验，因为 Vue 本身就像是 Angular 的优雅简化版
+> 您无需有 Angular 的开发经验，因为 Vue 本身就是 Angular 的优雅简化版
 
 在 Angular 中，组件间的数据传递一般是使用服务（Service），有时也会使用事件传递。若是全局通用（包括模板中）需要用到的状态数据，就挂载到 `$rootScope` 上。参照上述实践，我们让 Vue 的根组件 `App`（位于 `src/components/App.vue`）充当 `$rootScope`，直接把**全局通用**的数据挂载到根组件的 `data` 属性上。这样一来，在子组件中直接使用 `this.$root` 即可访问。同样地，**全局单例**的 Service 也可存储数据，也是直接挂载到其 data 属性即可。
 > 例如，本示例中，根组件 `App` 与 `userService.data` 均存储着用户的 session  
@@ -154,7 +154,7 @@ Service 在 Angular 中还有一个很重要的作用，就是封装 Ajax 请求
 本示例项目封装出 `xhr` 函数提供 Ajax 请求：
 
 ```javascript
-// 详见 services/xhr/
+// 详见 src/services/xhr/
 const xhr = ({ url, body = null, method = 'get' }) => {
   return <then>
 }
