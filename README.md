@@ -40,9 +40,9 @@
 ***
 
 ## <a name="getting-started">&sect; 快速开始</a>
-> 在开始前，希望您已通读如下资料
-> * [Vue.js Guide](http://cn.vuejs.org/guide/)
-> * [Vue.js API](http://cn.vuejs.org/api/)
+> 在开始前，希望您已通读如下资料  
+> * [Vue.js Guide](http://cn.vuejs.org/guide/)  
+> * [Vue.js API](http://cn.vuejs.org/api/)  
 > * [Vue-Router 文档](http://router.vuejs.org/zh-cn/index.html)
 
 ### <a name="installation">⊙ 安装</a>
@@ -53,10 +53,10 @@
 本示例项目需要结合 [简易留言板 RESTful API](https://github.com/kenberkeley/msg-board-api)  
 模拟前后端分离开发（还为了与 [React Demo](https://github.com/kenberkeley/react-demo) 共用）  
 请分别 `git clone`，打开**两个**命令窗口（ Windows 下推荐使用 `Cygwin`）**分别**切换到两者的目录下  
-敲下 `npm install` 安装依赖（为避免 Windows 下的 npm 软链接问题，可加上 `--no-bin-link` 完全解构所有依赖）
+分别敲下 `npm install` 安装依赖（为避免 Windows 下的 npm 软链接问题，可加上 `--no-bin-link` 完全解构所有依赖）
 
 ### <a name="start">⊙ 启动</a>
-先后在 `msg-board-api`、`vue-demo`的命令窗口下，敲下 `npm start`  
+先后在 `msg-board-api`、`vue-demo` 的命令窗口下，敲下 `npm start`  
 如无意外，默认浏览器就会自动打开 `localhost:8080`，您立即可以看到效果  
 若浏览器没有自动弹出，则请自行手动访问  
 > 开发过程中，通过 Webpack 处理的静态资源都由基于内存的 `webpack-dev-server` 提供
@@ -78,7 +78,6 @@
 │   ├── services/          # 服务
 │   ├── views/             # 路由视图基页
 │   ├── app.js             # 启动文件
-│   ├── appx.vue           # 根组件
 │   ├── index.html         # 静态基页
 ├── static/              # 放置无需经由 Webpack 处理的静态文件
 ├── .babelrc             # Babel 转码配置
@@ -115,21 +114,24 @@ React 作为一个 View 层，不具备数据的双向绑定能力，其数据�
 
 可是，**全局通用**且**状态持久**的数据占极少数，若为此而引入 Vuex，实在是太不值得了。这个时候，就需要借鉴 AngularJS 的一些经验实践来实现 Vuex 的功能。
 
-### <a name="service-layer">⊙ 引入服务层，联合根组件替代 Vuex</a>
-在 Angular 中，组件间的数据传递一般是使用服务（Service），有时也会使用事件传递。若是全局通用（包括模板中）需要用到的状态数据，就挂载到 `$rootScope` 上。参照上述实践，我们让 Vue 的根组件（赐名为 `Appx`，位于 `src/appx.vue`）充当 Vuex 的 `store`，但省去各种繁琐抽象的概念，直接把**全局通用**的数据挂载到根组件的 data 属性（相当于 `$rootScope`）上。这样一来，在子组件中直接使用 `this.$root` 即可访问。同样地，**全局单例**的 Service 也可存储数据，直接挂载到其 data 属性即可。
-> 例如，本示例中，`Appx` 与 `userService.data` 均存储着用户的 session （二者是**手动**同步的）  
-> 但 `Appx` 的仅能在组件内部通过 `this.$root.userData` 访问  
-> 而 `userService` 的则可以在**任何地方**访问  
+### <a name="service-layer">⊙ 引入服务层</a>
+> 您无需有 Angular 的开发经验，因为 Vue 本身就像是 Angular 的优雅简化版
+
+在 Angular 中，组件间的数据传递一般是使用服务（Service），有时也会使用事件传递。若是全局通用（包括模板中）需要用到的状态数据，就挂载到 `$rootScope` 上。参照上述实践，我们让 Vue 的根组件 `App`（位于 `src/components/App.vue`）充当 `$rootScope`，直接把**全局通用**的数据挂载到根组件的 `data` 属性上。这样一来，在子组件中直接使用 `this.$root` 即可访问。同样地，**全局单例**的 Service 也可存储数据，也是直接挂载到其 data 属性即可。
+> 例如，本示例中，根组件 `App` 与 `userService.data` 均存储着用户的 session  
+> （二者是**手动**同步的，相关例子请看 `src/components/Navbar/` 下的 `LoginForm.vue` / `LogoutDropDown.vue`）  
+> 但 `App` 的仅能在组件内部通过 `this.$root.userData` 访问  
+> 而 `userService` 的则可以在**任何地方**访问（具体例子请看 `src/routes/index.js`）  
 > 仅需要 `import userService from 'SERVICE/userService'` 即可
 
 虽说 Service 可以存储数据，但这并不是它主要的功能。对于那些**状态毋须持久**的数据（例如表单项），请直接存储在组件内部（`data`）。
-在组件间的传递这些数据，也可以直接使用事件传递（`dispatch`）或 `props` 即可。
+在组件间的传递这些数据，也可以直接使用事件传递 `dispatch` 或父子组件间的 `props` 即可。
 
 Service 在 Angular 中还有一个很重要的作用，就是封装 Ajax 请求。
 > 例如，小明和小刚分工合作一个项目，分别负责 Foo 与 Bar 模块  
 > 在 Foo 的控制器中，需要请求用户 session，于是小明自己在控制器中引入 `$http` 请求  
 > 在 Bar 的控制器中，又需要请求用户 session，于是小刚又自己写了一遍  
-> 这其实有点像在后端开发中，将 M 层的代码直接写在 C 层，导致代码冗余揉杂  
+> 这其实有点像在后端开发中，将 M 层的代码直接写在 C 层，导致代码冗余揉杂，复用率低  
 > 因此在 Angular 中，在控制器中实现 Ajax 请求是反模式，应当把这部分封装成 Service 以便复用
 
 在本示例项目中，Service 层的主要功能是：**封装好与后端 API 一一对应的函数。**
@@ -143,8 +145,14 @@ Service 在 Angular 中还有一个很重要的作用，就是封装 Ajax 请求
 以后前端改用其他技术栈（React 等）时，服务层可直接复制过去，毋须改动任何代码。
 > 我的 [React Demo](https://github.com/kenberkeley/react-demo) 就是直接复制本示例项目的 `services/` 目录
 
+您可能会觉得，这是要把 Vue 当 Angular 使的节奏，的确如此。不管黑猫白猫，能捉到老鼠的就是好猫。  
+同样，Angular 虽被喷复杂，但其经验确实有助于大型项目的开发与维护。故汲取其精髓，何乐而不为？
+
+> 上面提到的 [React Demo](https://github.com/kenberkeley/react-demo)，实际上也是把 React 当 Vue 使
+
 ### <a name="ajax">⊙ Ajax</a>
 本示例项目封装出 `xhr` 函数提供 Ajax 请求：
+
 ```javascript
 // 详见 services/xhr/
 const xhr = ({ url, body = null, method = 'get' }) => {

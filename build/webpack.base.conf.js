@@ -1,13 +1,20 @@
-var path = require('path');
+var path = require('path'),
+  webpack = require('webpack');
 
 module.exports = {
   entry: {
-    app: './src/app.js'
+    app: './src/app.js',
+    vendor: [
+      'vue',
+      'vue-router',
+      'vue-resource',
+      'lodash',
+      'superagent'
+    ]
   },
   output: {
     path: path.resolve(__dirname, '../dist/static'),
-    publicPath: '/static',
-    filename: '[name].js'
+    publicPath: '/static'
   },
   resolve: {
     extensions: ['', '.js', '.vue', '.less'],
@@ -57,5 +64,10 @@ module.exports = {
   },
   eslint: {
     formatter: require('eslint-friendly-formatter')
-  }
+  },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['vendor']
+    })
+  ]
 };

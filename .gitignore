@@ -1,15 +1,5 @@
 .DS_Store
-logs
 *.log
-npm-debug.log*
-pids
-*.pid
-*.seed
-lib-cov
 coverage
-.grunt
-.lock-wscript
 dist
 node_modules
-.npm
-.node_repl_history

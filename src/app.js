@@ -1,16 +1,18 @@
 /**
  * 启动器文件
  */
-import './components/'
+import './components/' // 全局化的组件
 import './directives/'
 import './filters/'
 import router from './routes/'
-import app from './appx'
+import App from 'COMPONENT/App'
 
 // 把根组件挂载到id为app的DOM上
-router.start(app, '#app')
+router.start(App, '#app')
 
-/*
-  // https://github.com/vuejs/vue-devtools#NOTES
-  Vue.config.devtools = true // v1.0.18+
+/**
+ * 根据https://github.com/vuejs/vue-devtools#NOTES
+ * Vue 1.0.18以上版本需要加入下面一行代码以启用devtools
+ * 生产环境下建议保持注释
  */
+// Vue.config.devtools = true

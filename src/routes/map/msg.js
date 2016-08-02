@@ -12,27 +12,27 @@ export default {
       '/': {
         name: 'msgIndex',
         component (resolve) {
-          require(['COMPONENT/MsgList/'], resolve)
+          require(['COMPONENT/Msg/MsgList/'], resolve)
         }
       },
       '/detail/:msgId': {
         name: 'detailMsg',
         component (resolve) {
-          require(['COMPONENT/MsgDetail/'], resolve)
+          require(['COMPONENT/Msg/MsgDetail'], resolve)
         }
       },
       // 下面两个路由共用同一个组件
       '/add': {
         name: 'addMsg',
         component (resolve) {
-          require(['COMPONENT/MsgForm/'], resolve)
+          require(['COMPONENT/Msg/MsgForm/'], resolve)
         },
         needToLogin: true
       },
       '/modify/:msgId': {
         name: 'modifyMsg',
         component (resolve) {
-          require(['COMPONENT/MsgForm/'], resolve)
+          require(['COMPONENT/Msg/MsgForm/'], resolve)
         },
         needToLogin: true
       }

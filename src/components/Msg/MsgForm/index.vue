@@ -1,4 +1,4 @@
-<template src="./msg-form.html"></template>
+<template src="./tpl.html"></template>
 <script>
 import msgService from 'SERVICE/msgService'
 import userService from 'SERVICE/userService'

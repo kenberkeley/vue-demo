@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import routesMap from './map/'
+import routesMap from './map/' // 路由映射
+
+// 在这里访问不了Appx的this.$root.userData，但服务照常无障碍访问
 import userService from 'SERVICE/userService'
 
 Vue.use(VueRouter)
@@ -16,21 +18,22 @@ const router = new VueRouter({
 
 router.map(routesMap)
 
-
-// 404的另一种实现
-// router.redirect({
-//   '*': '/'
-// })
-
-// 拦截器
+// ========================================
+// 中间件
+// ========================================
+// 简单的Logger
 router.beforeEach(({ to, from, abort, redirect, next }) => {
-  console.info(`${from.path || ''} => ${to.path}`)
+  console.info(`[Logger] ${from.path || ''} => ${to.path}`)
+  next()
+})
 
+// 权限拦截
+router.beforeEach(({ to, from, abort, redirect, next }) => {
   if (to.needToLogin && !userService.data) {
     alert('需要登录后才能访问')
+    console.info('[Auth] abort transition')
     return abort()
   }
-
   next()
 })
 

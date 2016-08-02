@@ -1,10 +1,13 @@
-<template src="./msg-list.html"></template>
+<template src="./tpl.html"></template>
 <script>
-import OptBtnGroup from 'COMPONENT/OptBtnGroup/'
+import DisplayControl from './DisplayControl'
+import NoticeBar from './NoticeBar'
+import Pagination from './Pagination'
+import OptBtnGroup from 'COMPONENT/Msg/OptBtnGroup'
 import msgService from 'SERVICE/msgService'
 
 export default {
-  components: { OptBtnGroup },
+  components: { DisplayControl, NoticeBar, OptBtnGroup, Pagination },
 
   route: {
     // 路由变化则重取数据
@@ -14,15 +17,13 @@ export default {
   },
 
   // 由于有了上面的route.data，此处无需手动初始化请求数据
-  // ready () {
-  //   this.fetchMsg()
-  // },
+  // ready () { this.fetchMsg() },
 
   data () {
     return {
       msgs: [],
 
-      // 分页采用“无限刷新”形式
+      // 分页采用“无限加载”形式
       pageIdx: 1, // 默认当前是第1页
       quantity: 10 // 默认每页10条
     }
@@ -44,21 +45,19 @@ export default {
           pageIdx: this.pageIdx,
           quantity: this.quantity
         })
-        .then((msgs) => {
-          this.msgs = msgs
-        })
+        .then(msgs => this.msgs = msgs)
     }
   },
 
   events: {
     /**
      * 由于OptBenGroup封装成组件，因此删除后需要通知父组件更新视图
-     * @param {Number} [object].index msgId
+     * @param {Number} idx
      */
-    DELETE_MSG ({ index }) {
+    DELETE_MSG (idx) {
       console.info('MsgList on DELETE_MSG')
 
-      let target = this.msgs[index]
+      let target = this.msgs[idx]
       this.msgs.$remove(target)
       // $remove是Vue在Array.prototype中添加的便捷函数
     }

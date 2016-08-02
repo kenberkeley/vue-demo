@@ -16,8 +16,7 @@
     "superagent": "^2.0.0",
     "vue": "^1.0.18",
     "vue-resource": "^0.6.1",
-    "vue-router": "^0.7.11",
-    "vue-validator": "^2.0.1"
+    "vue-router": "^0.7.11"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",

@@ -1,0 +1,54 @@
+<pagination
+  :msgs="msgs"
+  :page-idx="pageIdx",
+  :quantity="quantity"
+  :fetch-msg="fetchMsg">
+</pagination>
+
+<notice-bar
+  v-if="!msgs.length">
+</notice-bar>
+
+<display-control
+  :msgs="msgs"
+  :page-idx="pageIdx"
+  :quantity.sync="quantity"
+  :fetch-msg="fetchMsg">
+</display-control>
+
+<ul class="list-group">
+  <!-- track-by指令可提高复用率 http://cn.vuejs.org/guide/list.html#track-by -->
+  <li class="list-group-item" v-for="msg in msgs" track-by="id">
+    <!-- 这里加@click.stop主要是因为会莫名报错，可能是因为使用了BootStrap的缘故 -->
+    <!-- 错误详情：Uncaught TypeError: a.getAttribute is not a function  jquery.min.js:2-->
+    <a @click.stop
+      v-link="{ name: 'detailMsg', params: { msgId: msg.id } }">
+      <b>{{ msg.title }}</b>
+    </a>
+
+    <span class="badge">
+      {{ msg.time | dateTimeFormatter }}
+    </span>
+
+    <br/>
+    
+    <span class="text-muted">by</span>
+    
+    <a @click.stop
+      v-link="{ path: '/msg', query: { author: msg.author } }">
+      <i>{{ msg.author }}</i>
+    </a>
+
+    <opt-btn-group
+      :msg="msg"
+      :index="$index"
+      parent-name="MsgList">
+      <a slot="detailMsgBtn"
+        class="btn btn-info"
+        v-link="{ name: 'detailMsg', params: { msgId: msg.id } }"
+        @click.stop>
+        详情
+      </a>
+    </opt-btn-group>
+  </li>
+</ul>
