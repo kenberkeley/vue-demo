@@ -101,7 +101,7 @@
 Vue 参照 [Flux](https://github.com/facebook/flux) / [Redux](https://github.com/reactjs/redux)，实现出 [Vuex](https://github.com/vuejs/vuex)，专注于**应用层级**的状态管理。
 本示例项目并没有引入 Vuex ，主要是基于以下考量：
 
-如果您看过文档中的[简易教程·计数器](http://vuex.vuejs.org/zh-cn/tutorial.html)，您应该会觉得 Vuex 把简单问题复杂化了（的确如此）。为了实现全局状态管理，把原本简单纯粹的双向绑定以及操作方法都剥离开来，抽象成 Vuex 的 `state / mutation / action`。对于绝大部分中小型项目而言，这显然是过度设计，牛刀杀鸡。
+如果您看过文档中的[简易教程 · 计数器](http://vuex.vuejs.org/zh-cn/tutorial.html)，您应该会觉得 Vuex 把简单问题复杂化了（的确如此）。为了实现全局状态管理，把原本简单纯粹的双向绑定以及操作方法都剥离开来，抽象成 Vuex 的 `state / mutation / action`。对于绝大部分中小型项目而言，这显然是过度设计，牛刀杀鸡。
 
 对于这个问题，作者尤雨溪有如下[评述](http://vuex.vuejs.org/zh-cn/intro.html)：
 > &nbsp;&nbsp;&nbsp;当你的应用还很简单的时候，你多半并不需要 Vuex。也不建议过早地使用  Vuex。但如果你正在构建一个中型以上规模的 SPA，你很有可能已经需要思考应该如何更好地归纳 Vue 之外，应用的其他组成部分。这就是 Vuex 要大显身手的时刻。  
@@ -141,7 +141,7 @@ Service 在 Angular 中还有一个很重要的作用，就是封装 Ajax 请求
 > 那么前端 `services/userService.js` 这个服务类中就对应存在一个名为 `login` 的函数  
 > 只需要调用 `userService.login({ 用户帐号密码 })` 即可实现请求
 
-引入服务层的主要作用就是为了**轻量化组件，统一管理 XHR 请求，提高代码复用**，避免在组件中分别实现请求而导致管理上的混乱。而且，**前端的服务与后端的 API 一一对应**，在理解上也会变得更加容易。
+引入服务层的主要作用就是为了**轻量化组件，统一管理 XHR 请求，提高代码复用**，避免在组件中分别实现请求而导致管理上的混乱，对日后的重构也不友好。而且，**前端的服务与后端的 API 一一对应**，在理解上也会变得更加容易。
 
 更重要的是，服务层与 Vue 技术栈并没有太大关系（前提是您没有用 Vue Resource）。  
 以后前端改用其他技术栈（React 等）时，服务层可直接复制过去，毋须改动任何代码。
@@ -183,7 +183,7 @@ const xhr = ({ url, body = null, method = 'get' }) => {
 > 例如，在某组件中，引入 `userService` 需要 `import userService from '../../../services/userService'`  
 > 但有了路径别名后，只需要 `import userService from 'SERVICE/userService'`  
 > 相比于 AngularJS 中的依赖注入，这种方式依赖于构建工具，显得更为简单  
-> ***
+> 
 > 您可能会说，Webpack 只需要设定了 `root`属性为 `src/`  
 > 就可以 `import userService from 'services/userService'`  
 > 但在这里其实是会引起歧义的（不过这属于强迫症的范畴。。。）  
