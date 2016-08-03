@@ -43,7 +43,9 @@
 > 在开始前，希望您已通读如下资料  
 > * [Vue.js Guide](http://cn.vuejs.org/guide/)  
 > * [Vue.js API](http://cn.vuejs.org/api/)  
-> * [Vue-Router 文档](http://router.vuejs.org/zh-cn/index.html)
+> * [Vue-Router 文档](http://router.vuejs.org/zh-cn/index.html)  
+
+> 同时您还需要熟悉 ES6，详情参考阮老师的[教程](http://es6.ruanyifeng.com/)
 
 ### <a name="installation">⊙ 安装</a>
 > 推荐升级到 node 5.x + npm 3.x 环境  
