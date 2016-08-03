@@ -6,7 +6,7 @@
     class="btn btn-default btn-lg btn-block"
     v-link="{ name: 'addMsg' }"
     v-show="!$route.path.startsWith('/msg/add')">
-    New Message
+    添加消息
     <span class="glyphicon glyphicon-plus"></span>
   </a>
 

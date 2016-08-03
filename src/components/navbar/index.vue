@@ -23,12 +23,12 @@
           <ul class="nav navbar-nav">
             <li :class="{ 'active': $route.path === '/' }">
               <a v-link="'/'">
-                Welcome
+                欢迎页
               </a>
             </li>
             <li :class="{ 'active': $route.path.startsWith('/msg') }">
               <a v-link="'/msg'">
-                Message Board
+                留言板
               </a>
             </li>
           </ul>
