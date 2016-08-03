@@ -180,12 +180,14 @@ const xhr = ({ url, body = null, method = 'get' }) => {
 
 ## <a name="development">&sect; 开发</a>
 ### <a name="webpack-configure">⊙ Webpack 配置</a>
-> 由于已经拥有相对成熟的 Webpack 配置，因此在一定程度上您可以不求甚解，但了解其配置会更能把握整体开发
+> 由于已经拥有相对成熟的 Webpack 配置，因此在一定程度上您可以不求甚解，但了解其配置会更能把握整体开发  
 
-* 默认的前端服务器为 `localhost:8080`，可在 `build/webpack.config.dev.js` 中找到
-* 后端 RESTful API 基地址写在了 `src/services/xhr/config.js` 中，请根据实际自行修改
+* 前端开发服务器为 `localhost:8080`，可在 `build/webpack.config.dev.js` 中找到
+> 后端 RESTful API 基地址写在了 `src/services/xhr/config.js` 中，请根据实际自行修改
+
+* 框架 / 类库 须单独打包。若您还需要引入别的 Package，则将其添加到 `build/webpack.base.conf.js` 中的 `vendor`
+
 * **路径别名**的定义位于 `build/webpack.base.conf.js`，好处就是**引入与重构都很方便**
-
 > 例如，在某组件中，引入 `userService` 需要 `import userService from '../../../services/userService'`  
 > 但有了路径别名后，只需要 `import userService from 'SERVICE/userService'`  
 > 相比于 AngularJS 中的依赖注入，这种方式依赖于构建工具，显得更为简单  

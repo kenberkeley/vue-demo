@@ -4,6 +4,8 @@ var path = require('path'),
 module.exports = {
   entry: {
     app: './src/app.js',
+
+    // 框架 / 类库 单独打包
     vendor: [
       'vue',
       'vue-router',
