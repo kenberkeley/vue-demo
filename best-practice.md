@@ -46,27 +46,27 @@
 * 使用极度频繁的路径，建议添加 Webpack [路径别名 `alias`](https://github.com/kenberkeley/vue-demo#webpack-configure)
 
 * 引入 js 文件请忽略后缀 `.js`；若是引入的是目录，最好显式在末尾加斜杠，以便一眼区分：
->```javascript
+```javascript
 import file from '../../file'
 import lib from '../../lib/' // 默认引入该目录下的 index.js 或 index.vue 等
 （Webpack 配置 resolve > extensions 可设置默认解析的后缀）
 ```
 
 * 最小化引入 框架 / 类库
->```javascript
+```javascript
 import _ from 'lodash'               // 恭喜您，您成功地引入了 lodash 全家桶，打包文件徒增几十KB
 import isEmpty from 'lodash/isEmpty' // Great!
 ```
 
 * HTML 模板中，较长的内容，请注释闭标签：
->```html
+```html
 <div class="container">
   ...
 </div><!-- /.container -->
 ```
 
 * HTML 模板请分行拆写，Vue 指令后置
-> ```html
+```html
 <form
   role="search"
   class="navbar-form navbar-right"
@@ -107,8 +107,7 @@ import isEmpty from 'lodash/isEmpty' // Great!
 
 * 请勿把所有组件全局化（为了懒加载），何况也并不是所有组件都有必要全局化
 
-* **绝对私有**的组件可放置在于父组件目录中
-> 例如 `Navbar` 组件的目录结构如下：
+* **绝对私有**的组件可放置在于父组件目录中（例如 `Navbar` 组件的目录结构如下）
 ```
 .
 ├── Navbar/
