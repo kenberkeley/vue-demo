@@ -73,12 +73,12 @@
 ├── dist/                # build 生成的生产环境下的项目
 ├── src/                 # 源码目录（开发都在这里进行）
 │   ├── assets/            # 放置需要经由 Webpack 处理的静态文件
-│   ├── components/        # 组件
+│   ├── components/        # 组件（COMPONENT）
 │   ├── directives/        # 指令
 │   ├── filters/           # 过滤器
 │   ├── routes/            # 路由
-│   ├── services/          # 服务
-│   ├── views/             # 路由视图基页
+│   ├── services/          # 服务（SERVICE）
+│   ├── views/             # 路由视图基页（VIEW）
 │   ├── app.js             # 启动文件
 │   ├── index.html         # 静态基页
 ├── static/              # 放置无需经由 Webpack 处理的静态文件
@@ -92,7 +92,7 @@
 * 本示例项目秉承最佳实践，**高度洁癖**地实现代码分离/复用
 * 优化目录结构，更好的模块分离
 * 引入服务层（详细内容在下面的[深入设计·引入服务层](#service-layer)）
-* 引入路径别名（详细内容在下面的 [Webpack 配置](#webpack-configure)）
+* 引入路径别名（也就是上面的 `COMPONENT` / `SERVICE` / `VIEW`。详细内容在下面的 [Webpack 配置](#webpack-configure)）
 
 ***
 
@@ -178,7 +178,7 @@ const xhr = ({ url, body = null, method = 'get' }) => {
 
 * 默认的前端服务器为 `localhost:8080`，可在 `build/webpack.config.dev.js` 中找到
 * 后端 RESTful API 基地址写在了 `src/services/xhr/config.js` 中，请根据实际自行修改
-* 路径别名常量的定义位于 `build/webpack.base.conf.js`，好处就是**引入与重构都很方便**
+* **路径别名**的定义位于 `build/webpack.base.conf.js`，好处就是**引入与重构都很方便**
 
 > 例如，在某组件中，引入 `userService` 需要 `import userService from '../../../services/userService'`  
 > 但有了路径别名后，只需要 `import userService from 'SERVICE/userService'`  
