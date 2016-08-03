@@ -21,9 +21,9 @@ router.map(routesMap)
 // ========================================
 // 中间件
 // ========================================
-// 简单的Logger
+// 简单的路由跳转Logger
 router.beforeEach(({ to, from, abort, redirect, next }) => {
-  console.info(`[Logger] ${from.path || ''} => ${to.path}`)
+  console.info(`[RouteLogger] ${decodeURI(from.path)} => ${decodeURI(to.path)}`)
   next()
 })
 
@@ -31,7 +31,7 @@ router.beforeEach(({ to, from, abort, redirect, next }) => {
 router.beforeEach(({ to, from, abort, redirect, next }) => {
   if (to.needToLogin && !userService.data) {
     alert('需要登录后才能访问')
-    console.info('[Auth] abort transition')
+    console.info('[Auth:Failed] 中断跳转')
     return abort()
   }
   next()

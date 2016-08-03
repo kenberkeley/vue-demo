@@ -9,7 +9,7 @@ export default {
   // 顶级变量必须设置默认值方能引入observer
   data () {
     return {
-      userData: null
+      userData: null // 须与 userService.data【手动】同步
     }
   }
 }

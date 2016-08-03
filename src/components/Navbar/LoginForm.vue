@@ -2,7 +2,7 @@
   <form
     role="search"
     class="navbar-form navbar-right"
-    @submit.prevent>
+    @submit.prevent="handleLogin">
     <div class="form-group">
       <input
         required
@@ -13,8 +13,7 @@
     </div>
     <button
       type="submit"
-      class="btn btn-success"
-      @click="login">
+      class="btn btn-success">
       登录
     </button>
   </form>
@@ -28,21 +27,13 @@ export default {
     }
   },
 
-  ready () {
-    // 初始化：请求用户session
-    userService.checkLogin()
-      .then((userSessData) => {
-        if (!userSessData) return
-        // 手动同步顶级变量与服务
-        this.$root.userData = userService.data = userSessData
-      })
-  },
-
   methods: {
-    login () {
+    handleLogin () {
+      console.info('[LoginForm:XHR] 发送登录请求')
       userService
         .login({ username: this.username })
         .then((userSessData) => {
+          console.info('[LoginForm] 登录成功，立即手动同步 $root.userData 与 userService.data')
           this.$root.userData = userService.data = userSessData
         })
     }

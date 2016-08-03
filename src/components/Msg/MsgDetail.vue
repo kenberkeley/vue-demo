@@ -28,12 +28,13 @@
     </div>
   </div>
 </template>
+
 <script>
 import OptBtnGroup from 'COMPONENT/Msg/OptBtnGroup'
 import msgService from 'SERVICE/msgService'
+
 export default {
   components: { OptBtnGroup },
-  // 设置默认值（Vue不会像Angular那样吞掉异常）
   data () {
     return {
       msg: {}
@@ -41,14 +42,16 @@ export default {
   },
   // 初始化：根据msgId请求msg内容
   ready () {
+    let msgId = this.$route.params.msgId
+
+    console.info(`[MsgDetail:XHR] 请求 id 为 ${msgId} 的 msg 数据`)
     msgService
-      .fetch({
-        msgId: this.$route.params.msgId
-      })
+      .fetch({ msgId })
       .then(msg => this.msg = msg)
   },
   methods: {
     goBack () {
+      console.info('[MsgDetail:Route] 返回上一层')
       history.back()
     }
   }

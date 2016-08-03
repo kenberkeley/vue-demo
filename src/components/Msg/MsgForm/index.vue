@@ -1,4 +1,4 @@
-<template src="./tpl.html"></template>
+<template src="./msg-form.html"></template>
 <script>
 import msgService from 'SERVICE/msgService'
 import userService from 'SERVICE/userService'
@@ -25,10 +25,11 @@ export default {
 
     this.isAddMode = false // 否则就是处于修改页面，立即修改标识
 
+    let msgId = this.$route.params.msgId
+    console.info(`[MsgForm:XHR] 请求 id 为 ${msgId} 的 msg 数据`)
+
     msgService
-      .fetch({
-        msgId: this.$route.params.msgId
-      })
+      .fetch({ msgId })
       .then((msg) => {
         // 虽说后端会有过滤，但还是要严谨一点
         if (!msg || msg.author !== userService.data.username) {
@@ -45,8 +46,9 @@ export default {
      * 根据标识位进行请求（最后都跳转到详情页）
      */
     handleSubmit () {
-      let opt = this.isAddMode ? 'add' : 'mod'
+      console.info('[MsgForm:XHR] 提交表单')
 
+      let opt = this.isAddMode ? 'add' : 'mod'
       msgService[opt](this.msg)
         .then(this.jumpToDetailMsg)
     },
@@ -56,6 +58,8 @@ export default {
      * @param  {Number} [object].id  msgId
      */
     jumpToDetailMsg ({ id }) {
+      console.info('[MsgForm:Route] 跳转到详情页')
+
       this.$router.replace({
         name: 'detailMsg',
         params: { msgId: id }
@@ -66,6 +70,7 @@ export default {
      * 返回上一页
      */
     goBack () {
+      console.info('[MsgForm:Route] 返回上一层')
       history.back()
     }
   }

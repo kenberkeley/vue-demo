@@ -20,7 +20,7 @@ export default {
     name: 'redirect',
     component: {
       ready () {
-        this.$router.go(this.$route.query.dest)
+        this.$router.replace(this.$route.query.dest)
       }
     }
   },

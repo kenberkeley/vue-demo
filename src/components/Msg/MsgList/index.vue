@@ -1,4 +1,4 @@
-<template src="./tpl.html"></template>
+<template src="./msg-list.html"></template>
 <script>
 import DisplayControl from './DisplayControl'
 import NoticeBar from './NoticeBar'
@@ -7,6 +7,7 @@ import OptBtnGroup from 'COMPONENT/Msg/OptBtnGroup'
 import msgService from 'SERVICE/msgService'
 
 export default {
+  // 都是绝对私有的组件
   components: { DisplayControl, NoticeBar, OptBtnGroup, Pagination },
 
   route: {
@@ -22,8 +23,6 @@ export default {
   data () {
     return {
       msgs: [],
-
-      // 分页采用“无限加载”形式
       pageIdx: 1, // 默认当前是第1页
       quantity: 10 // 默认每页10条
     }
@@ -36,6 +35,8 @@ export default {
      * e.g. 当前页pageIdx为2，若fetchMsg(-1)，则pageIdx变为1
      */
     fetchMsg (optNum = 0) {
+      console.info('[MsgList:XHR] 获取 msg 列表')
+
       this.pageIdx = this.pageIdx < 1 ? 1 : this.pageIdx + optNum
       this.quantity = ~~this.quantity || 10
 
@@ -55,11 +56,14 @@ export default {
      * @param {Number} idx
      */
     DELETE_MSG (idx) {
-      console.info('MsgList on DELETE_MSG')
+      console.info('[MsgList:Event] 收到 DELETE_MSG 事件')
 
       let target = this.msgs[idx]
       this.msgs.$remove(target)
       // $remove是Vue在Array.prototype中添加的便捷函数
+
+      // 若要事件继续往上传递，需要显示返回true
+      // return true // 不过显然这里不需要继续往上传递
     }
   }
 }  

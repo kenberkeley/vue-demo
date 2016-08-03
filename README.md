@@ -197,7 +197,7 @@ const xhr = ({ url, body = null, method = 'get' }) => {
 
 ### <a name="standard">⊙ 规范</a>
 > 开发规范请参考 [**最佳实践**](./best-practice.md)  
-> 本示例项目的代码极尽详细地添加了注释，其中不乏最佳实践提示
+> 本示例项目的代码极尽详细地添加了注释，其中不乏最佳实践提示  
 
 ### <a name="devtools">⊙ DevTools</a>
 > [vue-devtools Github 地址](https://github.com/vuejs/vue-devtools)  

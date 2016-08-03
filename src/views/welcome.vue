@@ -6,7 +6,7 @@
       <a
         role="button"
         class="btn btn-success btn-lg"
-        v-link="{ path: '/msg' }">
+        v-link="'/msg'">
         Go to Message Board
       </a>
     </p>

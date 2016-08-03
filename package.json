@@ -1,6 +1,6 @@
 {
   "name": "vue-demo",
-  "description": "A simple message board demo developed by Vue",
+  "description": "A Simple Message Board Demo developed by Vue",
   "author": "Ken Berkeley <kenberkeley@foxmail.com>",
   "version": "0.1.0",
   "scripts": {

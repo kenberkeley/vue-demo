@@ -6,9 +6,10 @@
 </pagination>
 
 <notice-bar
-  v-if="!msgs.length">
+  v-show="!msgs.length">
 </notice-bar>
 
+<!-- 下面的quantity需要sync同步 -->
 <display-control
   :msgs="msgs"
   :page-idx="pageIdx"
@@ -27,7 +28,7 @@
     </a>
 
     <span class="badge">
-      {{ msg.time | dateTimeFormatter }}
+      {{ msg.time | dateTimeFormatter 3 }}
     </span>
 
     <br/>
@@ -39,6 +40,12 @@
       <i>{{ msg.author }}</i>
     </a>
 
+    <!--
+      传入索引$index以便于随后的删除操作
+      若不传入$index则不能使用便捷的$remove函数
+      只能使用filter来剔除被删除的msg
+      详情http://cn.vuejs.org/api/#array-remove-reference
+    -->
     <opt-btn-group
       :msg="msg"
       :index="$index"

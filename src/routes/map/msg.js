@@ -27,7 +27,7 @@ export default {
         component (resolve) {
           require(['COMPONENT/Msg/MsgForm/'], resolve)
         },
-        needToLogin: true
+        needToLogin: true // 用于权限拦截
       },
       '/modify/:msgId': {
         name: 'modifyMsg',
