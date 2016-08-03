@@ -72,7 +72,7 @@
 ├── build/               # Webpack 配置目录
 ├── dist/                # build 生成的生产环境下的项目
 ├── src/                 # 源码目录（开发都在这里进行）
-│   ├── assets/            # 放置需要经由 Webpack 处理的静态文件（font 等）
+│   ├── assets/            # 放置需要经由 Webpack 处理的静态文件
 │   ├── components/        # 组件
 │   ├── directives/        # 指令
 │   ├── filters/           # 过滤器
@@ -153,7 +153,7 @@ Service 在 Angular 中还有一个很重要的作用，就是封装 Ajax 请求
 > 上面提到的 [React Demo](https://github.com/kenberkeley/react-demo)，实际上也是把 React 当 Vue 使
 
 ### <a name="ajax">⊙ Ajax</a>
-本示例项目封装出 `xhr` 函数提供 Ajax 请求：
+本示例项目封装出统一的 `xhr` 函数提供 Ajax 请求：
 
 ```javascript
 // 详见 src/services/xhr/
