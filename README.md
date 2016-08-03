@@ -211,7 +211,8 @@ const xhr = ({ url, body = null, method = 'get' }) => {
 
 ## <a name="deployment">&sect; 部署</a>
 在 `vue-demo` 的命令窗口下，敲下 `npm run build`，将会在项目根目录下生成 `dist/`
-> 关于生产环境下的部署与优化，已超出本文档的论述范围，请自行查阅相关资料
+> 关于生产环境下的部署与优化，已超出本文档的论述范围，请自行查阅相关资料  
+> 在这里您可能需要全局安装 [rimraf](https://github.com/isaacs/rimraf)： `npm i rimraf -g`
 
 ***
 
