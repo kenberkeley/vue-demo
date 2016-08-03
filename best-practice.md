@@ -99,13 +99,13 @@ import isEmpty from 'lodash/isEmpty' // Great!
 </form>
 ```
 
-* 模板中使用简写 `:[XXX]` 取代 `v-bind:XXX` ；使用简写 `@verb` 取代 `v-on:[verb]`
+* 模板中使用简写 `:[XXX]` 取代 `v-bind:[XXX]` ；使用简写 `@[verb]` 取代 `v-on:[verb]`
 > 页面闪烁的问题可使用 [v-cloak](http://cn.vuejs.org/api/#v-cloak) 解决
 
 * 涉及到逻辑方面的都必须用 `v-if`，视觉样式等才用 `v-show`
 > 例如，用户必须登录后才能查看的，请用 `v-if`，而视觉呈现等与业务逻辑无关的，用 `v-show`
 
-* 使用 Bable 转码，的确可以使用各种炫酷的新特性。这对于后端 Node.js 而言，问题不大。但对于前端而言，这是一个坑。最基本的，您只要在项目中使用 `Promise`，那么最终生成的打包文件就多了十多 KB 的 Promise 实现。若还玩上了 `Generator`，打包文件的体积又会继续增长。而且 Babel 对某些新特性的转换相当冗余。一句话：Babel 虽好，但别贪杯哦
+* 使用 Bable 转码，的确可以使用各种炫酷的新特性。这对于后端 Node.js 而言，问题不大。但对于前端而言，这是一个坑。最基本的，您只要在项目中使用 `Promise`，那么最终生成的打包文件就多了十多 KB 的 Promise 实现。若还玩上了 `Generator` 与 `async / await`，打包文件的体积又会继续增长。而且 Babel 对某些新特性的转换相当冗余。一句话：Babel 虽好，但别贪杯哦
 > 参考文章：[Babel到底将代码转换成什么鸟样？](https://github.com/lcxfs1991/blog/issues/9)  
 > 推荐：[ES6 代码在线实时编译](http://babeljs.io/repl/)
 
@@ -113,7 +113,7 @@ import isEmpty from 'lodash/isEmpty' // Great!
 * 请勿把所有组件全局化（为了懒加载），何况也并不是所有组件都有必要全局化：
 
 ```javascript
-// 这是 Navbar 组件
+// 这是在 Navbar 组件内
 import LoginForm from './LoginForm'
 import LogoutDropdown from './LogoutDropdown'
 
