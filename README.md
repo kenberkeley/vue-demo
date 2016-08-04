@@ -94,11 +94,14 @@
 ├── .gitignore           # （配置）需被 Git 忽略的文件（夹）
 ├── package.json         # （这个就不用多解释了吧）
 ```
+> 您可以根据业务需求改动目录结构。最常见的例子就是在 `src/` 新建一个 `utils/` 用于存放工具函数  
+> （若 `utils/` 目录使用频繁，还可以配置 [路径别名](#alias)）
+
 ### <a name="difference">⊙ 与官方示例项目的区别</a>
 * 本示例项目秉承最佳实践，**高度洁癖**地实现代码分离/复用
 * 优化目录结构，更好的模块分离
 * 引入服务层（详细内容在下面的[深入设计·引入服务层](#service-layer)）
-* 引入路径别名（也就是上面的 `COMPONENT` / `SERVICE` / `VIEW`。详细内容在下面的 [Webpack 配置](#webpack-configure)）
+* 引入 [路径别名](#alias)（也就是上面的 `COMPONENT` / `SERVICE` / `VIEW`）
 
 ***
 
@@ -187,7 +190,7 @@ const xhr = ({ url, body = null, method = 'get' }) => {
 
 * 框架 / 类库 须单独打包。若您还需要引入别的 Package，则将其添加到 `build/webpack.base.conf.js` 中的 `vendor`
 
-* **路径别名**的定义位于 `build/webpack.base.conf.js`，好处就是**引入与重构都很方便**
+* <a name="alias">**路径别名**</a> 的定义位于 `build/webpack.base.conf.js`，好处就是**引入与重构都很方便**
 > 例如，在某组件中，引入 `userService` 需要 `import userService from '../../../services/userService'`  
 > 但有了路径别名后，只需要 `import userService from 'SERVICE/userService'`  
 > 相比于 AngularJS 中的依赖注入，这种方式依赖于构建工具，显得更为简单  
