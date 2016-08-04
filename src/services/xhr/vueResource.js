@@ -11,7 +11,7 @@ Vue.use(VueResource)
 // Vue.http.options.xhr = { withCredentials: true }
 
 const xhr = ({ url, body, method = 'get' }) => {
-  // 默认引入ES6的Promise实现
+  // 引入了ES6的Promise实现
   return new Promise((resolve, reject) => {
     Vue.http[method.toLowerCase()](rootPath + url, body)
       .then(({ data }) => { // 从封装体中解构出data字段
