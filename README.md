@@ -38,6 +38,7 @@
 
 * Vue 1.0.18
 * Vue Router
+* Vue Validator
 * Ajax 请求库（Vue Resource / Superagent / jQuery-Ajax / ...）
 * Webpack
 * ES6 + Babel
@@ -49,7 +50,8 @@
 > 在开始前，希望您已通读如下资料  
 > * [Vue.js Guide](http://cn.vuejs.org/guide/)  
 > * [Vue.js API](http://cn.vuejs.org/api/)  
-> * [Vue-Router 文档](http://router.vuejs.org/zh-cn/index.html)  
+> * [Vue Router 文档](http://router.vuejs.org/zh-cn/index.html)  
+> * [Vue Validator 文档](http://vuejs.github.io/vue-validator/zh-cn/)
 
 > 同时您还需要熟悉 ES6，详情参考阮老师的[教程](http://es6.ruanyifeng.com/)
 
@@ -84,6 +86,7 @@
 │   ├── filters/           # 过滤器
 │   ├── routes/            # 路由
 │   ├── services/          # 服务（SERVICE）
+│   ├── utils/             # 工具类（UTIL）
 │   ├── views/             # 路由视图基页（VIEW）
 │   ├── app.js             # 启动文件
 │   ├── index.html         # 静态基页
@@ -94,14 +97,12 @@
 ├── .gitignore           # （配置）需被 Git 忽略的文件（夹）
 ├── package.json         # （这个就不用多解释了吧）
 ```
-> 您可以根据业务需求改动目录结构。最常见的例子就是在 `src/` 新建一个 `utils/` 用于存放工具函数  
-> （若 `utils/` 目录使用频繁，还可以配置 [路径别名](#alias)）
 
 ### <a name="difference">⊙ 与官方示例项目的区别</a>
 * 本示例项目秉承最佳实践，**高度洁癖**地实现代码分离/复用
 * 优化目录结构，更好的模块分离
 * 引入服务层（详细内容在下面的[深入设计·引入服务层](#service-layer)）
-* 引入 [路径别名](#alias)（也就是上面的 `COMPONENT` / `SERVICE` / `VIEW`）
+* 引入 [路径别名](#alias)（也就是上面的 `COMPONENT` / `SERVICE` / `UTIL` / `VIEW`）
 
 ***
 
