@@ -1,9 +1,13 @@
 # Vue 示例项目 · 简易留言板
-> ##写在前面  
+> ###写在前面  
 > 这年头的 Demo，不是 Todo 就是 Counter，其余基本就是要多复杂有多复杂  
 > 本 Demo 文档完善，注释丰满（咦？），架构精良，更重要的是简单有木有！！！  
 > 如果您把玩几下后发现还行，希望您可以点颗 star  
 > 如果您有任何意见或建议，请 issue，我会尽快解决与完善 ^.^
+
+> ###更新
+> 2016/8/6 &nbsp; 新增表单验证分支，详情请切换到 `vue-validator` 分支查看：
+> ```git checkout vue-validator```
 
 ![应用截图](./screenshot.png)
 
@@ -231,7 +235,8 @@ const xhr = ({ url, body = null, method = 'get' }) => {
 ## <a name="reference">&sect; 参考</a>
 * [Vue.js Guide](http://cn.vuejs.org/guide/)
 * [Vue.js API](http://cn.vuejs.org/api/)
-* [Vue-Router文档](http://router.vuejs.org/zh-cn/index.html)
+* [Vue Router 文档](http://router.vuejs.org/zh-cn/index.html)
+* [Vue Validator 文档](http://vuejs.github.io/vue-validator/zh-cn/)
 * [Vuex](https://github.com/vuejs/vuex)
 * [项目生成器 vue-cli](https://github.com/vuejs/vue-cli)
 * [官方项目架构](https://github.com/vuejs-templates/webpack)
