@@ -28,7 +28,7 @@ module.exports = {
       SERVICE: path.resolve(__dirname, '../src/services'),
       VIEW: path.resolve(__dirname, '../src/views'),
       UTIL: path.resolve(__dirname, '../src/utils'),
-      VALIDATOR: path.resolve(__dirname, '../src/utils/validator/')
+      VALIDATOR: path.resolve(__dirname, '../src/utils/validator')
     }
   },
   resolveLoader: {
