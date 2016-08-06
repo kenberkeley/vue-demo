@@ -1,5 +1,6 @@
 <template src="./msg-form.html"></template>
 <script>
+import 'VALIDATOR'
 import msgService from 'SERVICE/msgService'
 import userService from 'SERVICE/userService'
 
@@ -21,7 +22,9 @@ export default {
 
   ready () {
     // 初始化：非修改页面状态下，毋须远程取消息
-    if (!this.$route.path.startsWith('/msg/modify')) return
+    if (!this.$route.path.startsWith('/msg/modify')) {
+      return this.$activateValidator() // 立即启动表单验证
+    }
 
     this.isAddMode = false // 否则就是处于修改页面，立即修改标识
 
@@ -37,7 +40,9 @@ export default {
           return this.$router.replace('/msg')
         }
 
+        // 注意顺序：先赋值才启动表单验证
         this.msg = msg
+        this.$activateValidator()
       })
   },
 

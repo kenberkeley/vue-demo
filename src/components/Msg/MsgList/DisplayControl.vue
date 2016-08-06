@@ -1,5 +1,6 @@
 <template>
   <center>
+  <validator name="displayControl">
     <form class="form-inline">
       <div class="form-group">
         <div class="input-group">
@@ -18,11 +19,13 @@
             type="text"
             class="form-control"
             style="width: 4em"
+            placeholder="默认10"
             v-model="quantity"
-            placeholder="默认10"/>
+            v-validate:quantity="{ min: 1, max: 20 }"/>
           <div class="input-group-addon">
             <div class="btn-group">
               <button
+                :disabled="$displayControl.invalid || !$displayControl.quantity.modified"
                 type="button"
                 class="btn btn-xs"
                 @click="fetchMsg(0)">
@@ -44,11 +47,18 @@
             </div>
           </div>
         </div>
+        <span
+          class="label label-warning"
+          v-show="$displayControl.invalid">
+          可选范围 1 ~ 20
+        </span>
       </div>
     </form>
+  </validator>
   </center>
 </template>
 <script>
+import 'VALIDATOR'
 export default {
   props: ['msgs', 'pageIdx', 'quantity', 'fetchMsg']
 }

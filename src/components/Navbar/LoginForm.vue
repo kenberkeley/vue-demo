@@ -1,24 +1,33 @@
 <template>
-  <form
-    role="search"
-    class="navbar-form navbar-right"
-    @submit.prevent="handleLogin">
-    <div class="form-group">
-      <input
-        required
-        type="text"
-        class="form-control"
-        placeholder="请输入您的用户名"
-        v-model="username"/>
-    </div>
-    <button
-      type="submit"
-      class="btn btn-success">
-      登录
-    </button>
-  </form>
+  <validator name="loginForm">
+    <form novalidate
+      role="search"
+      class="navbar-form navbar-right"
+      @submit.prevent="handleLogin">
+      <div class="form-group">
+        <span
+          class="label label-warning"
+          v-show="$loginForm.username.required && $loginForm.username.touched">
+          用户名必填
+        </span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="请输入您的用户名"
+          v-model="username"
+          v-validate:username="['required']" />
+      </div>
+      <button
+        :disabled="$loginForm.invalid"
+        type="submit"
+        class="btn btn-success">
+        登录
+      </button>
+    </form>
+  </validator>
 </template>
 <script>
+import 'VALIDATOR'
 import userService from 'SERVICE/userService'
 export default {
   data () {

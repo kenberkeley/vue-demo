@@ -10,6 +10,7 @@ module.exports = {
       'vue',
       'vue-router',
       'vue-resource',
+      'vue-validator',
       'lodash',
       'superagent'
     ]
@@ -25,7 +26,9 @@ module.exports = {
       // 自定义路径别名
       COMPONENT: path.resolve(__dirname, '../src/components'),
       SERVICE: path.resolve(__dirname, '../src/services'),
-      VIEW: path.resolve(__dirname, '../src/views')
+      VIEW: path.resolve(__dirname, '../src/views'),
+      UTIL: path.resolve(__dirname, '../src/utils'),
+      VALIDATOR: path.resolve(__dirname, '../src/utils/validator/')
     }
   },
   resolveLoader: {

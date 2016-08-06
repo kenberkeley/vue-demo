@@ -1,23 +1,40 @@
+<!-- lazy标识用于服务器端取值后调用this.$activateValidator()启动验证 -->
+<validator lazy name="msgForm">
 <form @submit.prevent="handleSubmit">
-
   <div class="form-group">
-    <label for="title">标题</label>
+    <label for="title">
+      标题
+      <span
+        class="label label-warning"
+        v-show="$msgForm.title.required && $msgForm.title.touched">
+        标题不能为空哦
+      </span>
+    </label>
     <input
       type="text"
       class="form-control"
       id="title"
       placeholder="请输入标题..."
-      v-model="msg.title"/>
+      v-model="msg.title"
+      v-validate:title="['required']" />
   </div>
 
   <div class="form-group">
-    <label for="content">内容</label>
+    <label for="content">
+      内容
+      <span
+        class="label label-warning"
+        v-show="$msgForm.content.required && $msgForm.content.touched">
+        内容不能为空哦
+      </span>
+    </label>
     <textarea
       id="content"
       class="form-control"
       rows="3"
       placeholder="请输入内容..."
       v-model="msg.content"
+      v-validate:content="['required']"
     ></textarea>
   </div>
 
@@ -32,11 +49,12 @@
     </div>
     <div class="btn-group" role="group">
       <button
+        :disabled="$msgForm.invalid || !$msgForm.modified"
         type="submit"
         class="btn btn-success">
         提交 <span class="glyphicon glyphicon-ok"></span>
       </button>
     </div>
   </div>
-
 </form>
+</validator>
