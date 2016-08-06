@@ -53,7 +53,7 @@
 > 在开始前，希望您已通读如下资料  
 > * [Vue.js Guide](http://cn.vuejs.org/guide/)  
 > * [Vue.js API](http://cn.vuejs.org/api/)  
-> * [Vue-Router 文档](http://router.vuejs.org/zh-cn/index.html)  
+> * [Vue Router 文档](http://router.vuejs.org/zh-cn/index.html)  
 
 > 同时您还需要熟悉 ES6，详情参考阮老师的[教程](http://es6.ruanyifeng.com/)
 
@@ -236,7 +236,6 @@ const xhr = ({ url, body = null, method = 'get' }) => {
 * [Vue.js Guide](http://cn.vuejs.org/guide/)
 * [Vue.js API](http://cn.vuejs.org/api/)
 * [Vue Router 文档](http://router.vuejs.org/zh-cn/index.html)
-* [Vue Validator 文档](http://vuejs.github.io/vue-validator/zh-cn/)
 * [Vuex](https://github.com/vuejs/vuex)
 * [项目生成器 vue-cli](https://github.com/vuejs/vue-cli)
 * [官方项目架构](https://github.com/vuejs-templates/webpack)
