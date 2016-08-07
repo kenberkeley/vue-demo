@@ -134,13 +134,16 @@ React 作为一个 View 层，不具备数据的双向绑定能力，其数据�
 
 在 Angular 中，组件间的数据传递一般是使用服务（Service），有时也会使用事件传递。若是全局通用（包括模板中）需要用到的状态数据，就挂载到 `$rootScope` 上。参照上述实践，我们让 Vue 的根组件 `App`（位于 `src/components/App.vue`）充当 `$rootScope`，直接把**全局通用**的数据挂载到根组件的 `data` 属性上。这样一来，在子组件中直接使用 `this.$root` 即可访问。同样地，**全局单例**的 Service 也可存储数据，也是直接挂载到其 data 属性即可。
 > 例如，本示例中，根组件 `App` 与 `userService.data` 均存储着用户的 session  
-> （二者是**手动**同步的，相关例子请看 `src/components/Navbar/` 下的 `LoginForm.vue` / `LogoutDropDown.vue`）  
+> （二者是**手动**同步的，详情请看 `src/components/Navbar/` 下的 `LoginForm.vue` / `LogoutDropDown.vue`）  
 > 但 `App` 的仅能在组件内部通过 `this.$root.userData` 访问  
-> 而 `userService` 的则可以在**任何地方**访问（具体例子请看 `src/routes/index.js`）  
+> 而 `userService` 的则可以在**任何地方**访问（见 `src/routes/index.js`）  
 > 仅需要 `import userService from 'SERVICE/userService'` 即可
 
-虽说 Service 可以存储数据，但这并不是它主要的功能。对于那些**状态毋须持久**的数据（例如表单项），请直接存储在组件内部（`data`）。
+虽说 Service 可以存储数据，但这并不是它主要的功能。皆因开发过程中，使用 Vue DevTools 是无法直接查看 Service 中挂载的数据，亦即 Service 中的数据具有一定的**不可追踪性**。因此，对于那些**状态毋须持久**的数据（例如表单项），请直接存储在组件内部（`data`）。
 在组件间的传递这些数据，也可以直接使用事件传递 `dispatch` 或父子组件间的 `props` 即可。
+> 实际上可以在根组件 `App` 中的 `data` 属性实现追踪，举例如下：  
+> ```data: { userData: null, userService }```  
+> (但本项目中 `this.$root.userData` 与 `userService.data` 一直保持手动同步，故上述操作非必要)
 
 Service 在 Angular 中还有一个很重要的作用，就是封装 Ajax 请求。
 > 例如，小明和小刚分工合作一个项目，分别负责 Foo 与 Bar 模块  
