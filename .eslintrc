@@ -4,6 +4,10 @@
     "node": true,
     "jquery": true
   },
+  "globals": {
+    "__DEV__": true,
+    "__PROD__": true
+  },
   "ecmaFeatures": {
     "arrowFunctions": true,
     "destructuring": true,

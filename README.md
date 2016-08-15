@@ -212,6 +212,15 @@ const xhr = ({ url, body = null, method = 'get' }) => {
 > 而且重构之后，文件夹的变动会导致相对路径的变化，`services/` 目录未必仍在 `src/` 下    
 > 因此，路径别名相当有必要。其**常量**的形式，让人一看就知道不是一个 npm package
 
+* 开发**全局变量**，由 `webpack.DefinePlugin` 提供（详见 `build/webpack.base.conf.js`）。若要继续添加，则还需要在 `.eslintrc` 中 `globals` 同步写入
+> 默认有 `__DEV__` 与 `__PROD__` 两个全局变量  
+> 由此就可以根据环境的不同，执行不一样的代码（例子见 `src/app.js` 中有关 Devtools 的配置）
+> 
+> 在此需要提醒，在 `package.json` 中设置 `NODE_ENV` 要注意末尾空格的[问题](http://stackoverflow.com/questions/11104028/#38948727)  
+> 最好就是使用前 `trim` 一下：`process.env.NODE_ENV.trim()`
+> 
+> 拓展阅读：[解读 UglifyJS](http://rapheal.sinaapp.com/tag/uglifyjs/)。看看生产环境下编译 `if (__PROD__) { ... }` => `if (true) { ... }` 后 [UglifyJS](https://github.com/mishoo/UglifyJS) 会如何处理
+
 
 ### <a name="standard">⊙ 规范</a>
 > 开发规范请参考 [**最佳实践**](./best-practice.md)  

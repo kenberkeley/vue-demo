@@ -70,6 +70,11 @@ module.exports = {
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'mainifest']
+    }),
+    new webpack.DefinePlugin({
+      // 配置开发全局常量
+      __DEV__: process.env.NODE_ENV === 'development',
+      __PROD__: process.env.NODE_ENV === 'production'
     })
   ]
 };
