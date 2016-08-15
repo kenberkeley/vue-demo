@@ -221,7 +221,7 @@ const xhr = ({ url, body = null, method = 'get' }) => {
 > 最好就是使用前 `trim` 一下：`process.env.NODE_ENV.trim()`
 > 
 > 拓展阅读：[解读 UglifyJS](http://rapheal.sinaapp.com/tag/uglifyjs/)  
-> 看看生产环境下编译 `if (__PROD__) { ... }` => `if (true) { ... }` 后 [UglifyJS](https://github.com/mishoo/UglifyJS) 会如何处理
+> 看看生产环境下编译 `if (__PROD__) { ... }` => `if (true) { ... }` 后 [UglifyJS](http://rapheal.sinaapp.com/2014/05/22/uglifyjs-squeeze/) 会如何处理
 
 
 ### <a name="standard">⊙ 规范</a>
