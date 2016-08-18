@@ -2,6 +2,7 @@ var webpack = require('webpack'),
   config = require('./webpack.base.conf'),
   ExtractTextPlugin = require('extract-text-webpack-plugin'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
+  CopyWebpackPlugin = require('copy-webpack-plugin'),
   SOURCE_MAP = false;
 
 // naming output files with hashes for better caching.
@@ -28,12 +29,13 @@ config.vue.loaders = {
 };
 
 config.plugins = (config.plugins || []).concat([
-  // http://vuejs.github.io/vue-loader/workflow/production.html
-  new webpack.DefinePlugin({
-    'process.env': {
-      NODE_ENV: '"production"'
+  // 复制高度静态资源
+  new CopyWebpackPlugin([
+    {
+      from: 'static',
+      ignore: ['*.md']
     }
-  }),
+  ]),
   new webpack.optimize.UglifyJsPlugin({
     compress: {
       warnings: false

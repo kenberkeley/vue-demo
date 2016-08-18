@@ -241,9 +241,12 @@ const xhr = ({ url, body = null, method = 'get' }) => {
 ***
 
 ## <a name="deployment">&sect; 部署</a>
-在 `vue-demo` 的命令窗口下，敲下 `npm run build`，将会在项目根目录下生成 `dist/`
+在 `vue-demo` 的命令窗口下，敲下 `npm run build`，将会在项目根目录下生成 `dist/`  
+> 您可以使用命令行静态资源服务器 [serve](https://github.com/tj/serve) ( `npm i serve -g` )，敲下 `serve -p [端口] dist` 来快速查看 build 后的项目  
+> 还可以 `cd dist` 后，`python -m SimpleHTTPServer [端口]` 或 `php -S localhost:[端口]` 快速便捷地实现静态资源服务器
+>
 > 关于生产环境下的部署与优化，已超出本文档的论述范围，请自行查阅相关资料  
-> 在这里您可能需要全局安装 [rimraf](https://github.com/isaacs/rimraf)： `npm i rimraf -g`
+> 在这里您可能需要全局安装 [rimraf](https://github.com/isaacs/rimraf)： `npm i rimraf -g`（或根据[指引](http://stackoverflow.com/questions/9679932)配置环境变量避免全局安装）
 
 ***
 
