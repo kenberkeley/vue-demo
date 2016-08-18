@@ -6,8 +6,10 @@
 > 如果您有任何意见或建议，请 issue，我会尽快解决与完善 ^.^
 
 > ###更新
-> 2016/8/6 &nbsp; 新增表单验证分支，详情请切换到 `vue-validator` 分支查看：
-> ```git checkout vue-validator```
+> 2016/8/6 &nbsp; 新增表单验证分支，详情请切换到 `vue-validator` 分支查看：```git checkout vue-validator```  
+> 2016/8/7 &nbsp; 将服务挂载到顶级变量中实现即可实现可视化追踪  
+> 2016/8/15 &nbsp; 使用 `definePlugin` 引入 `__DEV__`、`__PROD__` 全局环境变量  
+> 2016/8/18 &nbsp; 引入 `copyWebpackPlugin` 将 `static/` 复制到 `dist/`
 
 ![应用截图](./screenshot.png)
 
