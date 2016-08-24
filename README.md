@@ -6,8 +6,10 @@
 > 如果您有任何意见或建议，请 issue，我会尽快解决与完善 ^.^
 
 > ###更新
-> 2016/8/6 &nbsp; 新增表单验证分支，详情请切换到 `vue-validator` 分支查看：
-> ```git checkout vue-validator```
+> 2016/8/6 &nbsp; 新增表单验证分支，详情请切换到 `vue-validator` 分支查看：```git checkout vue-validator```  
+> 2016/8/7 &nbsp; 将服务挂载到顶级变量中实现即可实现可视化追踪  
+> 2016/8/15 &nbsp; 使用 `definePlugin` 引入 `__DEV__`、`__PROD__` 全局环境变量  
+> 2016/8/18 &nbsp; 引入 `copyWebpackPlugin` 将 `static/` 复制到 `dist/`
 
 ![应用截图](./screenshot.png)
 
@@ -158,16 +160,14 @@ Service 在 Angular 中还有一个很重要的作用，就是封装 Ajax 请求
 > 那么前端 `services/userService.js` 这个服务类中就对应存在一个名为 `login` 的函数  
 > 只需要调用 `userService.login({ 用户帐号密码 })` 即可实现请求
 
-引入服务层的主要作用就是为了**轻量化组件，统一管理 XHR 请求，提高代码复用**，避免在组件中分别实现请求而导致管理上的混乱，对日后的重构也不友好。而且，**前端的服务与后端的 API 一一对应**，在理解上也会变得更加容易。
+引入服务层的主要作用就是为了**轻量化组件，统一管理 XHR 请求，提高代码复用，方便 mock**，避免在组件中分别实现请求而导致管理上的混乱（对日后的重构也不友好）。而且，**前端的服务与后端的 API 一一对应**，在理解上也会变得更加容易。
 
 更重要的是，服务层与 Vue 技术栈并没有太大关系（前提是您没有用 Vue Resource）。  
 以后前端改用其他技术栈（React 等）时，服务层可直接复制过去，毋须改动任何代码。
-> 我的 [React Demo](https://github.com/kenberkeley/react-demo) 就是直接复制本示例项目的 `services/` 目录
+> [React Demo](https://github.com/kenberkeley/react-demo) 就是直接复制本示例项目的 `services/` 目录
 
 您可能会觉得，这是要把 Vue 当 Angular 使的节奏，的确如此。不管黑猫白猫，能捉到老鼠的就是好猫。  
 同样，Angular 虽被喷复杂，但其经验确实有助于大型项目的开发与维护。故汲取其精髓，何乐而不为？
-
-> 上面提到的 [React Demo](https://github.com/kenberkeley/react-demo)，实际上也是把 React 当 Vue 使
 
 ### <a name="ajax">⊙ Ajax</a>
 本示例项目封装出统一的 `xhr` 函数提供 Ajax 请求：
