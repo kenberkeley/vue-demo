@@ -101,7 +101,7 @@
 ├── package.json         # （这个就不用多解释了吧）
 ```
 > 您可以根据业务需求改动目录结构。最常见的例子就是在 `src/` 新建一个 `utils/` 用于存放工具函数  
-> （若 `utils/` 目录使用频繁，还可以配置 [路径别名](#alias)）
+> （若 `utils/` 目录使用频繁，建议配置 [路径别名](#alias)）
 
 ### <a name="difference">⊙ 与官方示例项目的区别</a>
 * 本示例项目秉承最佳实践，**高度洁癖**地实现代码分离/复用
@@ -159,16 +159,14 @@ Service 在 Angular 中还有一个很重要的作用，就是封装 Ajax 请求
 > 那么前端 `services/userService.js` 这个服务类中就对应存在一个名为 `login` 的函数  
 > 只需要调用 `userService.login({ 用户帐号密码 })` 即可实现请求
 
-引入服务层的主要作用就是为了**轻量化组件，统一管理 XHR 请求，提高代码复用**，避免在组件中分别实现请求而导致管理上的混乱，对日后的重构也不友好。而且，**前端的服务与后端的 API 一一对应**，在理解上也会变得更加容易。
+引入服务层的主要作用就是为了**轻量化组件，统一管理 XHR 请求，提高代码复用，方便 mock**，避免在组件中分别实现请求而导致管理上的混乱（对日后的重构也不友好）。而且，**前端的服务与后端的 API 一一对应**，在理解上也会变得更加容易。
 
 更重要的是，服务层与 Vue 技术栈并没有太大关系（前提是您没有用 Vue Resource）。  
 以后前端改用其他技术栈（React 等）时，服务层可直接复制过去，毋须改动任何代码。
-> 我的 [React Demo](https://github.com/kenberkeley/react-demo) 就是直接复制本示例项目的 `services/` 目录
+> [React Demo](https://github.com/kenberkeley/react-demo) 就是直接复制本示例项目的 `services/` 目录
 
 您可能会觉得，这是要把 Vue 当 Angular 使的节奏，的确如此。不管黑猫白猫，能捉到老鼠的就是好猫。  
 同样，Angular 虽被喷复杂，但其经验确实有助于大型项目的开发与维护。故汲取其精髓，何乐而不为？
-
-> 上面提到的 [React Demo](https://github.com/kenberkeley/react-demo)，实际上也是把 React 当 Vue 使
 
 ### <a name="ajax">⊙ Ajax</a>
 本示例项目封装出统一的 `xhr` 函数提供 Ajax 请求：
