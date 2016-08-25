@@ -1,6 +1,8 @@
 var path = require('path'),
   webpack = require('webpack');
 
+var srcPath = path.resolve(__dirname, '../src');
+
 module.exports = {
   entry: {
     app: './src/app.js',
@@ -22,13 +24,12 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.vue', '.less'],
     alias: {
-      src: path.resolve(__dirname, '../src'),
       // 自定义路径别名
-      COMPONENT: path.resolve(__dirname, '../src/components'),
-      SERVICE: path.resolve(__dirname, '../src/services'),
-      VIEW: path.resolve(__dirname, '../src/views'),
-      UTIL: path.resolve(__dirname, '../src/utils'),
-      VALIDATOR: path.resolve(__dirname, '../src/utils/validator')
+      COMPONENT: path.join(srcPath, 'components'),
+      SERVICE: path.join(srcPath, 'services'),
+      VIEW: path.join(srcPath, 'views'),
+      UTIL: path.join(srcPath, 'utils'),
+      VALIDATOR: path.join(srcPath, 'utils/validator')
     }
   },
   resolveLoader: {
