@@ -73,7 +73,8 @@
 先后在 `msg-board-api`、`vue-demo` 的命令窗口下，敲下 `npm start`  
 如无意外，默认浏览器就会自动打开 `localhost:8080`，您立即可以看到效果  
 若浏览器没有自动弹出，则请自行手动访问  
-> 开发过程中，通过 Webpack 处理的静态资源都由基于内存的 `webpack-dev-server` 提供
+> 开发过程中，通过 Webpack 处理的静态资源都由基于内存的 `webpack-dev-server` 提供  
+> P.S. 如果您还不清楚如何安装与启动，请看这个 [issue](https://github.com/kenberkeley/vue-demo/issues/2)
 
 ***
 
