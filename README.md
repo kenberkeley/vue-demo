@@ -232,7 +232,7 @@ const xhr = ({ url, body = null, method = 'get' }) => {
 
 ### <a name="devtools">⊙ DevTools</a>
 > [vue-devtools Github 地址](https://github.com/vuejs/vue-devtools)  
-> 注意：Vue 1.0.8+ 需要显式设置 `Vue.config.devtools = true`（生产环境下记得注释掉）
+> 注意：Vue 1.0.8+ 需要显式设置 `Vue.config.devtools = true`
 
 ***
 
