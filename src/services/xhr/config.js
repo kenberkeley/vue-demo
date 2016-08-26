@@ -3,8 +3,8 @@
 
 // 后端API地址，最好以http(s)://打头
 // 末尾请勿加 / ，因为是如下拼接的
-// 'http://localhost:9000' + '/login'
-export const rootPath = 'http://localhost:9000'
+// 'http://localhost:8989' + '/login'
+export const rootPath = 'http://localhost:8989'
 
 export const errHandler = (e) => {
   alert('[ XHR:Failed ] 详情请看控制台')
