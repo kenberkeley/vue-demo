@@ -71,7 +71,8 @@
 
 > 虽然我们已经切换到了淘宝 npm 源，但安装 `node-sass@3.8.0` 的时候还是很有可能卡住  
 > 因为它的安装需要从 Github 的 AWS 服务器拉取二进制文件，因此您可以指定为它指定源：
-> `npm i node-sass@3.8.0 --registry=https://registry.npm.taobao.org`  
+> `npm i node-sass@3.8.0 --registry=https://registry.npm.taobao.org`
+> 
 > 如果您想简单粗暴一点，[这里](http://pan.baidu.com/s/1gfDKB43)还提供了 `node_modules.zip`，直接解压即可
 
 ### <a name="start">⊙ 启动</a>
