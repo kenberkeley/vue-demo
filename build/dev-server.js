@@ -1,5 +1,4 @@
-var path = require('path'),
-  express = require('express'),
+var express = require('express'),
   webpack = require('webpack'),
   // favicon = require('express-favicon'),
   config = require('./webpack.dev.conf'),
@@ -8,7 +7,7 @@ var path = require('path'),
 var compiler = webpack(config);
 
 // for highly stable resources
-app.use('/static', express.static(path.join(__dirname, '../static')));
+app.use('/static', express.static(config.commonPath.staticDir));
 
 // app.use(favicon(path.join(__dirname, '../favicon.ico')));
 
