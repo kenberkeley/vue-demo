@@ -9,7 +9,8 @@
 > 2016/8/6 &nbsp; 新增表单验证分支，详情请切换到 `vue-validator` 分支查看：```git checkout vue-validator```  
 > 2016/8/7 &nbsp; 将服务挂载到顶级变量中实现即可实现可视化追踪  
 > 2016/8/15 &nbsp; 使用 `definePlugin` 引入 `__DEV__`、`__PROD__` 全局环境变量  
-> 2016/8/18 &nbsp; 引入 `copyWebpackPlugin` 将 `static/` 复制到 `dist/`
+> 2016/8/18 &nbsp; 引入 `copyWebpackPlugin` 将 `static/` 复制到 `dist/`  
+> 2016/8/28 &nbsp; 引入 `cross-env` 解决跨平台问题
 
 ![应用截图](./screenshot.png)
 
@@ -76,6 +77,8 @@
 > `npm i node-sass@3.8.0 --registry=https://registry.npm.taobao.org`
 > 
 > 如果您想简单粗暴一点，[这里](http://pan.baidu.com/s/1gfDKB43)还提供了 `node_modules.zip`，直接解压即可
+
+最后需要全局安装跨平台环境配置器 `npm i cross-env -g`
 
 ### <a name="start">⊙ 启动</a>
 先后在 `msg-board-api`、`vue-demo` 的命令窗口下，敲下 `npm start`  

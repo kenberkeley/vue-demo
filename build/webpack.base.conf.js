@@ -1,7 +1,8 @@
 var path = require('path'),
   webpack = require('webpack');
 
-var srcPath = path.resolve(__dirname, '../src');
+var src = path.resolve(__dirname, '../src'),
+  dist = path.resolve(__dirname, '../dist');
 
 module.exports = {
   entry: {
@@ -17,6 +18,7 @@ module.exports = {
       'superagent'
     ]
   },
+  dist: dist,
   output: {
     path: path.resolve(__dirname, '../dist/static'),
     publicPath: '/static/'
@@ -25,11 +27,11 @@ module.exports = {
     extensions: ['', '.js', '.vue', '.less'],
     alias: {
       // 自定义路径别名
-      COMPONENT: path.join(srcPath, 'components'),
-      SERVICE: path.join(srcPath, 'services'),
-      VIEW: path.join(srcPath, 'views'),
-      UTIL: path.join(srcPath, 'utils'),
-      VALIDATOR: path.join(srcPath, 'utils/validator')
+      COMPONENT: path.join(src, 'components'),
+      SERVICE: path.join(src, 'services'),
+      VIEW: path.join(src, 'views'),
+      UTIL: path.join(src, 'utils'),
+      VALIDATOR: path.join(src, 'utils/validator')
     }
   },
   resolveLoader: {
@@ -77,8 +79,8 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       // 配置开发全局常量
-      __DEV__: process.env.NODE_ENV === 'development',
-      __PROD__: process.env.NODE_ENV === 'production'
+      __DEV__: process.env.NODE_ENV.trim() === 'development',
+      __PROD__: process.env.NODE_ENV.trim() === 'production'
     })
   ]
 };
