@@ -14,9 +14,11 @@ router.start(App, '#app')
  * Vue 1.0.18以上版本需要如下配置devtools
  */
 if (__DEV__) {
+  console.info('[当前环境] 开发环境')
   Vue.config.devtools = true
 }
 
 if (__PROD__) {
+  console.info('[当前环境] 生产环境')
   Vue.config.devtools = false
 }

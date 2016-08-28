@@ -1,9 +1,12 @@
 var webpack = require('webpack'),
+  rimraf = require('rimraf'),
   config = require('./webpack.base.conf'),
   ExtractTextPlugin = require('extract-text-webpack-plugin'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   CopyWebpackPlugin = require('copy-webpack-plugin'),
   SOURCE_MAP = false;
+
+rimraf.sync(config.dist);
 
 // naming output files with hashes for better caching.
 // dist/index.html will be auto-generated with correct URLs.
