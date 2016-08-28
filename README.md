@@ -96,7 +96,7 @@
 │   ├── directives/        # 指令
 │   ├── filters/           # 过滤器
 │   ├── routes/            # 路由
-│   ├── services/          # 服务（SERVICE）
+│   ├── services/          # 服务（SERVICE，用于统一管理 XHR 请求）
 │   ├── views/             # 路由视图基页（VIEW）
 │   ├── app.js             # 启动文件
 │   ├── index.html         # 静态基页
