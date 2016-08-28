@@ -39,6 +39,7 @@ config.plugins = (config.plugins || []).concat([
       ignore: ['*.md']
     }
   ]),
+  new webpack.optimize.DedupePlugin(),
   new webpack.optimize.UglifyJsPlugin({
     compress: {
       warnings: false

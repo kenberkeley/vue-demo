@@ -10,7 +10,7 @@
 > 2016/8/7 &nbsp; 将服务挂载到顶级变量中实现即可实现可视化追踪  
 > 2016/8/15 &nbsp; 使用 `definePlugin` 引入 `__DEV__`、`__PROD__` 全局环境变量  
 > 2016/8/18 &nbsp; 引入 `copyWebpackPlugin` 将 `static/` 复制到 `dist/`  
-> 2016/8/28 &nbsp; 引入 `cross-env` 解决跨平台问题
+> 2016/8/28 &nbsp; 引入 `cross-env` 解决跨平台问题，新增优化项 `DedupePlugin`
 
 ![应用截图](./screenshot.png)
 
