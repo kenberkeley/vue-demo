@@ -1,12 +1,17 @@
 var path = require('path'),
   webpack = require('webpack');
 
-var src = path.resolve(__dirname, '../src'),
-  dist = path.resolve(__dirname, '../dist');
+var src = path.resolve(__dirname, '../src'); // 源码目录
+var commonPath = {
+  dist: path.resolve(__dirname, '../dist'), // build 后输出目录
+  indexHTML: path.join(src, 'index.html'), // 入口基页
+  staticDir: path.resolve(__dirname, '../static') // 无需处理的静态资源目录
+};
 
 module.exports = {
+  commonPath: commonPath,
   entry: {
-    app: './src/app.js',
+    app: path.join(src, 'app.js'),
 
     // 框架 / 类库 单独打包
     vendor: [
@@ -18,9 +23,8 @@ module.exports = {
       'superagent'
     ]
   },
-  dist: dist,
   output: {
-    path: path.resolve(__dirname, '../dist/static'),
+    path: path.join(commonPath.dist, 'static'),
     publicPath: '/static/'
   },
   resolve: {
