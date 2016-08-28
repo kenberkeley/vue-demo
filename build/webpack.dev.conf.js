@@ -43,7 +43,7 @@ config.plugins = (config.plugins || []).concat([
   new ExtractTextPlugin('[name].css'),
   new HtmlWebpackPlugin({
     filename: 'index.html',
-    template: 'src/index.html'
+    template: config.commonPath.indexHTML
   }),
   new BrowserSyncPlugin({
     host: '127.0.0.1',

@@ -6,7 +6,7 @@ var webpack = require('webpack'),
   CopyWebpackPlugin = require('copy-webpack-plugin'),
   SOURCE_MAP = false;
 
-rimraf.sync(config.dist);
+rimraf.sync(config.commonPath.dist);
 
 // naming output files with hashes for better caching.
 // dist/index.html will be auto-generated with correct URLs.
@@ -35,7 +35,7 @@ config.plugins = (config.plugins || []).concat([
   // 复制高度静态资源
   new CopyWebpackPlugin([
     {
-      from: 'static',
+      from: config.commonPath.staticDir,
       ignore: ['*.md']
     }
   ]),
@@ -52,7 +52,7 @@ config.plugins = (config.plugins || []).concat([
   // see https://github.com/ampedandwired/html-webpack-plugin
   new HtmlWebpackPlugin({
     filename: '../index.html',
-    template: 'src/index.html'
+    template: config.commonPath.indexHTML
   })
 ]);
 
