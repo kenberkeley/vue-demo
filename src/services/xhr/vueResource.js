@@ -6,9 +6,9 @@ import { rootPath, errHandler } from './config'
 
 Vue.use(VueResource)
 
-// Vue.http.options.root = rootPath
-// Vue.http.options.emulateJSON = true
-// Vue.http.options.xhr = { withCredentials: true }
+Vue.http.options.root = rootPath
+Vue.http.options.emulateJSON = true
+Vue.http.options.xhr = { withCredentials: true }
 
 const xhr = ({ url, body, method = 'get' }) => {
   // 引入了ES6的Promise实现
