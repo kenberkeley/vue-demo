@@ -19,8 +19,8 @@ module.exports = {
       'vue-router',
       'vue-resource',
       'vue-validator',
-      'lodash',
-      'superagent'
+      'lodash'
+      // 'superagent'
     ]
   },
   output: {
@@ -52,6 +52,9 @@ module.exports = {
     }, {
       test: /\.json$/,
       loader: 'json'
+    }, {
+      test: /\.html$/,
+      loader: 'html'
     }, {
       test: /\.less$/,
       loader: 'css!less'
