@@ -50,7 +50,7 @@ export default {
   components: { LoginForm, LogoutDropdown },
 
   // 组件创建之初就发送用户是否已登录的请求
-  // 组件生命周期请参考http://cn.vuejs.org/guide/instance.html
+  // 组件生命周期请参考 http://cn.vuejs.org/guide/instance.html
   created () {
     console.info('[Navbar:XHR] 检测用户是否已经登录')
     userService.checkLogin()

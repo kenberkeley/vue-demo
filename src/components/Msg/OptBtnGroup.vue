@@ -20,7 +20,7 @@
 
 <script>
 import msgService from 'SERVICE/msgService'
-/* 该组件由MsgList与MsgDetail所共用 */
+/* 该组件由 MsgList 与 MsgDetail 所共用 */
 export default {
   props: ['msg', 'index', 'parentName'],
 
@@ -41,13 +41,13 @@ export default {
           // 根据父组件执行不同动作
           switch (this.parentName) {
           case 'MsgList':
-            // 通知MsgList更新列表
+            // 通知 MsgList 更新列表
             console.info(`[OptBtnGroup:Event] 派发 DELETE_MSG 事件，通知 MsgList 删掉索引为 ${this.index} 的 msg`)
             this.$dispatch('DELETE_MSG', this.index)
             break
           case 'MsgDetail':
           default:
-            // 若是在详情页，则需要跳回msg首页
+            // 若是在详情页，则需要跳回 msg 首页
             console.info('[OptBtnGroup:Route] 跳转到 /msg ')
             this.$router.replace('/msg')
             break

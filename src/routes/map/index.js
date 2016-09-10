@@ -11,11 +11,11 @@ export default {
     }
   },
 
-  // Vue没有强制刷新操作，这算是hack（使用canReuse可以解决部分问题）
+  // Vue 没有强制刷新操作，这算是 hack（使用 canReuse 可以解决部分问题）
   // 用法1：<a v-link="{ path: '/redirect', query: { dest: '/msg' } }">
   // 用法2：<a v-link="{ path: '/redirect?dest=/msg' }">
   // 用法3：<a v-link="`/redirect?dest=/msg`">
-  // v-link的用法有很多种，详情http://router.vuejs.org/zh-cn/link.html
+  // v-link 的用法有很多种，详情 http://router.vuejs.org/zh-cn/link.html
   '/redirect': {
     name: 'redirect',
     component: {
@@ -28,7 +28,7 @@ export default {
   '/': {
     name: 'welcome',
     component (resolve) {
-      // 使用Webpack的lazyLoad
+      // 使用 Webpack 的 Code-Splitting
       require(['VIEW/welcome'], resolve)
     }
   },

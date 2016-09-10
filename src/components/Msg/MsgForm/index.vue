@@ -6,7 +6,7 @@ import userService from 'SERVICE/userService'
 
 /**
  * 该组件由新增信息(/msg/add)与修改信息(/msg/modify/:msgId)所共用
- * 为区分状态，使用isAddMode来标识
+ * 为区分状态，使用 isAddMode 来标识
  */
 export default {
   // 关键点：设置本组件不可复用

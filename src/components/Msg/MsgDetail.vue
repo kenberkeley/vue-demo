@@ -14,7 +14,7 @@
       <opt-btn-group
         :msg="msg"
         parent-name="MsgDetail">
-        <!-- 下面是slot，详情请看http://cn.vuejs.org/api/#slot -->
+        <!-- 下面是 slot，详情请看 http://cn.vuejs.org/api/#slot -->
         <button
           class="btn btn-primary btn-xs"
           slot="goBackBtn"
@@ -40,7 +40,7 @@ export default {
       msg: {}
     }
   },
-  // 初始化：根据msgId请求msg内容
+  // 初始化：根据 msgId 请求 msg 内容
   ready () {
     let msgId = this.$route.params.msgId
 
