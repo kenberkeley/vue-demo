@@ -9,7 +9,7 @@
   v-show="!msgs.length">
 </notice-bar>
 
-<!-- 下面的quantity需要sync同步 -->
+<!-- 下面的 quantity 需要 sync 同步 -->
 <display-control
   :msgs="msgs"
   :page-idx="pageIdx"
@@ -18,9 +18,9 @@
 </display-control>
 
 <ul class="list-group">
-  <!-- track-by指令可提高复用率 http://cn.vuejs.org/guide/list.html#track-by -->
+  <!-- track-by 指令可提高复用率 http://cn.vuejs.org/guide/list.html#track-by -->
   <li class="list-group-item" v-for="msg in msgs" track-by="id">
-    <!-- 这里加@click.stop主要是因为会莫名报错，可能是因为使用了BootStrap的缘故 -->
+    <!-- 这里加 @click.stop 主要是因为会莫名报错，可能是因为使用了 BootStrap 的缘故 -->
     <!-- 错误详情：Uncaught TypeError: a.getAttribute is not a function  jquery.min.js:2-->
     <a @click.stop
       v-link="{ name: 'detailMsg', params: { msgId: msg.id } }">
@@ -41,10 +41,10 @@
     </a>
 
     <!--
-      传入索引$index以便于随后的删除操作
-      若不传入$index则不能使用便捷的$remove函数
-      只能使用filter来剔除被删除的msg
-      详情http://cn.vuejs.org/api/#array-remove-reference
+      传入索引 $index 以便于随后的删除操作
+      若不传入 $index 则不能使用便捷的 $remove 函数
+      只能使用 filter 来剔除被删除的 msg
+      详情 http://cn.vuejs.org/api/#array-remove-reference
     -->
     <opt-btn-group
       :msg="msg"

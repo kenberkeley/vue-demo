@@ -17,7 +17,7 @@ export default {
     }
   },
 
-  // 由于有了上面的route.data，此处无需手动初始化请求数据
+  // 由于有了上面的 route.data，此处无需手动初始化请求数据
   // ready () { this.fetchMsg() },
 
   data () {
@@ -30,9 +30,9 @@ export default {
 
   methods: {
     /**
-     * 根据条件取msg
+     * 根据条件取 msg
      * @param  {Number} optNum 需要操作的页数（可正可负）
-     * e.g. 当前页pageIdx为2，若fetchMsg(-1)，则pageIdx变为1
+     * e.g. 当前页 pageIdx 为2，若 fetchMsg(-1)，则 pageIdx 变为1
      */
     fetchMsg (optNum = 0) {
       console.info('[MsgList:XHR] 获取 msg 列表')
@@ -52,7 +52,7 @@ export default {
 
   events: {
     /**
-     * 由于OptBenGroup封装成组件，因此删除后需要通知父组件更新视图
+     * 由于 OptBenGroup 封装成组件，因此删除后需要通知父组件更新视图
      * @param {Number} idx
      */
     DELETE_MSG (idx) {
@@ -60,9 +60,9 @@ export default {
 
       let target = this.msgs[idx]
       this.msgs.$remove(target)
-      // $remove是Vue在Array.prototype中添加的便捷函数
+      // $remove 是 Vue 在 Array.prototype 中添加的便捷函数
 
-      // 若要事件继续往上传递，需要显示返回true
+      // 若要事件继续往上传递，需要显示返回 true
       // return true // 不过显然这里不需要继续往上传递
     }
   }

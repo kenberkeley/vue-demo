@@ -10,7 +10,7 @@
           上一页
         </a>
       </li>
-      <!-- 输入框中的值类型为String，使用==隐式转换较为优雅 -->
+      <!-- 输入框中的值类型为 String，使用 == 隐式转换较为优雅 -->
       <li
         class="next"
         v-show="msgs && msgs.length == quantity"

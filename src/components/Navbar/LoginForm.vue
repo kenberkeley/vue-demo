@@ -23,7 +23,7 @@ import userService from 'SERVICE/userService'
 export default {
   data () {
     return {
-      username: '' // v-model必须设置默认值
+      username: '' // v-model 必须设置默认值
     }
   },
 
