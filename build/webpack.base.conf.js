@@ -27,7 +27,7 @@ module.exports = {
     publicPath: '/static/'
   },
   resolve: {
-    extensions: ['', '.js', '.vue', '.less'],
+    extensions: ['', '.js', '.vue'],
     alias: {
       // 自定义路径别名
       COMPONENT: path.join(src, 'components'),
@@ -41,11 +41,14 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.vue$/,
-      loader: 'vue'
+      loader: 'vue',
+      include: src,
+      exclude: /node_modules/
     }, {
       test: /\.js$/,
       loader: 'babel!eslint',
-      exclude: /node_modules|vue\/dist|vue-router\/|vue-loader\/|vue-hot-reload-api\//
+      include: src,
+      exclude: /node_modules/
     }, {
       test: /\.json$/,
       loader: 'json'
@@ -53,18 +56,15 @@ module.exports = {
       test: /\.html$/,
       loader: 'html'
     }, {
-      test: /\.less$/,
-      loader: 'css!less'
-    }, {
-      test: /\.(png|jpg|gif|svg)$/,
+      test: /\.(png|jpe?g|gif|svg)$/,
       loader: 'url',
       query: {
         limit: 10000,
-        name: '[name].[ext]?[hash]'
+        name: 'img/[name]-[hash:6].[ext]'
       }
     }, {
-      test: /\.(eot|woff|ttf|svg)$/,
-      loader: 'url-loader?limit=30000&name=[name]-[hash].[ext]'
+      test: /\.(woff2?|eot|ttf|otf)$/,
+      loader: 'fonts/url-loader?limit=10000&name=[name]-[hash:6].[ext]'
     }]
   },
   vue: {

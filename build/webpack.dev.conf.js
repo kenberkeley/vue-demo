@@ -36,7 +36,19 @@ config.vue.loaders = {
 
 config.output.publicPath = '/';
 
-config.plugins = (config.plugins || []).concat([
+// 开发环境下直接内嵌 CSS 以支持热替换
+config.module.loaders.push({
+  test: /\.css$/,
+  loader: 'style!css'
+}, {
+  test: /\.less$/,
+  loader: 'style!css!less'
+}, {
+  test: /\.scss$/,
+  loader: 'style!css!sass'
+});
+
+config.plugins.push(
   new webpack.optimize.OccurenceOrderPlugin(),
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoErrorsPlugin(),
@@ -54,6 +66,6 @@ config.plugins = (config.plugins || []).concat([
   }, {
     reload: false
   })
-]);
+);
 
 module.exports = config;

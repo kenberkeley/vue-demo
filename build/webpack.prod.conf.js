@@ -10,8 +10,8 @@ rimraf.sync(config.commonPath.dist);
 
 // naming output files with hashes for better caching.
 // dist/index.html will be auto-generated with correct URLs.
-config.output.filename = '[name].[chunkhash].js';
-config.output.chunkFilename = '[id].[chunkhash].js';
+config.output.filename = '[name].[chunkhash:6].js';
+config.output.chunkFilename = '[id].[chunkhash:6].js';
 
 config.devtool = SOURCE_MAP ? 'source-map' : false;
 
@@ -27,11 +27,22 @@ config.vue.loaders = {
   // http://vuejs.github.io/vue-loader/configurations/extract-css.html
   css: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css'])),
   less: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css', 'less'])),
-  sass: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css', 'sass'])),
-  stylus: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css', 'stylus']))
+  sass: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css', 'sass']))
 };
 
-config.plugins = (config.plugins || []).concat([
+// 生产环境下分离出 CSS 文件
+config.module.loaders.push({
+  test: /\.css$/,
+  loader: ExtractTextPlugin.extract('style', 'css')
+}, {
+  test: /\.less$/,
+  loader: ExtractTextPlugin.extract('style', 'css!less')
+}, {
+  test: /\.scss$/,
+  loader: ExtractTextPlugin.extract('style', 'css!sass')
+});
+
+config.plugins.push(
   // 复制高度静态资源
   new CopyWebpackPlugin([
     {
@@ -47,7 +58,7 @@ config.plugins = (config.plugins || []).concat([
   }),
   new webpack.optimize.OccurenceOrderPlugin(),
   // extract css into its own file
-  new ExtractTextPlugin('[name].[contenthash].css'),
+  new ExtractTextPlugin('[name].[contenthash:6].css'),
   // generate dist index.html with correct asset hash for caching.
   // you can customize output by editing /build/index.template.html
   // see https://github.com/ampedandwired/html-webpack-plugin
@@ -55,6 +66,6 @@ config.plugins = (config.plugins || []).concat([
     filename: '../index.html',
     template: config.commonPath.indexHTML
   })
-]);
+);
 
 module.exports = config;
