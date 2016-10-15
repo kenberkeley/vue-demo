@@ -203,7 +203,7 @@ const xhr = ({ url, body = null, method = 'get' }) => {
 
 * 框架 / 类库 须单独打包。若您还需要引入别的 Package，则将其添加到 `build/webpack.base.conf.js` 中的 `vendor`
 > 实际上该步骤可通过读取 `package.json` 的 `dependencies` 字段实现自动化，但其灵活度不够高，必要性也不大  
-> P.S. 安装包时勿忘添加 `--save / --save-dev` 以添加依赖记录
+> P.S. 安装包时勿忘 `--save / --save-dev` 以添加依赖记录
 
 * <a name="alias">**路径别名**</a> 的定义位于 `build/webpack.base.conf.js`，好处就是**引入与重构都很方便**
 > 例如，在某组件中，引入 `userService` 需要 `import userService from '../../../services/userService'`  
