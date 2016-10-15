@@ -1,4 +1,5 @@
 import xhr from './jquery'
+// 若要使用下列两者，最好添加到 build/webpack.base.conf.js 的 entry.vendor 分离打包
 // import xhr from './superagent'
 // import xhr from './vueResource'
 

@@ -18,22 +18,6 @@ config.entry.app = [
   config.entry.app
 ];
 
-// generate loader string to be used with extract text plugin
-function generateExtractLoaders(loaders) {
-  return loaders.map(function(loader) {
-    return loader + '-loader' + (SOURCE_MAP ? '?sourceMap' : '');
-  }).join('!');
-}
-
-config.vue.loaders = {
-  js: 'babel!eslint',
-  // http://vuejs.github.io/vue-loader/configurations/extract-css.html
-  css: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css'])),
-  less: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css', 'less'])),
-  sass: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css', 'sass'])),
-  stylus: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css', 'stylus']))
-};
-
 config.output.publicPath = '/';
 
 // 开发环境下直接内嵌 CSS 以支持热替换

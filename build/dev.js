@@ -25,9 +25,5 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.listen(8000, '127.0.0.1', function(err) {
-  if (err) {
-    console.log(err);
-    return;
-  }
-  console.log('Listening at http://127.0.0.1:8000');
+  err && console.log(err);
 });
