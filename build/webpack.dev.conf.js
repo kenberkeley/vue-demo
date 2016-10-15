@@ -18,25 +18,21 @@ config.entry.app = [
   config.entry.app
 ];
 
-// generate loader string to be used with extract text plugin
-function generateExtractLoaders(loaders) {
-  return loaders.map(function(loader) {
-    return loader + '-loader' + (SOURCE_MAP ? '?sourceMap' : '');
-  }).join('!');
-}
-
-config.vue.loaders = {
-  js: 'babel!eslint',
-  // http://vuejs.github.io/vue-loader/configurations/extract-css.html
-  css: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css'])),
-  less: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css', 'less'])),
-  sass: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css', 'sass'])),
-  stylus: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css', 'stylus']))
-};
-
 config.output.publicPath = '/';
 
-config.plugins = (config.plugins || []).concat([
+// 开发环境下直接内嵌 CSS 以支持热替换
+config.module.loaders.push({
+  test: /\.css$/,
+  loader: 'style!css'
+}, {
+  test: /\.less$/,
+  loader: 'style!css!less'
+}, {
+  test: /\.scss$/,
+  loader: 'style!css!sass'
+});
+
+config.plugins.push(
   new webpack.optimize.OccurenceOrderPlugin(),
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoErrorsPlugin(),
@@ -54,6 +50,6 @@ config.plugins = (config.plugins || []).concat([
   }, {
     reload: false
   })
-]);
+);
 
 module.exports = config;

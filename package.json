@@ -1,18 +1,17 @@
 {
   "name": "vue-demo",
-  "version": "0.1.0",
-  "author": "Ken Berkeley <kenberkeley@foxmail.com>",
   "description": "A Simple Message Board Demo developed by Vue",
+  "author": "Ken Berkeley <kenberkeley@foxmail.com>",
+  "version": "0.1.0",
   "scripts": {
-    "start": "cross-env NODE_ENV=development node build/dev-server.js",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.prod.conf.js"
+    "start": "cross-env NODE_ENV=development node build/dev.js",
+    "build": "cross-env NODE_ENV=production node build/prod.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/kenberkeley/vue-demo.git"
   },
   "dependencies": {
-    "lodash": "^4.12.0",
     "superagent": "^2.0.0",
     "vue": "^1.0.18",
     "vue-resource": "^0.6.1",
@@ -28,6 +27,7 @@
     "babel-runtime": "^6.9.0",
     "browser-sync": "^2.11.1",
     "browser-sync-webpack-plugin": "^1.0.1",
+    "clean-webpack-plugin": "^0.1.13",
     "connect-history-api-fallback": "^1.1.0",
     "copy-webpack-plugin": "^3.0.1",
     "css-loader": "^0.23.0",
@@ -46,8 +46,9 @@
     "less": "^2.6.0",
     "less-loader": "^2.2.2",
     "node-sass": "^3.4.2",
-    "rimraf": "^2.5.0",
+    "nyan-progress-webpack-plugin": "^1.1.4",
     "sass-loader": "^3.2.0",
+    "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "vue-hot-reload-api": "^1.2.0",
     "vue-html-loader": "^1.0.0",
@@ -55,7 +56,6 @@
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.4.0",
-    "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.6.0"
   },
   "license": "MIT"
