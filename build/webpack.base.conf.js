@@ -87,10 +87,6 @@ module.exports = {
   },
   plugins: [
     new NyanProgressPlugin(), // 进度条
-    new webpack.optimize.CommonsChunkPlugin({
-      // 公共代码分离打包
-      names: ['vendor', 'mainifest']
-    }),
     new webpack.DefinePlugin({
       // 配置开发全局常量
       __DEV__: process.env.NODE_ENV.trim() === 'development',
