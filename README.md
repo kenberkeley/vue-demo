@@ -13,7 +13,8 @@
 > 2016/8/28 &nbsp; 引入 `cross-env` 解决跨平台问题，新增优化项 `DedupePlugin`  
 > 2016/9/10 &nbsp; 将全局布局从 `src/index.html` 移到根组件  
 > 2016/10/10 &nbsp; 支持 CSS / LESS / SASS  
-> 2016/10/15 &nbsp; 开发过程中 CSS 直接内联 `<style>` 以实现热更替，生产环境下使用 `ExtractTextPlugin` 分离打包
+> 2016/10/15 &nbsp; 开发过程中 CSS 直接内联 `<style>` 以实现热更替，生产环境下使用 `ExtractTextPlugin` 分离打包  
+> 2016/10/28 &nbsp; ※ 由于 `router` 实例暴露出根组件实例，因此可直接通过 `router.app` 访问到顶层数据
 
 ![应用截图](./screenshot.png)
 
@@ -131,39 +132,21 @@ Vue 参照 [Flux](https://github.com/facebook/flux) / [Redux](https://github.com
 
 React 作为一个 View 层，不具备数据的双向绑定能力，其数据流是单向的。既然是**单向数据流**，那么将整个应用状态汇于一处集中管理（这就是传统意义上的 Model 层，只是改名为 Store 层罢了），抽离出操作方法等（Controller 层，在此为 Action 与 Reducer 层），也是自然而然的。这是基于大型项目协作开发中，前人踩坑后的最佳经验总结，同时也是当前前端 MVC 的最佳实践。
 
-但 Vue 乃轻量级的 MVVM 框架，若完全照搬相对抽象的 React + Flux / Redux 架构，未免有点舍本逐末了。私认为，对于一个使用 MVVM 模式构建的单页应用而言，需要置于 `store` 层的，仅限于**全局通用**且**状态持久**的数据（例如用户认证信息）。若把所有应用数据（尤指一些实时性较高的数据以及非共享的数据）都糅合在一处，那就像是把所有变量都挂载到全局。
+但 Vue 乃轻量级的 MVVM 框架，若完全照搬相对抽象的 Flux / Redux 架构，未免有点舍本逐末了。私认为，对于一个使用 MVVM 模式构建的单页应用而言，需要置于 Store 层的，仅限于**全局通用**且**状态持久**的数据（例如用户认证信息）。若把所有应用数据（尤指一些实时性较高的数据以及非共享的数据）都糅合在一处，那就像是把所有变量都挂载到全局。
+
+> 「**Local state is fine**」，见 Redux 作者 Dan Abramov 的 [You Might Not Need Redux](https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367)
 
 结合作者尤雨溪的说法，Vue 状态管理的最佳实践应为：**组件自包含状态数据（组件本地状态），全局持久性通用数据（应用层级状态）集中管理**。
 
-可是，**全局通用**且**状态持久**的数据占极少数，若为此而引入 Vuex，实在是太不值得了。这个时候，就需要借鉴 AngularJS 的一些经验实践来实现 Vuex 的功能。
+可是，**全局通用**且**状态持久**的数据占极少数，若为此而引入 Vuex，实在是太不值得了。这个时候，就需要借鉴 AngularJS 的一些经验实践来实现 Vuex 的状态存储功能。
+
+在 Angular 中，组件间的数据传递一般是使用服务（Service），有时也会使用事件传递。若是全局通用（包括模板中）需要用到的状态数据，就挂载到 `$rootScope` 上。参照上述实践，我们让 Vue 的根组件 `App`（`src/components/App.vue`）充当 `$rootScope`，直接把**全局通用**的数据挂载到根组件的 `data` 属性上。这样一来，在子组件中直接使用 `this.$root` 即可访问。
 
 ### <a name="service-layer">⊙ 引入服务层</a>
-> 您无需有 Angular 的开发经验，因为 Vue 本身就是 Angular 的优雅简化版
-
-在 Angular 中，组件间的数据传递一般是使用服务（Service），有时也会使用事件传递。若是全局通用（包括模板中）需要用到的状态数据，就挂载到 `$rootScope` 上。参照上述实践，我们让 Vue 的根组件 `App`（位于 `src/components/App.vue`）充当 `$rootScope`，直接把**全局通用**的数据挂载到根组件的 `data` 属性上。这样一来，在子组件中直接使用 `this.$root` 即可访问。同样地，**全局单例**的 Service 也可存储数据，也是直接挂载到其 data 属性即可。
-> 例如，本示例中，根组件 `App` 与 `userService.data` 均存储着用户的 session  
-> （二者是**手动**同步的，详情请看 `src/components/Navbar/` 下的 `LoginForm.vue` / `LogoutDropDown.vue`）  
-> 但 `App` 的仅能在组件内部通过 `this.$root.userData` 访问  
-> 而 `userService` 的则可以在**任何地方**访问（见 `src/routes/index.js`）  
-> 仅需要 `import userService from 'SERVICE/userService'` 即可
-
-虽说 Service 可以存储数据，但这并不是它主要的功能。皆因开发过程中，使用 Vue DevTools 是无法直接查看 Service 中挂载的数据，亦即 Service 中的数据具有一定的**不可追踪性**。因此，对于那些**状态毋须持久**的数据（例如表单项），请直接存储在组件内部（`data`）。
-在组件间的传递这些数据，也可以直接使用事件传递 `dispatch` 或父子组件间的 `props` 即可。
-> 实际上可以在根组件 `App` 中的 `data` 属性实现追踪，举例如下：  
-> ```data: { userData: null, userService }```  
-> (但本项目中 `this.$root.userData` 与 `userService.data` 一直保持手动同步，故上述操作非必要)
-
-Service 在 Angular 中还有一个很重要的作用，就是封装 Ajax 请求。
-> 例如，小明和小刚分工合作一个项目，分别负责 Foo 与 Bar 模块  
-> 在 Foo 的控制器中，需要请求用户 session，于是小明自己在控制器中引入 `$http` 请求  
-> 在 Bar 的控制器中，又需要请求用户 session，于是小刚又自己写了一遍  
-> 这其实有点像在后端开发中，将 M 层的代码直接写在 C 层，导致代码冗余揉杂，复用率低  
-> 因此在 Angular 中，在控制器中实现 Ajax 请求是反模式，应当把这部分封装成 Service 以便复用
-
-在本示例项目中，Service 层的主要功能是：**封装好与后端 API 一一对应的函数。**
+在本示例项目中，Service 层的主要功能是：**封装好与后端 API 一一对应的请求类。**
 > 例如，后端用于用户登录的API为 `/login`  
 > 那么前端 `services/userService.js` 这个服务类中就对应存在一个名为 `login` 的函数  
-> 只需要调用 `userService.login({ 用户帐号密码 })` 即可实现请求
+> 只需要调用 `userService.login({ 帐号, 密码 })` 即可实现请求
 
 引入服务层的主要作用就是为了**轻量化组件，统一管理 XHR 请求，提高代码复用，方便 mock**，避免在组件中分别实现请求而导致管理上的混乱（对日后的重构也不友好）。而且，**前端的服务与后端的 API 一一对应**，在理解上也会变得更加容易。
 
@@ -171,16 +154,13 @@ Service 在 Angular 中还有一个很重要的作用，就是封装 Ajax 请求
 以后前端改用其他技术栈（React 等）时，服务层可直接复制过去，毋须改动任何代码。
 > [React Demo](https://github.com/kenberkeley/react-demo) 就是直接复制本示例项目的 `services/` 目录
 
-您可能会觉得，这是要把 Vue 当 Angular 使的节奏，的确如此。不管黑猫白猫，能捉到老鼠的就是好猫。  
-同样，Angular 虽被喷复杂，但其经验确实有助于大型项目的开发与维护。故汲取其精髓，何乐而不为？
-
 ### <a name="ajax">⊙ Ajax</a>
 本示例项目封装出统一的 `xhr` 函数提供 Ajax 请求：
 
 ```javascript
-// 详见 src/services/xhr/
+// 详见 src/services/xhr
 const xhr = ({ url, body = null, method = 'get' }) => {
-  return <then>
+  return <Promise>
 }
 ```
 服务层直接引入该 `xhr` 函数即可  
@@ -250,7 +230,7 @@ const xhr = ({ url, body = null, method = 'get' }) => {
 ## <a name="deployment">&sect; 部署</a>
 在 `vue-demo` 的命令窗口下，敲下 `npm run build`，将会在项目根目录下生成 `dist/`  
 > 您可以使用命令行静态资源服务器 [serve](https://github.com/tj/serve) ( `npm i serve -g` )，敲下 `serve dist/ -p [端口]` 来快速查看 build 后的项目  
-> 还可以 `cd dist` 后，`python -m SimpleHTTPServer [端口]` 或 `php -S localhost:[端口]` 快速便捷地实现静态资源服务器
+> 还可以 `cd dist/` 后，`python -m SimpleHTTPServer [端口]` 或 `php -S localhost:[端口]` 快速便捷地实现静态资源服务器
 >
 > 关于生产环境下的部署与优化，已超出本文档的论述范围，请自行查阅相关资料  
 
