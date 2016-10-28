@@ -5,7 +5,10 @@ import './filters/'
 import router from './routes/'
 import App from 'COMPONENT/App'
 
-// 把根组件挂载到 id 为 app 的 DOM 上
+/**
+ * 把根组件挂载到 id 为 app 的 DOM 上
+ * 自此，在外部就可通过 router.app 访问到根组件
+ */
 router.start(App, '#app')
 
 /**
