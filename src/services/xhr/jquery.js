@@ -8,11 +8,14 @@ const xhr = ({ url, body = null, method = 'get' }) => {
     url: rootPath + url,
     data: body
     // xhrFields: { // 跨域允许带上 cookie
-    //   withCredentials: [域名]
+    //   withCredentials: true
     // },
     // crossDomain: true
   })
-  .done(defer.resolve)
+  .done(({ success, errMsg, data }) => {
+    if (!success) return alert(errMsg)
+    defer.resolve(data)
+  })
   .fail(errHandler)
 
   return defer.promise()

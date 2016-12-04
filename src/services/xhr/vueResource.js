@@ -4,23 +4,24 @@ import Vue from 'vue'
 import VueResource from 'vue-resource'
 import { rootPath, errHandler } from './config'
 
+// 注意：此处需要自行引入 Promise 库
+// 例如， npm i es6-promise -S 后：
+// require('es6-promise').polyfill()
+// 
+// 请别忘了添加库到 build/webpack.base.conf.js 的 entry.vendor 分离打包
+
 Vue.use(VueResource)
 
 Vue.http.options.root = rootPath
-Vue.http.options.emulateJSON = true
-Vue.http.options.xhr = { withCredentials: true }
+// Vue.http.options.emulateJSON = true
+// Vue.http.options.xhr = { withCredentials: true }
 
 const xhr = ({ url, body, method = 'get' }) => {
-  // 引入了 ES6 的 Promise 实现
+  // P.S：您可能需要自行引入 Promise 实现以兼容
   return new Promise((resolve, reject) => {
     Vue.http[method.toLowerCase()](rootPath + url, body)
-      .then(({ data }) => { // 从封装体中解构出data字段
-        if (!data) // 读取 undefined/null 的属性会报错
-          return resolve(null)
-
-        if (data._code)
-          return errHandler(data._msg)
-
+      .then(({ data: { success, errMsg, data } }) => { // 从封装体中解构出data字段
+        if (!success) return alert(errMsg)
         resolve(data)
       }, errHandler)
   })

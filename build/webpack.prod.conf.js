@@ -1,4 +1,5 @@
 var webpack = require('webpack'),
+  PATHS = require('./config/PATHS'),
   config = require('./webpack.base.conf'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   CopyWebpackPlugin = require('copy-webpack-plugin'),
@@ -25,12 +26,12 @@ config.module.loaders.push({
 
 config.plugins.push(
   new CleanWebpackPlugin('dist', {
-    root: config.commonPath.rootPath,
+    root: PATHS.ROOT,
     verbose: false
   }),
   new CopyWebpackPlugin([ // 复制高度静态资源
     {
-      context: config.commonPath.staticDir,
+      context: PATHS.STATIC,
       from: '**/*',
       ignore: ['*.md']
     }
@@ -51,7 +52,7 @@ config.plugins.push(
   }),
   new HtmlWebpackPlugin({
     filename: '../index.html',
-    template: config.commonPath.indexHTML
+    template: PATHS.SRC.join('index.html')
   })
 );
 

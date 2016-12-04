@@ -1,5 +1,7 @@
 var express = require('express'),
   webpack = require('webpack'),
+  PATHS = require('./config/PATHS'),
+  PORTS = require('./config/PORTS'),
   // favicon = require('express-favicon'),
   config = require('./webpack.dev.conf'),
   app = express();
@@ -7,7 +9,7 @@ var express = require('express'),
 var compiler = webpack(config);
 
 // for highly stable resources
-app.use('/static', express.static(config.commonPath.staticDir));
+app.use('/static', express.static(PATHS.STATIC));
 
 // app.use(favicon(path.join(__dirname, '../favicon.ico')));
 
@@ -24,6 +26,6 @@ app.use(require('webpack-dev-middleware')(compiler, {
 // compilation error display
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.listen(8000, '127.0.0.1', function(err) {
+app.listen(PORTS.DEV_SERVER, '127.0.0.1', function(err) {
   err && console.log(err);
 });

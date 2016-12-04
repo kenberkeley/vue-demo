@@ -1,5 +1,5 @@
 var fs = require('fs'),
-  path = require('path'),
+  PATHS = require('./config/PATHS'),
   webpack = require('webpack'),
   config = require('./webpack.prod.conf');
 
@@ -9,7 +9,7 @@ webpack(config, function(err, stats) {
 
   // save build info to file
   fs.writeFile(
-    path.join(config.commonPath.dist, '__build_info__'),
+    PATHS.DIST.join('__build_info__'),
     stats.toString({ color: false })
   );
 });
