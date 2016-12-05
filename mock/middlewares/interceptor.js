@@ -19,7 +19,7 @@ module.exports = function (condition) {
 
   return function (req, res, next) {
     if(!!!db.get('session').value() === bool) {
-      res.ajaxReturn({ success: false, errMsg: errMsg });
+      res.ajaxReturn(null, { success: false, errMsg: errMsg });
     } else {
       next();
     }

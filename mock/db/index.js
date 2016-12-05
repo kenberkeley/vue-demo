@@ -22,4 +22,4 @@ db.defaults({
    */
 }).value();
 
-module.exports = lowdb;
+module.exports = db;

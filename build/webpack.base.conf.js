@@ -10,7 +10,8 @@ module.exports = {
     // 框架 / 类库 单独打包
     vendor: [
       'vue',
-      'vue-router'
+      'vue-router',
+      'qs'
       // 'vue-resource'
       // 'superagent'
     ]
