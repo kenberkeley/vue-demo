@@ -25,10 +25,12 @@ console.log(router.recognize('/msg/1122?offset=200'))
 
 // console
 // 
-{ '0': 
-   { handler: [Function],
-     params: { msgId: '1122' },
-     isDynamic: true },
+{ 
+  '0': {
+    handler: [Function],
+    params: { msgId: '1122' },
+    isDynamic: true
+  },
   queryParams: { offset: '200' },
-  length: 1 }
-[Finished in 0.2s]
+  length: 1
+}

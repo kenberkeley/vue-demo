@@ -1,5 +1,14 @@
+var RouteRecognizer = require('route-recognizer');
+var router = new RouteRecognizer();
+
+
+
 $.ajax = function (reqBody) {
-  // TODO
+  var method = (reqBody.method || 'get').toUpperCase(),
+    url = reqBody.url,
+    body = req
+
+  
   return {
     done: function () {
 
