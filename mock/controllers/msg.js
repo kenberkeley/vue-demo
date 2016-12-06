@@ -1,22 +1,30 @@
-var uuid = require('uuid/v1');
-var db = require('../db/');
+var uuid = require('uuid/v1'),
+  db = require('../db/');
 
 // GET /msg
 exports.getList = function (req, res) {
-  var offset = ~~req.query.offset || 0,
+  var author = req.query.author,
+    offset = ~~req.query.offset || 0,
     limit = ~~req.query.limit || 10;
 
   var msgs_ = db.get('msgs');
+  if (author) {
+    msgs_ = msgs_.filter(msg => msg.author === author);
+  }
 
   res.ajaxReturn({
     total: msgs_.size().value(),
-    rows: msgs_.slice(offset, offset + limit).value()
+    rows: msgs_.orderBy('ctime', 'desc').slice(offset, offset + limit).value()
   });
 };
 
 // POST /msg
 exports.addMsg = function (req, res) {
-  req.body.id = uuid.substr(0, 8);
+  if (!req.body.title || !req.body.content) {
+    return res.ajaxReturn(false, { errMsg: 'title 或 content 字段为空' });
+  }
+
+  req.body.id = uuid().substr(0, 8);
   req.body.author = db.get('session.username').value();
   req.body.ctime = Date.now();
   
@@ -27,23 +35,28 @@ exports.addMsg = function (req, res) {
 
 // GET /msg/:msgId
 exports.getById = function (req, res) {
-  res.ajaxReturn(
-    db.get('msgs').find({ id: req.params.msgId }).value()
-  );
+  var target = db.get('msgs').find({ id: req.params.msgId }).value();
+  if (target) res.ajaxReturn(target);
+  res.ajaxReturn(false, { errMsg: '不存在该留言信息' });
 };
 
 // PUT /msg/:msgId
 exports.update = function (req, res) {
-  delete req.body.id; // 防止篡改 ID
+  delete req.body.id;     // 防止篡改 ID
+  delete req.body.author; // 防止篡改作者
+
   req.body.ctime = Date.now();
 
-  var target = db.get('msgs').find({
+  var target_ = db.get('msgs').find({
     id: req.params.msgId,
     author: db.get('session.username').value()
-  }).assign(req.body).value()
+  });
 
-  if (target) return res.ajaxReturn();
-  res.ajaxReturn(null, { success: false, errMsg: '修改失败' });
+  if (target_.isEmpty().value()) {
+    return res.ajaxReturn(false, { errMsg: '修改失败' });
+  }
+
+  res.ajaxReturn(target_.assign(req.body).value());
 };
 
 // DELETE /msg/:msgId
@@ -51,8 +64,8 @@ exports.remove = function (req, res) {
   var target = db.get('msgs').remove({
     id: req.params.msgId,
     author: db.get('session.username').value()
-  }).value()[0] // 删除返回的是一个集合
+  }).value()[0]; // 删除返回的是一个集合
 
-  if (target) return res.ajaxReturn();
-  res.ajaxReturn(null, { success: false, errMsg: '删除失败' });
+  if (target) return res.ajaxReturn(target);
+  res.ajaxReturn(false, { errMsg: '删除失败' });
 };

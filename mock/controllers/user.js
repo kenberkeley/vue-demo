@@ -7,8 +7,15 @@ exports.checkLogin = function (req, res) {
 
 // POST /user/login
 exports.login = function (req, res) {
-  db.set('session', { username: req.body.username }).value();
-  res.ajaxReturn(true);
+  var username = req.body.username;
+  if (!username) {
+    return res.ajaxReturn(false, { errMsg: 'username 字段为空' });
+  }
+
+  var session = { username: username };
+
+  db.set('session', session).value();
+  res.ajaxReturn(session);
 };
 
 // DELETE /user/logout

@@ -4,7 +4,7 @@
       标题：
       <strong>{{ msg.title }}</strong>
       <span class="badge pull-right">
-        {{ msg.time | dateTimeFormatter }}
+        {{ msg.ctime | dateTimeFormatter }}
       </span>
       <br/>
       发布者：

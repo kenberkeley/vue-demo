@@ -13,7 +13,7 @@ const xhr = ({ url, body = null, method = 'get' }) => {
     // crossDomain: true
   })
   .done(({ success, errMsg, data }) => {
-    if (!success) return alert(errMsg)
+    if (!success) return alert('[Mock Server Error]' + errMsg)
     defer.resolve(data)
   })
   .fail(errHandler)

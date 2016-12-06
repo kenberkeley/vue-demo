@@ -14,6 +14,7 @@ app.use('/static', express.static(PATHS.STATIC));
 // app.use(favicon(path.join(__dirname, '../favicon.ico')));
 
 // Mock server
+require(PATHS.MOCK.join('node-app'))(PORTS.MOCK_SERVER);
 app.use('/api', proxy({
   target: 'http://127.0.0.1:' + PORTS.MOCK_SERVER,
   changeOrigin: true,

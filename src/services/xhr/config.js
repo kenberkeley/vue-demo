@@ -1,8 +1,8 @@
 // 此处配置 根访问路径 以及 全局错误处理
 // 更多配置请根据业务逻辑自行实现
 
-// 后端 API 地址，最好以 http(s):// 打头
-export const rootPath = 'http://localhost:8989'
+// 后端 API（往后的 XHR 请求为 rootPath + <url>）
+export const rootPath = '/api'
 
 export const errHandler = (e) => {
   alert('[ XHR:Failed ] 详情请看控制台')

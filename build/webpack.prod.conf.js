@@ -5,6 +5,7 @@ var webpack = require('webpack'),
   CopyWebpackPlugin = require('copy-webpack-plugin'),
   CleanWebpackPlugin = require('clean-webpack-plugin'),
   ExtractTextPlugin = require('extract-text-webpack-plugin'),
+  // SOURCE_MAP = true; // 大多数情况下用不到
   SOURCE_MAP = false;
 
 config.output.filename = '[name].[chunkhash:6].js';

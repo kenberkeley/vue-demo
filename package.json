@@ -12,7 +12,6 @@
     "url": "https://github.com/kenberkeley/vue-demo.git"
   },
   "dependencies": {
-    "es6-promise": "^4.0.5",
     "qs": "^6.3.0",
     "superagent": "^2.0.0",
     "vue": "^1.0.18",

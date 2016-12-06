@@ -5,7 +5,7 @@ var webpack = require('webpack'),
 
 module.exports = {
   entry: {
-    app: PATHS.SRC.join('app.js')
+    app: PATHS.SRC.join('app.js'),
 
     // 框架 / 类库 单独打包
     vendor: [
@@ -24,6 +24,7 @@ module.exports = {
     extensions: ['', '.js', '.vue'],
     alias: {
       // 自定义路径别名
+      MOCK: PATHS.MOCK,
       ASSET: PATHS.SRC.join('assets'),
       COMPONENT: PATHS.SRC.join('components'),
       SERVICE: PATHS.SRC.join('services'),

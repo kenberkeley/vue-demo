@@ -46,7 +46,7 @@ export default {
           pageIdx: this.pageIdx,
           quantity: this.quantity
         })
-        .then(msgs => this.msgs = msgs)
+        .then(({ rows }) => this.msgs = rows)
     }
   },
 
