@@ -12,7 +12,7 @@ function SimpleExpress (opt) {
 
 SimpleExpress.prototype.run = function () {
   if (!this.queue.length) {
-    return this.res.json({ errMsg: '不存在对应的中间件处理逻辑' });
+    return this.res.json({ errMsg: '中间件队列为空' });
   }
   var mdw = this.queue.shift();
   // 传入匹配中间件参数表的参数：(req, res, next)

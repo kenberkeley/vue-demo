@@ -9,7 +9,6 @@ var pathToRegexp = require('path-to-regexp'),
 
 /**
  * 通过重写 xhr 接口来实现运行在浏览器的 Mock Server，以支持纯静态页的演示
- * 
  * @param  {String} reqBody.method
  * @param  {String} reqBody.url
  * @param  {Object} reqBody.body
@@ -17,30 +16,27 @@ var pathToRegexp = require('path-to-regexp'),
  */
 var xhr = function (reqBody) {
   var defer = $.Deferred();
-  var middlewares = [simpleLogger, resAjaxReturn];
-
   var method = (reqBody.method || 'GET').toUpperCase(),
     body = reqBody.body || {},
-    // 解析 URL
     originalUrl = reqBody.url,
-    originalUrlSplit = originalUrl.split('?'),
-    path = originalUrlSplit[0],
-    query = qs.parse(originalUrlSplit[1]),
+    origUrlSplit = originalUrl.split('?'),
+    path = origUrlSplit[0],
+    query = qs.parse(origUrlSplit[1]),
     params = {};
 
+  var middlewares = [simpleLogger, resAjaxReturn];
   for (var i = 0; i < routes.length; i++) {
     var route = routes[i];
 
     // 先匹配请求方法
     if (route.method.toUpperCase() !== method) continue;
 
-    var paramKeys = [],
-      regex = pathToRegexp(route.path, paramKeys);
-
     // 再匹配请求路径
-    var matchedResult = regex.exec(path);
-    if (!matchedResult) continue;
+    var paramKeys = [],
+      regex = pathToRegexp(route.path, paramKeys),
+      matchedResult = regex.exec(path);
 
+    if (!matchedResult) continue;
     params = getParams(paramKeys, matchedResult);
 
     // 在此 handler 与 middleware 无异
@@ -48,7 +44,6 @@ var xhr = function (reqBody) {
     middlewares.push(route.handler);
     break;
   }
-
   middlewares.push(notFound);
 
   var mockServer = new SimpleExpress({
