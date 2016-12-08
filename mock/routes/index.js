@@ -5,6 +5,8 @@ var msgCtrls = require('../controllers/msg'),
 /*
   GET     /msg              获取留言信息列表
   POST    /msg              新增一条留言信息
+    
+  GET     /msg/authors      获取所有留言用户名
 
   GET     /msg/:msgId       获取指定 ID 的留言信息
   PUT     /msg/:msgId       更新指定 ID 的留言信息
@@ -23,7 +25,11 @@ module.exports = [{
   path: '/msg',
   method: 'POST',
   middlewares: [interceptor.NEED_AUTH],
-  handler: msgCtrls.addMsg
+  handler: msgCtrls.add
+}, {
+  path: '/msg/authors',
+  method: 'GET',
+  handler: msgCtrls.authors
 }, {
   path: '/msg/:msgId',
   method: 'GET',

@@ -3,13 +3,14 @@ var uuid = require('uuid/v1'),
 
 // GET /msg
 exports.getList = function (req, res) {
-  var author = req.query.author,
+  var authors = req.query.authors,
     offset = ~~req.query.offset || 0,
     limit = ~~req.query.limit || 10;
 
   var msgs_ = db.get('msgs');
-  if (author) {
-    msgs_ = msgs_.filter(msg => msg.author === author);
+  if (authors) {
+    authors = authors.split(',');
+    msgs_ = msgs_.filter(msg => authors.indexOf(msg.author) !== -1);
   }
 
   res.ajaxReturn({
@@ -19,7 +20,7 @@ exports.getList = function (req, res) {
 };
 
 // POST /msg
-exports.addMsg = function (req, res) {
+exports.add = function (req, res) {
   if (!req.body.title || !req.body.content) {
     return res.ajaxReturn(false, { errMsg: 'title 或 content 字段为空' });
   }
@@ -31,6 +32,11 @@ exports.addMsg = function (req, res) {
   res.ajaxReturn(
     db.get('msgs').push(req.body).last().value()
   );
+};
+
+// GET /msg/authors
+exports.authors = function (req, res) {
+  res.ajaxReturn(db.get('msgs').map('author').value());
 };
 
 // GET /msg/:msgId
