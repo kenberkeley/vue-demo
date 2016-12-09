@@ -1,9 +1,9 @@
 var webpack = require('webpack'),
+  fs = require('fs-extra'),
   PATHS = require('./config/PATHS'),
   config = require('./webpack.base.conf'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   CopyWebpackPlugin = require('copy-webpack-plugin'),
-  CleanWebpackPlugin = require('clean-webpack-plugin'),
   ExtractTextPlugin = require('extract-text-webpack-plugin'),
   // SOURCE_MAP = true; // 大多数情况下用不到
   SOURCE_MAP = false;
@@ -25,25 +25,16 @@ config.module.loaders.push({
   loader: ExtractTextPlugin.extract('style', 'css!sass')
 });
 
+fs.emptyDir(PATHS.DIST);
+
 config.plugins.push(
-  new CleanWebpackPlugin('dist', {
-    root: PATHS.ROOT,
-    verbose: false
-  }),
-  new CopyWebpackPlugin([ // 复制高度静态资源
-    {
-      context: PATHS.STATIC,
-      from: '**/*',
-      ignore: ['*.md']
-    }
-  ]),
   new webpack.optimize.DedupePlugin(),
+  new webpack.optimize.OccurenceOrderPlugin(),
   new webpack.optimize.UglifyJsPlugin({
     compress: {
       warnings: false
     }
   }),
-  new webpack.optimize.OccurenceOrderPlugin(),
   new webpack.optimize.CommonsChunkPlugin({
     // 公共代码分离打包
     names: ['vendor', 'mainifest']
@@ -54,7 +45,14 @@ config.plugins.push(
   new HtmlWebpackPlugin({
     filename: '../index.html',
     template: PATHS.SRC.join('index.html')
-  })
+  }),
+  new CopyWebpackPlugin([ // 复制高度静态资源
+    {
+      context: PATHS.STATIC,
+      from: '**/*',
+      ignore: ['*.md']
+    }
+  ])
 );
 
 module.exports = config;
