@@ -1,5 +1,5 @@
 /**
- * Express 的简单实现
+ * Express 中间件机制的简单实现
  * @param {Array}    opt.middlewares 中间件
  * @param {Object}   opt.req         请求体
  * @param {Function} opt.callback    处理完成后调用的函数

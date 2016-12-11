@@ -1,35 +1,44 @@
-// 不同模块应代码分离
+// 其他功能模块的路由应分离编写
 import msgRoutes from './msg'
 
 export default {
   '*': {
     component: {
-      ready () {
-        alert('404 - Page not found')
+      init () {
+        window.swal({
+          type: 'warning',
+          title: '404 NOT FOUND',
+          text: 'Redirecting to default page ...',
+          timer: 2000,
+          showConfirmButton: false
+        })
         this.$router.replace('/')
-      }
+      },
+      template: '<span></span>'
     }
   },
 
   // Vue 没有强制刷新操作，这算是 hack（使用 canReuse 可以解决部分问题）
-  // 用法1：<a v-link="{ path: '/redirect', query: { dest: '/msg' } }">
-  // 用法2：<a v-link="{ path: '/redirect?dest=/msg' }">
-  // 用法3：<a v-link="`/redirect?dest=/msg`">
-  // v-link 的用法有很多种，详情 http://router.vuejs.org/zh-cn/link.html
+  // 用法1：<a v-link="{ path: '/redirect', query: { dest: '/xxx' } }">
+  // 用法2：<a v-link="`/redirect?dest=/xxx`">
+  // 用法3：this.$router.go('/redirect?dest=/xxx')
   '/redirect': {
-    name: 'redirect',
     component: {
-      ready () {
-        this.$router.replace(this.$route.query.dest)
-      }
+      init () {
+        this.$router.replace({
+          path: decodeURIComponent(this.$route.query.dest || '/'),
+          force: true
+        })
+      },
+      template: '<span></span>'
     }
   },
 
   '/': {
-    name: 'welcome',
+    title: '首页',
     component (resolve) {
       // 使用 Webpack 的 Code-Splitting
-      require(['VIEW/welcome'], resolve)
+      require(['VIEW/'], resolve)
     }
   },
 

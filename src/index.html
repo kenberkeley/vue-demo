@@ -8,6 +8,7 @@
   <link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <!-- build:css /static/bundle/plugins.css -->
   <link href="/static/plugins/jquery.toast/jquery.toast.min.css" rel="stylesheet">
+  <link href="/static/plugins/sweetalert/sweetalert.css" rel="stylesheet">
   <link href="/static/plugins/select2/select2.min.css" rel="stylesheet">
   <!-- endbuild -->
   {% for (var css in o.htmlWebpackPlugin.files.css) { %}
@@ -20,9 +21,11 @@
 
 <script src="/static/jquery.min.js"></script>
 <script src="/static/bootstrap/js/bootstrap.min.js"></script>
-<!-- build:js /static/bundle/main.js -->
+<!-- build:js /static/bundle/plugins.js -->
 <script src="/static/plugins/jquery.toast/jquery.toast.min.js"></script>
 <script src="/static/plugins/jquery.ajax.loading.js"></script>
+<script src="/static/plugins/jquery-scrollto.js"></script>
+<script src="/static/plugins/sweetalert/sweetalert.min.js"></script>
 <script src="/static/plugins/select2/select2.min.js"></script>
 <script src="/static/plugins/moment.min.js"></script>
 <!-- endbuild -->
