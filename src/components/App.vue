@@ -1,17 +1,17 @@
 <template>
   <div>
-
+    <div id="scroll-to-top"></div>
+    
     <navbar></navbar>
 
     <div class="container">
       <router-view></router-view>
     </div>
-
   </div>
 </template>
 <script>
 /* 根组件就像是 AngularJS 的 $rootScope，同时也负责全局布局 */
-import Navbar from 'COMPONENT/Navbar/'
+import Navbar from 'COMPONENT/Navbar'
 
 export default {
   // 路由会自动将该组件挂载到 #app 上

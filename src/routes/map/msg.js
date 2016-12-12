@@ -1,5 +1,4 @@
 export default {
-
   '/msg': {
     
     // 基页
@@ -9,35 +8,33 @@ export default {
 
     // 子路由
     subRoutes: {
-      '/': {
-        name: 'msgIndex',
+      '/list': {
+        title: '留言板 · 列表',
         component (resolve) {
-          require(['COMPONENT/Msg/MsgList/'], resolve)
+          require(['VIEW/msg/list'], resolve)
         }
       },
       '/detail/:msgId': {
-        name: 'detailMsg',
+        title: '留言板 · 详情',
         component (resolve) {
-          require(['COMPONENT/Msg/MsgDetail'], resolve)
+          require(['VIEW/msg/detail'], resolve)
         }
       },
-      // 下面两个路由共用同一个组件
       '/add': {
-        name: 'addMsg',
+        title: '留言板 · 新增',
         component (resolve) {
-          require(['COMPONENT/Msg/MsgForm/'], resolve)
+          require(['VIEW/msg/add'], resolve)
         },
-        needToLogin: true // 用于权限拦截
+        needAuth: true // 用于权限拦截
       },
-      '/modify/:msgId': {
-        name: 'modifyMsg',
+      '/update/:msgId': {
+        title: '留言板 · 修改',
         component (resolve) {
-          require(['COMPONENT/Msg/MsgForm/'], resolve)
+          require(['VIEW/msg/update'], resolve)
         },
-        needToLogin: true
+        needAuth: true
       }
     }
 
   }
-
 }

@@ -5,7 +5,7 @@ import _pickBy from 'lodash/pickBy'
  * 更新 URL 中的 query string
  * @param  {String} url
  * @param  {Object} newQsObj
- * @return {String} newUrl
+ * @return {String} url with new query string
  */
 export default function updateQs(url, newQsObj) {
   let _url = url.split('?')

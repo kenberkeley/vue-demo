@@ -27,6 +27,8 @@ module.exports = {
       MOCK: PATHS.MOCK,
       ASSET: PATHS.SRC.join('assets'),
       COMPONENT: PATHS.SRC.join('components'),
+      FILTER: PATHS.SRC.join('filters'),
+      ROUTE: PATHS.SRC.join('routes'),
       SERVICE: PATHS.SRC.join('services'),
       VIEW: PATHS.SRC.join('views')
     }

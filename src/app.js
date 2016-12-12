@@ -1,8 +1,7 @@
 /* 启动文件 */
 import Vue from 'vue'
-import './directives/'
-import './filters/'
-import router from './routes/'
+import 'FILTER/'
+import router from 'ROUTE/'
 import App from 'COMPONENT/App'
 
 /**

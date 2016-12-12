@@ -1,5 +1,6 @@
-// 其他功能模块的路由应分离编写
+// 不同功能模块的路由应代码分离
 import msgRoutes from './msg'
+import userRoutes from './user'
 
 export default {
   '*': {
@@ -42,5 +43,6 @@ export default {
     }
   },
 
-  ...msgRoutes
+  ...msgRoutes,
+  ...userRoutes
 }

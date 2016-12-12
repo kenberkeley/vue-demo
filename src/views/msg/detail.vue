@@ -1,3 +1,3 @@
 <template>
-login
+detail
 </template>

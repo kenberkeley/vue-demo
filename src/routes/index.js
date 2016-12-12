@@ -10,6 +10,7 @@ const router = new VueRouter({
   // history: true,
   // saveScrollPosition: true,
   // transitionOnLoad: true,
+  // linkActiveClass: '',
   suppressTransitionError: __PROD__ // 生产环境下不抛出异常
 })
 
@@ -18,29 +19,45 @@ router.map(routesMap)
 // ========================================
 // 中间件
 // ========================================
-// 简单的路由跳转 Logger
-router.beforeEach(({ to, from, abort, redirect, next }) => {
-  console.info(`[RouteLogger] ${decodeURI(from.path)} => ${decodeURI(to.path)}`)
-  next()
-})
+// 路由日志
+// if (__DEV__) {
+//   router.beforeEach(({ to, from, next }) => {
+//     console.info(`[路由日志] ${decodeURIComponent(from.path)} => ${decodeURIComponent(to.path)}`)
+//     next()
+//   })
+// }
 
-// 权限拦截
-router.beforeEach(({ to, from, abort, redirect, next }) => {
-  if (to.needToLogin && !router.app.userData) { // router 实例会暴露出根组件实例 app
-    alert('需要登录后才能访问')
-    console.info('[Auth:Failed] 用户未登录，中断跳转')
-    return abort()
+// 权限拦截（needAuth：需要登录后访问；forbidAuthed：禁止登录后访问）
+// router.beforeEach(({ to: { needAuth, forbidAuthed, path }, redirect, next, abort }) => {
+//   let { userData } = router.app
+
+//   if (needAuth && !userData) {
+//     if (__DEV__) { console.info('[权限拦截] 当前用户未登录，重定向到登录页') }
+//     return redirect({
+//       path: `/auth/login?referrer=${encodeURIComponent(path)}`,
+//       force: true // 禁用追加模式
+//     })
+//   }
+  
+//   if (forbidAuthed && userData) {
+//     if (__DEV__) { console.info('[权限拦截] 当前用户已登录，中断跳转') }
+//     return abort()
+//   }
+
+//   next()
+// })
+
+// 替换标签页标题，并恢复页面位置
+router.afterEach(({ to, from }) => {
+  document.title = to.title || ''
+
+  if (to.path.split('?')[0] !== (from.path || '').split('?')[0]) {
+    $.scrollTo('#scroll-to-top', 500) // 不同页面间跳转：页面拉回顶部
   }
-  next()
 })
 
 /**
- * 在入口文件 src/app.js 中调用 router.start(App, '#app') 后，根组件实例就会暴露到 router.app
- * 在组件内部，可通过 this.$root 访问根组件；而在外部，则可通过以下方式访问到根组件：
- * 
- * import router from '<path to>/routes/'
- * 
- * const $root = router.app
- * console.log($root.userData) // 打印用户 session
+ * 调用 router.start(App, '#app') 后，根组件实例就会暴露到 router.app
+ * 组件内部可通过 this.$root 访问，外部则可通过 router.app 进行访问
  */
 export default router
