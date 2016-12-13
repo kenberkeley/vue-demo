@@ -9,11 +9,10 @@ export default {
         window.swal({
           type: 'warning',
           title: '404 NOT FOUND',
-          text: 'Redirecting to default page ...',
           timer: 2000,
           showConfirmButton: false
         })
-        this.$router.replace('/')
+        history.back()
       },
       template: '<span></span>'
     }

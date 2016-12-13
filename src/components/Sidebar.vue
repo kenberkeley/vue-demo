@@ -1,78 +1,74 @@
 <template>
-  <div class="panel-group" id="sidebar">
+  <div id="sidebar">
     <template v-for="route in routes">
-      <template v-if="route.title">
-        <div class="panel panel-default">
-          <template v-if="route.subRoutes">
-            <div :href="'#panel'+$index"
-              class="panel-heading anchor-mouse"
-              data-toggle="collapse" data-parent="#sidebar">
-              <h4 class="panel-title text-center">
-                <i :class="route.icon" class="m-r-5"></i>
-                {{ route.title }}
-                <span class="caret"></span>
-              </h4>
-            </div>
-            <div :id="'panel'+$index" class="panel-collapse collapse">
-              <div class="panel-body p-0">
-                <ul class="list-group m-0">
-                  <li v-for="subRoute in route.subRoutes"
-                    v-link="{
-                      path: subRoute.fullPath.replace(/:.*?$/, ''),
-                      activeClass: 'matched-route'
-                    }"
-                    class="list-group-item anchor-mouse text-center">
-                    <i :class="subRoute.icon" class="m-r-5"></i>
-                    {{ subRoute.title }}
-                  </li>
-                </ul>
-              </div><!-- .panel-body -->
-            </div><!-- .panel-collapse -->
-          </template>
-          <template v-else>
-            <!-- v-link 并非限定用于 a 标签 -->
-            <div v-link="{
-                path: route.path.replace(/:.*?$/, ''),
-                activeClass: 'matched-route',
-                exact: true
-              }"
-              data-parent="#sidebar" data-toggle="collapse"
-              class="panel-heading anchor-mouse"
-              style="background-color:#fff">
-              <h4 class="panel-title text-center">
-                <i :class="route.icon" class="m-r-5"></i>
-                {{ route.title }}
-              </h4>
-            </div>
-          </template>
-        </div><!-- .panel-default -->
-      </template>
+      <div v-if="route.subRoutes">
+        <a :href="'#panel'+$index"
+          class="btn btn-default btn-block anchor"
+          data-toggle="collapse" data-parent="#sidebar">
+          <i :class="route.icon" class="m-r-5"></i>
+          {{ route.title }}
+          <span class="caret"></span>
+        </a>
+        <div :id="'panel'+$index" class="collapse w-90p m-0-auto">
+          <a v-for="subRoute in route.subRoutes"
+            :comment="subRoute.comment"
+            class="btn btn-default btn-block anchor m-t-0"
+            v-link="{
+              path: trimDynamicParams(subRoute.fullPath),
+              activeClass: 'matched-route'
+            }">
+            <i :class="subRoute.icon" class="m-r-5"></i>
+            {{ subRoute.title }}
+          </a>
+        </div><!-- .collapse -->
+      </div><!-- v-if -->
+      <a v-else class="btn btn-default btn-block anchor"
+        v-link="{
+          path: route.path,
+          activeClass: 'matched-route',
+          exact: true
+        }">
+        <i :class="route.icon" class="m-r-5"></i>
+        {{ route.title }}
+      </a><!-- v-else -->
     </template>
-  </div><!-- .panel-group -->
+  </div><!-- #sidebar -->
 </template>
 <script>
 import routesMap from 'ROUTE/map/'
-// TODO：replace(/:.*?$/, '')
+import _pickBy from 'lodash/pickBy'
+
+console.log(routesMap)
+
 export default {
   computed: {
-    routes: () => routesMap
+    // 常规页面的路由都带有 title 属性
+    routes: () => _pickBy(routesMap, route => route.title),
+    trimDynamicParams: () => (url) => url.replace(/:.*?$/, '')
   },
   attached () {
-    // 自动展开折叠
+    // 自动展开折叠到当前位置
     setTimeout(() => {
       $(this.$el)
-        .find('li.matched-route')
-        .parents('div.collapse')
+        .find('.matched-route')
+        .parents('.collapse')
         .collapse('show')
     }, 1000)
+
+    $(this.$el).find('a[comment]').each(function () {
+      $(this).tooltip({ title: $(this).attr('comment') })
+    })
   }
 }
 </script>
 <style>
-.anchor-mouse {
-  cursor: pointer;
+.w-90p {
+  width: 90%;
 }
-.anchor-mouse:hover {
+.m-t-0 {
+  margin-top: 0 !important;
+}
+.anchor:hover {
   color: orange;
   background-color: #3071a9;
 }
