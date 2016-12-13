@@ -69,7 +69,7 @@
         imgHeight  : '45px',
 
         //loading text
-        tip        : 'loading...',
+        tip        : 'Loading ...',
         fontSize   : '14px',
         fontColor  : '#fff'
     };

@@ -13,7 +13,12 @@ const xhr = ({ url, body = null, method = 'get' }) => {
     // crossDomain: true
   })
   .done(({ success, errMsg, data }) => {
-    if (!success) return alert('[Mock Server Error]' + errMsg)
+    if (!success) return $.toast({
+      heading: '操作失败',
+      text: errMsg,
+      icon: 'warning',
+      stack: false
+    })
     defer.resolve(data)
   })
   .fail(errHandler)

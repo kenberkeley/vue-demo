@@ -45,16 +45,16 @@ module.exports = [{
   middlewares: [interceptor.NEED_AUTH],
   handler: msgCtrls.remove
 }, {
-  path: '/user/checkLogin',
+  path: '/checkLogin',
   method: 'GET',
   handler: userCtrls.checkLogin
 }, {
-  path: '/user/login',
+  path: '/login',
   method: 'POST',
   middlewares: [interceptor.FORBID_AUTHED],
   handler: userCtrls.login
 }, {
-  path: '/user/logout',
+  path: '/logout',
   method: 'DELETE',
   middlewares: [interceptor.NEED_AUTH],
   handler: userCtrls.logout

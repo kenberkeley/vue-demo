@@ -3,6 +3,7 @@ import Vue from 'vue'
 import 'FILTER/'
 import router from 'ROUTE/'
 import App from 'COMPONENT/App'
+import 'ASSET/css/common.css'
 
 /**
  * 把根组件挂载到 id 为 app 的 DOM 上

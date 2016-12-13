@@ -4,7 +4,6 @@ import xhr from './xhr/'
  */
 class MsgService {
   /**
-   * 取msg（命名为 fetch 而非 get 主要是因为是远程操作）
    * @param  {String} options.author   作者名
    * @param  {Number} options.pageIdx  目标页码（默认是第 1 页）
    * @param  {Number} options.quantity 单页请求 msg 的数量（默认每页 10 条）
@@ -24,8 +23,20 @@ class MsgService {
   }
 
   /**
-   * 新增 msg
-   * @param  {Object} msgBody { title:{String}, content:{String} }
+   * 根据 msgId 获取信息
+   * @param   {String} msgId
+   * @resolve {Object} msg
+   */
+  getById (msgId) {
+    return xhr({
+      url: `/msg/${msgId}`
+    })
+  }
+
+  /**
+   * 新增留言信息
+   * @param  {String} msgBody.title
+   * @param  {String} msgBody.content
    * @return {Promise}
    */
   add (msgBody) {

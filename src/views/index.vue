@@ -1,7 +1,7 @@
 <template>
 
   <div class="jumbotron">
-    <h1>欢迎使用 Vue Demo</h1>
+<!--     <h1>欢迎使用 Vue Demo</h1>
     <p>
       <a
         role="button"
@@ -9,7 +9,7 @@
         v-link="'/msg'">
         前往留言板 &gt;
       </a>
-    </p>
+    </p> -->
   </div>
   
 </template>

@@ -10,7 +10,7 @@ class UserService {
   }
 
   /**
-   * @param  {Object} userData
+   * @param  {String} userData.username
    * @return {Promise}
    */
   login (userData) {

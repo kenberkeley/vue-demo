@@ -5,6 +5,10 @@
 export const rootPath = '/api'
 
 export const errHandler = (e) => {
-  alert('[ XHR:Failed ] 详情请看控制台')
-  console.error(e)
+  $.toast({
+    heading: '请求 API 失败',
+    icon: 'error',
+    stack: false
+  })
+  console.warn(e)
 }

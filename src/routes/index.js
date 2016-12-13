@@ -15,6 +15,10 @@ const router = new VueRouter({
 })
 
 router.map(routesMap)
+router.alias({
+  '/msg': '/msg/list',
+  '/login': '/user/login'
+})
 
 // ========================================
 // 中间件
@@ -22,7 +26,7 @@ router.map(routesMap)
 // 路由日志
 // if (__DEV__) {
 //   router.beforeEach(({ to, from, next }) => {
-//     console.info(`[路由日志] ${decodeURIComponent(from.path)} => ${decodeURIComponent(to.path)}`)
+//     console.info(`[路由日志] ${decodeURIComponent(from.path || '')} => ${decodeURIComponent(to.path)}`)
 //     next()
 //   })
 // }
@@ -49,7 +53,11 @@ router.map(routesMap)
 
 // 替换标签页标题，并恢复页面位置
 router.afterEach(({ to, from }) => {
-  document.title = to.title || ''
+  let titles = []
+  to.matched.slice().forEach(({ handler: { title } }) => {
+    if (title) titles.push(title)
+  })
+  document.title = titles.join(' · ')
 
   if (to.path.split('?')[0] !== (from.path || '').split('?')[0]) {
     $.scrollTo('#scroll-to-top', 500) // 不同页面间跳转：页面拉回顶部
