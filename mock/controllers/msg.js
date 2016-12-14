@@ -5,7 +5,7 @@ var uuid = require('uuid/v1'),
 exports.getList = function (req, res) {
   var authors = req.query.authors,
     offset = ~~req.query.offset || 0,
-    limit = ~~req.query.limit || 10;
+    limit = ~~req.query.limit || 5;
 
   var msgs_ = db.get('msgs');
   if (authors) {
@@ -36,7 +36,7 @@ exports.add = function (req, res) {
 
 // GET /msg/authors
 exports.authors = function (req, res) {
-  res.ajaxReturn(db.get('msgs').map('author').value());
+  res.ajaxReturn(db.get('msgs').map('author').uniq().value());
 };
 
 // GET /msg/:msgId

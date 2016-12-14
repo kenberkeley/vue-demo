@@ -1,3 +1,9 @@
+.dsp-tbl {
+  display: table;
+}
+.dsp-tbl-cell {
+  display: table-cell;
+}
 .m-0-auto {
   margin: 0 auto;
 }
@@ -7,12 +13,12 @@
 .m-r-5 {
   margin-right: 5px;
 }
+.m-t-5 {
+  margin-top: 5px;
+}
 .p-0 {
   padding: 0;
 }
-.p-5 {
-  padding: 5px;
-}
-.p-10 {
-  padding: 10px;
+.w-100pct {
+  width: 100%;
 }

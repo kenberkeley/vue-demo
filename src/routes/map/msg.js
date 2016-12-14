@@ -20,7 +20,6 @@ export default {
       '/detail/:msgId': {
         title: '详情',
         icon: 'fa fa-search-plus',
-        comment: '动态路由，不可直接访问',
         component (resolve) {
           require(['VIEW/msg/detail'], resolve)
         }
@@ -36,7 +35,6 @@ export default {
       '/update/:msgId': {
         title: '修改',
         icon: 'fa fa-eraser',
-        comment: '动态路由，不可直接访问',
         component (resolve) {
           require(['VIEW/msg/update'], resolve)
         },

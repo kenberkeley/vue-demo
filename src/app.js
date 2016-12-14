@@ -11,10 +11,6 @@ import 'ASSET/css/common.css'
  */
 router.start(App, '#app')
 
-/**
- * 根据 https://github.com/vuejs/vue-devtools#NOTES
- * Vue 1.0.18 以上版本需要如下配置 devtools
- */
 if (__DEV__) {
   console.info('[当前环境] 开发环境')
   Vue.config.devtools = true

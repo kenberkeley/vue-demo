@@ -10,24 +10,29 @@ class MsgService {
    * @param  {Number} options.msgId
    * @return {Promise}
    */
-  fetch ({ author = '', pageIdx = 1, quantity = 10, msgId } = {}) {
-    let url = '/msg/'
-    
-    if (msgId) {
-      url += msgId
-    } else {
-      url = `${url}?author=${author}&pageIdx=${pageIdx}&quantity=${quantity}`
-    }
-
-    return xhr({ url })
+  fetchList (query) {
+    return xhr({
+      url: '/msg',
+      body: query
+    })
   }
 
   /**
-   * 根据 msgId 获取信息
+   * 获取所有发布者
+   * @resolve {String[]}
+   */
+  fetchAuthorList () {
+    return xhr({
+      url: '/msg/authors'
+    })
+  }
+
+  /**
+   * 根据 msgId 获取留言信息
    * @param   {String} msgId
    * @resolve {Object} msg
    */
-  getById (msgId) {
+  fetchById (msgId) {
     return xhr({
       url: `/msg/${msgId}`
     })
@@ -35,9 +40,9 @@ class MsgService {
 
   /**
    * 新增留言信息
-   * @param  {String} msgBody.title
-   * @param  {String} msgBody.content
-   * @return {Promise}
+   * @param   {String} msgBody.title
+   * @param   {String} msgBody.content
+   * @resolve {Object} msg
    */
   add (msgBody) {
     return xhr({
@@ -48,11 +53,11 @@ class MsgService {
   }
 
   /**
-   * 修改 msg
-   * @param  {Object} msgBody { title:{String}, content:{String} }
-   * @return {Promise}
+   * 修改留言信息
+   * @param   {Object} msgBody
+   * @resolve {Object} msg
    */
-  mod (msgBody) {
+  update (msgBody) {
     let msgId = msgBody.id
     delete msgBody.msgId
 
@@ -64,8 +69,8 @@ class MsgService {
   }
 
   /**
-   * 删除 msg
-   * @param  {Number} msgId
+   * 删除留言信息
+   * @param  {String} msgId
    * @return {Promise}
    */
   del (msgId) {

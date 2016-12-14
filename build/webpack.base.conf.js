@@ -28,8 +28,10 @@ module.exports = {
       ASSET: PATHS.SRC.join('assets'),
       COMPONENT: PATHS.SRC.join('components'),
       FILTER: PATHS.SRC.join('filters'),
+      MIXIN: PATHS.SRC.join('mixins'),
       ROUTE: PATHS.SRC.join('routes'),
       SERVICE: PATHS.SRC.join('services'),
+      UTIL: PATHS.SRC.join('utils'),
       VIEW: PATHS.SRC.join('views')
     }
   },

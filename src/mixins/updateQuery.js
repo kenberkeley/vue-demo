@@ -1,4 +1,4 @@
-import updateQs from 'UTIL/updateQs'
+import updateQuery from 'UTIL/updateQuery'
 
 export default {
   methods: {
@@ -6,8 +6,8 @@ export default {
      * 更新当前 URL 中的 query string
      * @param {Object} newQsObj
      */
-    updateQs (newQsObj) {
-      this.$router.go(updateQs(this.$route.path, newQsObj))
+    updateQuery (newQsObj) {
+      this.$router.go(updateQuery(this.$route.path, newQsObj))
     }
   }
 }

@@ -3,37 +3,22 @@
     <div class="col-md-12">
       <nav class="navbar navbar-default">
         <div class="navbar-header">
-          <button class="navbar-toggle"
-            data-toggle="collapse"
-            data-target="#nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
           <a class="navbar-brand" v-link="`/`">
             Vue Demo
           </a>
         </div>
-        <div class="collapse navbar-collapse" id="nav-collapse">
-          <ul class="nav navbar-nav">
-            <li :class="{ 'active': $route.path === '/' }">
-              <a v-link="'/'">
-                首页
-              </a>
-            </li>
-            <li :class="{ 'active': $route.path.startsWith('/msg') }">
-              <a v-link="'/msg'">
-                留言板
-              </a>
-            </li>
-          </ul>
-        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+              Dropdown
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+            </ul>
+          </li>
+        </ul>
       </nav>
     </div>
   </div>
 </template>
-<script>
-// 考虑到 String.prototype.startsWith 为 ES6 新特性，
-// 建议此处引入 Polyfill 保证兼容性：
-// https://github.com/mathiasbynens/String.prototype.startsWith
-</script>

@@ -10,7 +10,7 @@
       </div>
       <div class="col-md-10 col-sm-9 col-xs-12">
         <breadcrumb></breadcrumb>
-        <div class="main-content p-10">
+        <div class="main-content p-15">
           <router-view></router-view>
         </div>
       </div>
@@ -20,7 +20,7 @@
 <script>
 /* 根组件就像是 AngularJS 的 $rootScope，同时也负责全局布局 */
 import Navbar from 'COMPONENT/Navbar'
-import Sidebar from 'COMPONENT/Sidebar'
+import Sidebar from 'COMPONENT/Sidebar/'
 import Breadcrumb from 'COMPONENT/Breadcrumb'
 
 export default {
@@ -38,6 +38,12 @@ export default {
 }
 </script>
 <style>
+.p-5 {
+  padding: 5px;
+}
+.p-15 {
+  padding: 15px;
+}
 .main-content {
   min-height: 300px;
   background-color: #f7f7f7;

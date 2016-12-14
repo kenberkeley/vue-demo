@@ -7,7 +7,7 @@ import _pickBy from 'lodash/pickBy'
  * @param  {Object} newQsObj
  * @return {String} url with new query string
  */
-export default function updateQs(url, newQsObj) {
+export default function updateQuery(url, newQsObj) {
   let _url = url.split('?')
   let path = _url[0]
   let curQs = _url[1]
@@ -22,8 +22,8 @@ export default function updateQs(url, newQsObj) {
 /**
  * e.g.
  *
- * updateQs('http://demo.com?a=1&b=2', { a: '', b: 3 }) => 'http://demo.com?b=3'
+ * updateQuery('http://demo.com?a=1&b=2', { a: '', b: 3 }) => 'http://demo.com?b=3'
  * 
- * updateQs('http://demo.com?a=1&b=2', { a: '', b: '' }) => 'http://demo.com'
+ * updateQuery('http://demo.com?a=1&b=2', { a: '', b: '' }) => 'http://demo.com'
  * 
  */
