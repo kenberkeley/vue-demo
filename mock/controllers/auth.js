@@ -1,11 +1,11 @@
 var db = require('../db/');
 
-// GET /user/checkLogin
+// GET /auth/checkLogin
 exports.checkLogin = function (req, res) {
   res.ajaxReturn(db.get('session').value());
 };
 
-// POST /user/login
+// POST /auth/login
 exports.login = function (req, res) {
   var username = req.body.username;
   if (!username) {
@@ -18,7 +18,7 @@ exports.login = function (req, res) {
   res.ajaxReturn(session);
 };
 
-// DELETE /user/logout
+// DELETE /auth/logout
 exports.logout = function (req, res) {
   db.set('session', null).value();
   res.ajaxReturn(true);

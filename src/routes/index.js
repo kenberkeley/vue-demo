@@ -16,8 +16,7 @@ const router = new VueRouter({
 
 router.map(routesMap)
 router.alias({
-  '/msg': '/msg/list',
-  '/login': '/user/login'
+  '/msg': '/msg/list'
 })
 
 // ========================================
@@ -33,7 +32,7 @@ router.alias({
 
 // 权限拦截（needAuth：需要登录后访问；forbidAuthed：禁止登录后访问）
 // router.beforeEach(({ to: { needAuth, forbidAuthed, path }, redirect, next, abort }) => {
-//   let { userData } = router.app
+//   const { userData } = router.app
 
 //   if (needAuth && !userData) {
 //     if (__DEV__) { console.info('[权限拦截] 当前用户未登录，重定向到登录页') }

@@ -4,12 +4,16 @@ import 'FILTER/'
 import router from 'ROUTE/'
 import App from 'COMPONENT/App'
 import 'ASSET/css/common.css'
+import authService from 'SERVICE/authService'
 
-/**
- * 把根组件挂载到 id 为 app 的 DOM 上
- * 自此，在外部就可通过 router.app 访问到根组件
- */
-router.start(App, '#app')
+authService.checkLogin().then(userData => {
+  if (userData) {
+    const dataGen = App.data // data 属性是一个函数
+    App.data = () => ({ ...dataGen(), userData })
+  }
+  // 自此，在外部就可通过 router.app 访问到根组件
+  router.start(App, '#app')
+})
 
 if (__DEV__) {
   console.info('[当前环境] 开发环境')

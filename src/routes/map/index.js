@@ -1,6 +1,6 @@
 // 不同功能模块的路由应代码分离
 import msgRoutes from './msg'
-import userRoutes from './user'
+import authRoutes from './auth'
 
 export default {
   '*': {
@@ -37,6 +37,7 @@ export default {
   '/': {
     title: '首页',
     icon: 'fa fa-home',
+    showInSidebar: true,
     component (resolve) {
       // 使用 Webpack 的 Code-Splitting
       require(['VIEW/'], resolve)
@@ -44,5 +45,5 @@ export default {
   },
 
   ...msgRoutes,
-  ...userRoutes
+  ...authRoutes
 }

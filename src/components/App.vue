@@ -30,11 +30,9 @@ export default {
   components: { Navbar, Sidebar, Breadcrumb },
 
   // 注意：顶级变量必须设置默认值方能引入 observer
-  data () {
-    return {
-      userData: null
-    }
-  }
+  data: () => ({
+    userData: null
+  })
 }
 </script>
 <style>

@@ -1,5 +1,5 @@
 var msgCtrls = require('../controllers/msg'),
-  userCtrls = require('../controllers/user'),
+  authCtrls = require('../controllers/auth'),
   interceptor = require('../middlewares/interceptor');
 
 /*
@@ -12,9 +12,9 @@ var msgCtrls = require('../controllers/msg'),
   PUT     /msg/:msgId       更新指定 ID 的留言信息
   DELETE  /msg/:msgId       删除指定 ID 的留言信息
 
-  GET     /user/checkLogin  检测用户是否已经登录
-  POST    /user/login       登录
-  DELETE  /user/logout      注销登录
+  GET     /auth/checkLogin  检测用户是否已经登录
+  POST    /auth/login       登录
+  DELETE  /auth/logout      注销登录
  */
 
 module.exports = [{
@@ -45,17 +45,17 @@ module.exports = [{
   middlewares: [interceptor.NEED_AUTH],
   handler: msgCtrls.remove
 }, {
-  path: '/checkLogin',
+  path: '/auth/checkLogin',
   method: 'GET',
-  handler: userCtrls.checkLogin
+  handler: authCtrls.checkLogin
 }, {
-  path: '/login',
+  path: '/auth/login',
   method: 'POST',
   middlewares: [interceptor.FORBID_AUTHED],
-  handler: userCtrls.login
+  handler: authCtrls.login
 }, {
-  path: '/logout',
+  path: '/auth/logout',
   method: 'DELETE',
   middlewares: [interceptor.NEED_AUTH],
-  handler: userCtrls.logout
+  handler: authCtrls.logout
 }];

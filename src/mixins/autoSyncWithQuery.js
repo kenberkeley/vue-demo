@@ -4,7 +4,7 @@ import updateQuery from 'MIXIN/updateQuery'
  * 相应字段须以 $ 结尾
  * 并须在 ready 内调用：
  * this.autoSyncWithQuery()
- * 此时参数 isInvokedByMe 为 undefined
+ * 此时参数 isInvokedByMixin 为 undefined
  * 会执行【本地变量 => query】代码一次
  *
  * 注：【query => 本地变量】赋值类型为 String
@@ -27,7 +27,7 @@ export default {
       }
       return specialFields
     },
-    autoSyncWithQuery (isInvokedByMe) {
+    autoSyncWithQuery (isInvokedByMixin) {
       const { query } = this.$route
 
       if (!this.specialFields.length)
@@ -37,7 +37,7 @@ export default {
         if (query[field])
           this[`${field}$`] = query[field]
         
-        if (isInvokedByMe) return
+        if (isInvokedByMixin) return
         // 本地变量 => query
         this.$watch(`${field}$`, function (v) {
           this.updateQuery({ [field]: v })

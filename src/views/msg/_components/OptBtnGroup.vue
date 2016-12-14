@@ -34,7 +34,7 @@ export default {
       }, v => {
         if (!v) return
         
-        let { msgId } = this
+        const { msgId } = this
         msgService.del(msgId).then(() => {
           $.toast({ heading: '删除成功', icon: 'success' })
           this.autoJump

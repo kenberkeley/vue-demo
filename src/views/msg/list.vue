@@ -31,7 +31,7 @@
     </ul>
     
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-6 nowrap">
         共 <span class="badge">{{ total }}</span> 条记录，
         <limit-select></limit-select>
       </div>
@@ -70,3 +70,8 @@ export default {
   }
 }
 </script>
+<style>
+.nowrap {
+  white-space: nowrap;
+}
+</style>

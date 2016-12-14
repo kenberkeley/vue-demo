@@ -3,7 +3,7 @@ import msgService from 'SERVICE/msgService'
 export default {
   route: {
     activate ({ next, redirect }) {
-      let { msgId } = this.$route.params
+      const { msgId } = this.$route.params
 
       if (msgId === ':msgId') {
         window.swal({

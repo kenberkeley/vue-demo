@@ -11,7 +11,7 @@
         {{ msg.author }}
       </a>
     </div>
-    <div class="panel-body min-h-180">
+    <div class="panel-body min-h-160">
       <p class="lead">{{ msg.content }}</p>
     </div>
     <div class="pull-right m-t-5">
@@ -32,8 +32,8 @@ export default {
   data: () => ({ msg: {} }),
   computed: {
     isMine () {
-      let { author } = this.msg
-      let { userData } = this.$root
+      const { author } = this.msg
+      const { userData } = this.$root
       if (!author || !userData) return
       return author === userData.username
     }
@@ -41,7 +41,7 @@ export default {
 }
 </script>
 <style>
-.min-h-180 {
-  min-height: 180px;
+.min-h-160 {
+  min-height: 160px;
 }
 </style>

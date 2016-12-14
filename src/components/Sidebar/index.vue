@@ -34,8 +34,7 @@ import _pickBy from 'lodash/pickBy'
 export default {
   components: { Vlink },
   computed: {
-    // 可访问页面的路由定义带有 title 属性
-    accessibleRoutes: () => _pickBy(routesMap, route => route.title)
+    accessibleRoutes: () => _pickBy(routesMap, route => route.showInSidebar)
   },
   attached () {
     // 自动展开折叠到当前位置

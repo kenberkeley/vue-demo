@@ -19,7 +19,7 @@ if (__PROD__) {
  * @return {Promise}
  *
  * 使用例子 xhr({ method: 'post', url: 'XXX', body: {Object} })
- * 最简单的例子 xhr({ url: '/user' })
+ * 最简单的例子 xhr({ url: '/xxx' })
  *
  * 本 Demo 的 API 封装格式为 { success: <Boolean>, errMsg: <String>, data: <Any> }
  */

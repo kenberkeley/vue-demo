@@ -7,15 +7,31 @@
             Vue Demo
           </a>
         </div>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
+        <ul class="nav navbar-nav">
+          <li v-link-active>
+            <a v-link="{ path: '/', exact: true, activeClass: 'active' }">
+              <i class="fa fa-home fa-lg m-r-5"></i>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right m-r-5">
+          <li v-if="$root.userData" class="dropdown">
             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-              Dropdown
+              {{ $root.userData.username }}
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
+              <li><a v-link="`/auth/logout`">
+                <i class="fa fa-sign-out m-r-5"></i>
+                注销登录
+              </a></li>
             </ul>
+          </li>
+          <li v-else v-link-active>
+            <a v-link="{ path: '/auth/login', activeClass: 'active' }">
+              <i class="fa fa-sign-in m-r-5"></i>
+              登录
+            </a>
           </li>
         </ul>
       </nav>

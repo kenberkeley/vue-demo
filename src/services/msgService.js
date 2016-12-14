@@ -58,7 +58,7 @@ class MsgService {
    * @resolve {Object} msg
    */
   update (msgBody) {
-    let msgId = msgBody.id
+    const msgId = msgBody.id
     delete msgBody.msgId
 
     return xhr({

@@ -3,7 +3,7 @@
     <msg-form :msg.sync="msg">
       <button slot="submit" @click="handleSubmit"
         type="submit" class="btn btn-success">
-        <i class="fa fa-plus m-r-5"></i>
+        <i class="fa fa-check m-r-5"></i>
         确认提交
       </button>
     </msg-form>    
