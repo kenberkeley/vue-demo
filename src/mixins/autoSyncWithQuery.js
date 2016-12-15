@@ -43,7 +43,6 @@ export default {
       this.$watch(origField, function (v) {
         // 本地变量 => query
         this.updateQuery({ [field]: v })
-        console.log(field, v)
       })
     },
     autoSyncWithQuery (missingKeys) {

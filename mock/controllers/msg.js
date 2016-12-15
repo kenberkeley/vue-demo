@@ -42,7 +42,7 @@ exports.authors = function (req, res) {
 // GET /msg/:msgId
 exports.getById = function (req, res) {
   var target = db.get('msgs').find({ id: req.params.msgId }).value();
-  if (target) res.ajaxReturn(target);
+  if (target) return res.ajaxReturn(target);
   res.ajaxReturn(false, { errMsg: '不存在该留言信息' });
 };
 

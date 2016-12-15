@@ -6,43 +6,48 @@
       </div>
       <div v-if="$root.userData" class="col-sm-6 col-md-7 col-lg-8">
         <a v-link="`/msg/add`" class="btn btn-default pull-right">
-          <i class="fa fa-comment-o m-r-5"></i>
+          <span class="fa-stack m-r-5">
+            <i class="fa fa-comment-o fa-stack-2x"></i>
+            <i class="fa fa-plus fa-stack-1x"></i>
+          </span>
           添加留言信息
         </a>
       </div>
     </div>
     
     <div class="row min-h-180">
-      <ul class="list-group m-t-5">
-        <li v-for="msg in msgs" class="list-group-item">
-          <h4 class="list-group-item-heading">
-            <a v-link="`/msg/detail/${msg.id}`">
-              {{ msg.title }}
-            </a>
-            <small> by
-              <a v-link="{ path: '/msg', query: { authors: msg.author } }">
-                {{ msg.author }}
+      <div class="col-sm-12">
+        <ul class="list-group m-t-5">
+          <li v-for="msg in msgs" class="list-group-item">
+            <h4 class="list-group-item-heading">
+              <a v-link="`/msg/detail/${msg.id}`">
+                {{ msg.title }}
               </a>
+              <small class="italic"> by
+                <a v-link="{ path: '/msg', query: { authors: msg.author } }">
+                  {{ msg.author }}
+                </a>
+              </small>
+              <span class="badge pull-right">
+                {{ msg.ctime | dateTimeFormatter }}
+              </span>
+            </h4>
+            <small class="list-group-item-text">
+              {{ msg.content | cutLongText }}
             </small>
-            <span class="badge pull-right">
-              {{ msg.ctime | dateTimeFormatter }}
-            </span>
-          </h4>
-          <small class="list-group-item-text">
-            {{ msg.content | cutLongText }}
-          </small>
-          <opt-btn-group class="pull-right" :msg="msg" :small-size="true">
-            <a v-link="`/msg/detail/${msg.id}`" class="btn btn-default">
-              <i class="fa fa-eye m-r-5"></i>
-              详情
-            </a>
-          </opt-btn-group>
-        </li>
-      </ul>
+            <opt-btn-group class="pull-right" :msg="msg" :small-size="true">
+              <a v-link="`/msg/detail/${msg.id}`" class="btn btn-default">
+                <i class="fa fa-eye m-r-5"></i>
+                详情
+              </a>
+            </opt-btn-group>
+          </li>
+        </ul>
 
-      <h4 v-show="!total" class="text-muted text-center line-h-150">
-        （暂无留言信息）
-      </h4>
+        <h4 v-show="!total" class="text-muted text-center line-h-150 italic">
+          （暂无留言信息）
+        </h4>
+      </div>
     </div>
     
     <div class="row">
@@ -91,6 +96,9 @@ export default {
 }
 .line-h-150 {
   line-height: 150px;
+}
+.italic {
+  font-style: italic;
 }
 .nowrap {
   white-space: nowrap;

@@ -29,6 +29,15 @@ export default {
         this.$router.replace(`/msg/detail/${id}`)
       })
     }
+  },
+  events: {
+    MSG_LOADED () {
+      // 检测当前用户是否有权限修改本留言信息
+      if (this.msg.author !== this.$root.userData.username) {
+        $.toast({ heading: '非法访问', icon: 'error' })
+        this.$router.replace('/msg')
+      }
+    }
   }
 }
 </script>

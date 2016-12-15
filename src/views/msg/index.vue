@@ -1,5 +1,6 @@
 <template>
   <div>
-    <router-view><!-- 嵌套路由 --></router-view>
+    <!-- 嵌套路由 -->
+    <router-view transition="fade" transition-mode="out-in"></router-view>
   </div>
 </template>

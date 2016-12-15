@@ -17,22 +17,27 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right m-r-5">
+      <li>
+        <a href="https://github.com/kenberkeley/vue-demo" target="_blank">
+          <i class="fa fa-github fa-lg"></i>
+        </a>
+      </li>
       <li v-if="$root.userData" class="dropdown">
         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-          <i class="fa fa-user-secret m-r-5"></i>
+          <i class="fa fa-user-secret fa-lg m-r-5"></i>
           {{ $root.userData.username }}
           <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
           <li><a v-link="`/auth/logout`">
-            <i class="fa fa-sign-out m-r-5"></i>
+            <i class="fa fa-sign-out fa-lg m-r-5"></i>
             注销登录
           </a></li>
         </ul>
       </li>
       <li v-else v-link-active>
         <a v-link="{ path: '/auth/login', activeClass: 'active' }">
-          <i class="fa fa-sign-in m-r-5"></i>
+          <i class="fa fa-sign-in fa-lg m-r-5"></i>
           登录
         </a>
       </li>

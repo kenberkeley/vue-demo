@@ -7,7 +7,7 @@
         编辑
       </a>
       <button @click="handleDel" class="btn btn-warning">
-        <i class="fa fa-times m-r-5"></i>
+        <i class="fa fa-trash-o m-r-5"></i>
         删除
       </button>
     </template>

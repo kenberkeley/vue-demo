@@ -9,7 +9,7 @@
       <div class="col-md-10 col-sm-9 col-xs-12">
         <breadcrumb></breadcrumb>
         <div class="main-content p-15">
-          <router-view></router-view>
+          <router-view transition="fade" transition-mode="out-in"></router-view>
         </div>
       </div>
     </div>
@@ -44,5 +44,12 @@ export default {
   min-height: 300px;
   background-color: #f7f7f7;
   border-radius: 5px;
+}
+/* 全局通用的 router-view 过渡效果 */
+.fade-transition {
+  transition: opacity .1s ease;
+}
+.fade-enter, .fade-leave {
+  opacity: 0;
 }
 </style>
