@@ -2,7 +2,7 @@
   <div>
     <msg-form :msg.sync="msg">
       <button slot="submit" @click="handleSubmit"
-        type="submit" class="btn btn-success">
+        type="button" class="btn btn-success">
         <i class="fa fa-floppy-o m-r-5"></i>
         保存修改
       </button>

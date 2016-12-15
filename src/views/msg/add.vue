@@ -2,7 +2,7 @@
   <div>
     <msg-form :msg.sync="msg">
       <button slot="submit" @click="handleSubmit"
-        type="submit" class="btn btn-success">
+        type="button" class="btn btn-success">
         <i class="fa fa-check m-r-5"></i>
         确认提交
       </button>
@@ -15,9 +15,7 @@ import msgService from 'SERVICE/msgService'
 
 export default {
   components: { MsgForm },
-  data: () => ({
-    msg: { title: '', content: '' }
-  }),
+  data: () => ({ msg: { title: '', content: '' } }),
   methods: {
     handleSubmit () {
       msgService.add(this.msg).then(({ id }) => {

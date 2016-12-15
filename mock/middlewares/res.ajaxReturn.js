@@ -1,16 +1,26 @@
 /**
- * 封装 API 接口，本 Demo 的 API 封装格式为：
+ * 封装 API 接口，封装格式为：
  * { success: <Boolean>, errMsg: <String>, data: <Any> }
  */
 module.exports = function (req, res, next) {
-  // 注意：resBody 与 success 标识位同布尔值，故若是成功但无返回值，也要传入 true
   res.ajaxReturn = function (resBody, overrideBody) {
     res.json(
       Object.assign(
-        { success: !!resBody, errMsg: '', data: resBody || '' },
+        { success: !!resBody || !overrideBody, errMsg: '', data: resBody || '' },
         overrideBody
       )
     );
   };
   next();
 };
+
+/**
+ * e.g.
+ *
+ * res.ajaxReturn() => { success: true, errMsg: '', data: '' }
+ * res.ajaxReturn(true) => { success: true, errMsg: '', data: true }
+ * res.ajaxReturn(false) => { success: true, errMsg: '', data: '' }
+ * res.ajaxReturn(null) => { success: true, errMsg: '', data: '' }
+ * res.ajaxReturn({ a: 1 }) => { success: true, errMsg: '', data: { a: 1 } }
+ * res.ajaxReturn(false, { errMsg: '404' }) => { success: false, errMsg: '404', data: '' }
+ */

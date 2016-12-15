@@ -16,8 +16,7 @@
     </div>
     <div class="pull-right m-t-5">
       <opt-btn-group
-        :msg-id="$route.params.msgId"
-        :auto-jump="true">
+        :msg="msg" :auto-jump="true">
       </opt-btn-group>
     </div>
   </div>

@@ -6,10 +6,11 @@ import App from 'COMPONENT/App'
 import 'ASSET/css/common.css'
 import authService from 'SERVICE/authService'
 
+// 先检测登录状态再挂载 根组件到 DOM 以便控权
 authService.checkLogin().then(userData => {
   if (userData) {
-    const dataGen = App.data // data 属性是一个函数
-    App.data = () => ({ ...dataGen(), userData })
+    const data = App.data // data 属性是一个函数
+    App.data = () => ({ ...data(), userData })
   }
   // 自此，在外部就可通过 router.app 访问到根组件
   router.start(App, '#app')

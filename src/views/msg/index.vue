@@ -1,6 +1,5 @@
 <template>
-<div>
-  <!-- 嵌套路由 -->
-  <router-view></router-view>
-</div>
+  <div>
+    <router-view><!-- 嵌套路由 --></router-view>
+  </div>
 </template>

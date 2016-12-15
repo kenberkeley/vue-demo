@@ -7,7 +7,7 @@ exports.checkLogin = function (req, res) {
 
 // POST /auth/login
 exports.login = function (req, res) {
-  var username = req.body.username;
+  var username = (req.body.username || '').trim();
   if (!username) {
     return res.ajaxReturn(false, { errMsg: 'username 字段为空' });
   }
@@ -21,5 +21,5 @@ exports.login = function (req, res) {
 // DELETE /auth/logout
 exports.logout = function (req, res) {
   db.set('session', null).value();
-  res.ajaxReturn(true);
+  res.ajaxReturn();
 };

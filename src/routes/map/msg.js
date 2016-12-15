@@ -4,6 +4,7 @@ export default {
     // 基页
     title: '留言板',
     icon: 'fa fa-commenting-o',
+    showInNavbar: true,
     showInSidebar: true,
     component (resolve) {
       require(['VIEW/msg'], resolve)

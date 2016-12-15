@@ -37,6 +37,7 @@ export default {
   '/': {
     title: '首页',
     icon: 'fa fa-home',
+    showInNavbar: { exact: true },
     showInSidebar: true,
     component (resolve) {
       // 使用 Webpack 的 Code-Splitting

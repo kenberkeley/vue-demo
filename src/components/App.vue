@@ -1,10 +1,8 @@
 <template>
   <div>
-    <div id="scroll-to-top"></div>
-    
     <navbar></navbar>
   
-    <div class="row p-5">
+    <div class="row m-0 p-5">
       <div class="col-md-2 col-sm-3 col-xs-12">
         <sidebar></sidebar>
       </div>

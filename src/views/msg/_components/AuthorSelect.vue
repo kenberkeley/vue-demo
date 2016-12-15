@@ -1,15 +1,17 @@
 <template>
-  <span class="dsp-tbl w-100pct">
-    <label class="dsp-tbl-cell" style="width:8em">
+  <div class="input-group">
+    <div v-el:addon @dblclick="loadOptions(true)"
+      class="input-group-addon clickable unselectable"
+      data-toggle="tooltip" title="双击我刷新下拉框">
       <i class="fa fa-filter"></i>
-      筛选发布者：
-    </label>
-    <select2 class="dsp-tbl-cell"
+      筛选发布者:
+    </div>
+    <select2
       :models.sync="authors$"
       :options="opts"
       :config="{ multiple: true, placeholder: '请选择发布者...' }">
     </select2>
-  </span>
+  </div>
 </template>
 <script>
 import Select2 from 'COMPONENT/Select/Select2'
@@ -27,16 +29,42 @@ export default {
       )
     }
   },
+  attached () {
+    $(this.$els.addon).tooltip()
+  },
   ready () {
     this.autoSyncWithQuery()
 
     if (msgService.authorList)
       return this.authorList = msgService.authorList
 
-    msgService.fetchAuthorList().then(authorList => {
-      // 将数据缓存在服务中
-      this.authorList = msgService.authorList = authorList
-    })
+    this.loadOptions()
+  },
+  methods: {
+    loadOptions (shouldNotify) {
+      msgService.fetchAuthorList().then(authorList => {
+        // 将数据缓存在服务中
+        this.authorList = msgService.authorList = authorList
+
+        shouldNotify && $.toast({
+          heading: '已刷新', icon: 'success', stack: false
+        })
+      })
+    }
   }
 }
 </script>
+<style>
+.clickable {
+  cursor: pointer;
+}
+.clickable:hover {
+  background-color: #dadada;
+}
+.clickable:active: {
+  background-color: blue;
+}
+.unselectable {
+  user-select: none;
+}
+</style>
