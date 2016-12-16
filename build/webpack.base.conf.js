@@ -81,7 +81,7 @@ module.exports = {
   plugins: [
     new NyanProgressPlugin(), // 进度条
     new webpack.DefinePlugin({
-      // 提供给 node_modules 中的类库 / 框架
+      // 提供给 node_modules/ 中的类库 / 框架
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV.trim()),
       // 配置开发全局常量
       __DEV__: process.env.NODE_ENV.trim() === 'development',

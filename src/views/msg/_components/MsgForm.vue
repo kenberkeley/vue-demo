@@ -11,16 +11,18 @@
         class="form-control" rows="5" placeholder="请输入留言信息..."
       ></textarea>
     </div>
-    <div class="pull-right">
-      <span v-show="allowToSubmit">
-        <slot name="submit"><!-- 提交按钮插槽 --></slot>
-      </span>
-      <span v-show="!allowToSubmit">
-        <button class="btn" disabled>
-          <i class="fa fa-pencil-square-o m-r-5"></i>
-          请完整填写表单
-        </button>
-      </span>
+    <div class="clearfix">
+      <div class="pull-right">
+        <span v-show="allowToSubmit">
+          <slot name="opt"><!-- 操作按钮插槽 --></slot>
+        </span>
+        <span v-show="!allowToSubmit">
+          <button class="btn" disabled>
+            <i class="fa fa-pencil-square-o m-r-5"></i>
+            请完整填写表单
+          </button>
+        </span>
+      </div>
     </div>
   </form>
 </template>

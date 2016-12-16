@@ -9,10 +9,10 @@ String.prototype.join = function (target) {
   return path.join(this.toString(), target);
 };
 
-var ROOT = path.resolve(__dirname, '../..'); // 项目根目录
+var ROOT = path.resolve(__dirname, '../..');
 
 module.exports = {
-  ROOT: ROOT,
+  ROOT: ROOT,                                // 项目根目录
   BUILD: ROOT.join('build'),                 // 构建工具配置目录
   DIST: ROOT.join('dist'),                   // build 后输出目录
   MOCK: ROOT.join('mock'),                   // Mock Server 目录

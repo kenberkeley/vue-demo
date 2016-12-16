@@ -46,7 +46,7 @@ export default {
 </script>
 <style>
 .m-t-100 {
-  margin-top: 100px;
+  margin-top: 100px !important;
 }
 .w-60p {
   width: 60%;

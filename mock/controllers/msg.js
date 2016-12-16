@@ -10,7 +10,9 @@ exports.getList = function (req, res) {
   var msgs_ = db.get('msgs');
   if (authors) {
     authors = authors.split(',');
-    msgs_ = msgs_.filter(msg => authors.indexOf(msg.author) !== -1);
+    msgs_ = msgs_.filter(function (msg) {
+      return authors.indexOf(msg.author) !== -1;
+    });
   }
 
   res.ajaxReturn({

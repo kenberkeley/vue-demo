@@ -1,10 +1,9 @@
 <template>
   <div>
     <msg-form :msg.sync="msg">
-      <button slot="submit" @click="handleSubmit"
-        type="button" class="btn btn-success">
-        <i class="fa fa-cloud-upload m-r-5"></i>
-        确认提交
+      <button slot="opt" @click="handleSubmit"
+        type="button" class="btn btn-default">
+        <i class="fa fa-check"></i>
       </button>
     </msg-form>    
   </div>

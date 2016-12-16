@@ -8,6 +8,7 @@ var xhr = require('./jquery').default
 // 为了方便纯静态页的演示，特实现了一个基于浏览器的 Mock Server
 // 通过重写 xhr 接口实现基于 Promise 的请求与响应
 if (__PROD__) {
+  window._ = require('lodash')
   xhr = require('MOCK/browser-xhr')
 }
 

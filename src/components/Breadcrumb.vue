@@ -1,5 +1,5 @@
 <template>
-  <ul class="breadcrumb">
+  <ul class="breadcrumb clearfix">
     <i class="fa fa-map-marker m-r-5"></i>
     <li v-for="route in matchedRoutes"
       :class="{ 'active': $index === matchedRoutes.length - 1 }">

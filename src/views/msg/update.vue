@@ -1,22 +1,27 @@
 <template>
   <div>
     <msg-form :msg.sync="msg">
-      <button slot="submit" @click="handleSubmit"
-        type="button" class="btn btn-success">
-        <i class="fa fa-floppy-o m-r-5"></i>
-        保存修改
-      </button>
+      <opt-btn-group slot="opt"
+        :msg="msg"
+        :edit-btn="false"
+        :auto-jump="true">
+        <button @click="handleSubmit"
+          type="button" class="btn btn-default">
+          <i class="fa fa-floppy-o"></i>
+        </button>
+      </opt-btn-group>
     </msg-form>
   </div>
 </template>
 <script>
 import MsgForm from './_components/MsgForm'
+import OptBtnGroup from './_components/OptBtnGroup'
 import msgService from 'SERVICE/msgService'
 import autoLoadByParams from './_mixins/autoLoadByParams'
 
 export default {
   mixins: [autoLoadByParams],
-  components: { MsgForm },
+  components: { MsgForm, OptBtnGroup },
   data: () => ({ msg: {} }),
   methods: {
     handleSubmit () {

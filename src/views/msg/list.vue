@@ -4,8 +4,8 @@
       <div class="col-sm-6 col-md-5 col-lg-4">
         <author-select></author-select>
       </div>
-      <div v-if="$root.userData" class="col-sm-6 col-md-7 col-lg-8">
-        <a v-link="`/msg/add`" class="btn btn-default pull-right">
+      <div v-if="$root.userData" class="col-sm-6 col-md-7 col-lg-8 clearfix">
+        <a v-link="`/msg/add`" class="btn btn-default btn-sm pull-right">
           <span class="fa-stack m-r-5">
             <i class="fa fa-comment-o fa-stack-2x"></i>
             <i class="fa fa-plus fa-stack-1x"></i>
@@ -18,10 +18,10 @@
     <div class="row min-h-180">
       <div class="col-sm-12">
         <ul class="list-group m-t-5">
-          <li v-for="msg in msgs" class="list-group-item">
+          <li v-for="msg in msgs" class="list-group-item clearfix" track-by="id">
             <h4 class="list-group-item-heading">
               <a v-link="`/msg/detail/${msg.id}`">
-                {{ msg.title }}
+                {{ msg.title | cutLongText }}
               </a>
               <small class="italic"> by
                 <a v-link="{ path: '/msg', query: { authors: msg.author } }">
@@ -33,12 +33,11 @@
               </span>
             </h4>
             <small class="list-group-item-text">
-              {{ msg.content | cutLongText }}
+              {{ msg.content | cutLongText 20 }}
             </small>
-            <opt-btn-group class="pull-right" :msg="msg" :small-size="true">
+            <opt-btn-group class="pull-right btn-group-xs" :msg="msg">
               <a v-link="`/msg/detail/${msg.id}`" class="btn btn-default">
-                <i class="fa fa-eye m-r-5"></i>
-                详情
+                <i class="fa fa-search-plus"></i>
               </a>
             </opt-btn-group>
           </li>
@@ -55,7 +54,7 @@
         共 <span class="badge">{{ total }}</span> 条记录，
         <limit-select></limit-select>
       </div>
-      <div class="col-sm-6">
+      <div class="col-sm-6 clearfix">
         <pagination :total="total" class="pull-right"></pagination>
       </div>
     </div>
@@ -66,9 +65,11 @@ import Pagination from 'COMPONENT/Pagination'
 import LimitSelect from 'COMPONENT/Select/LimitSelect'
 import AuthorSelect from './_components/AuthorSelect'
 import OptBtnGroup from './_components/OptBtnGroup'
+import updateQuery from 'MIXIN/updateQuery'
 import msgService from 'SERVICE/msgService'
 
 export default {
+  mixins: [updateQuery],
   components: { Pagination, LimitSelect, AuthorSelect, OptBtnGroup },
   data: () => ({ total: 0, msgs: [] }),
   route: {
@@ -86,6 +87,12 @@ export default {
       return txt.length > limit
         ? txt.substr(0, limit) + '···'
         : txt
+    }
+  },
+  events: {
+    REFETCH_LIST () {
+      // 触发 URL 变化即可重刷列表
+      this.updateQuery({ _: Date.now() })
     }
   }
 }

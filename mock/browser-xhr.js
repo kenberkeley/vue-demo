@@ -15,6 +15,9 @@ var pathToRegexp = require('path-to-regexp'),
  * @return {Promise}
  */
 var xhr = function (reqBody) {
+  console.group('Mock Server');
+  console.info('[Receive]', reqBody);
+
   var defer = $.Deferred();
   var method = (reqBody.method || 'GET').toUpperCase(),
     body = reqBody.body || {},
@@ -23,6 +26,8 @@ var xhr = function (reqBody) {
     path = origUrlSplit[0],
     query = qs.parse(origUrlSplit[1]),
     params = {};
+
+  if (method === 'GET') Object.assign(query, body);
 
   var middlewares = [simpleLogger, resAjaxReturn];
   for (var i = 0; i < routes.length; i++) {
@@ -50,15 +55,20 @@ var xhr = function (reqBody) {
     middlewares: middlewares,
     req: {
       method: method,
-      body: body,
+      body: JSON.parse(JSON.stringify(body)),
       originalUrl: originalUrl,
       path: path,
       query: query,
       params: params
     },
     callback: function (re) {
-      if (!re.success) return alert('[Mock Server Error] ' + re.errMsg);
+      if (!re.success) {
+        console.warn('[Error]', re.errMsg);
+        return alert('[Mock Server Error] ' + re.errMsg);
+      }
       defer.resolve(re.data);
+      console.info('[Respond]', re.data);
+      console.groupEnd('Mock Server');
     }
   });
   mockServer.run();
