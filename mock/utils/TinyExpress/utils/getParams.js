@@ -6,7 +6,7 @@
  * @param  {Array}  matchedResult
  * @return {Object}
  */
-module.exports = function (paramKeys, matchedResult) {
+module.exports = function getParams(paramKeys, matchedResult) {
   var params = {};
 
   paramKeys.forEach(function(key, idx) {

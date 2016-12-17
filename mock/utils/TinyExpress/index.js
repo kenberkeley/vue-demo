@@ -1,71 +1,29 @@
-var pathToRegexp = require('path-to-regexp'),
-  typeOf = require('./utils/typeOf'),
-  getParams = require('./utils/getParams'),
-  getInitReq = require('./utils/genInitReq');
+var methods = require('./utils/methods'),
+  initReq = require('./utils/initReq'),
+  router = require('./router'),
+  Queue = require('./Queue');
 
-/** init **/
 function TinyExpress () {
-  this.globalMiddlewares = [];
+  // global Middlewares
+  this.beforeMiddlewares = [];
+  this.afterMiddlewares = [];
 
-  Object.defineProperty(this, 'routes', {
-    set: function () {
-      this._setNullForRouteMiddlewares();
-    }
-  });
   this.routes = [];
 }
 
 var proto = TinyExpress.prototype;
 
-proto.receive = function (reqBody, callback) {
-  this.req = getInitReq(reqBody);
-  this.res = { json: callback }; // 仅提供 res.json
-
-  // TODO
-};
-
-proto.getRouteMiddlewares = function () {
-  for (var i = 0; i < this.routes.length; i++) {
-    var route = this.routes[i];
-
-    // 先匹配请求方法
-    if (route.method.toUpperCase() !== this.req.method) continue;
-
-    // 再匹配请求路径
-    var paramKeys = [],
-      regex = pathToRegexp(route.path, paramKeys),
-      matchedResult = regex.exec(this.req.path);
-
-    if (!matchedResult) continue;
-    this.req.params = getParams(paramKeys, matchedResult);
-
-    // 在此 handler 与 middleware 无异
-    return (route.middlewares || []).concat(route.handler);
-  }
-};
 /**
  * app.use(<globalMiddleware>)
- * app.use([{ <path>, <method>, <middlewares>, <handler> }, ...])
- * app.use({<path>, <method>, <middlewares>, <handler>})
  */
-proto.use = function (entity) {
-  switch(typeOf(entity)) {
-    case 'function':
-      this.globalMiddlewares.push(entity);
-      break;
-    case 'array':
-      this.routes = entity;
-      break;
-    case 'object':
-      this.routes.push(entity);
-      break;
-    default:
-      throw new Error('传入了不支持的参数类型');
-  }
+proto.use = function (middleware) {
+  this[
+    (this.routes.length ? 'after' : 'before') + 'Middlewares'
+  ].push(middleware);
 };
 
 // app.VERB(<path>, <middlewares?>, handler)
-['get', 'post', 'put', 'delete'].forEach(function (method) {
+methods.forEach(function (method) {
   proto[method] = function (path, middlewares, handler) {
     var route = { path: path };
     route.handler = handler ? (
@@ -76,8 +34,16 @@ proto.use = function (entity) {
   };
 });
 
-proto._setNullForRouteMiddlewares = function () {
-  var globalMdw = this.globalMiddlewares;
-  if (!globalMdw.length) return;
-  if (globalMdw.indexOf(null) === -1) globalMdw.push(null);
+proto.receive = function (reqBody, callback) {
+  this.req = initReq(reqBody);
+  this.res = { json: callback }; // 仅提供 res.json
+
+  var middlewares = router(this.req, this.routes),
+    queue = this.beforeMiddlewares.concat(
+      middlewares, this.afterMiddlewares
+    );
+  
+  (new Queue(this.req, this.res, queue)).run();
 };
+
+module.exports = TinyExpress;

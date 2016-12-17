@@ -1,16 +1,22 @@
-function Router (req, res, queue) {
-  this.req = req;
-  this.res = res;
-  this.queue = queue;
-}
+var pathToRegexp = require('path-to-regexp'),
+  getParams = require('./utils/getParams');
 
-Router.prototype.run = function (err) {
-  if (!this.queue.length) {
-    throw new Error('中间件队列为空');
+module.exports = function router(req, routes) {
+  for (var i = 0; i < routes.length; i++) {
+    var route = routes[i];
+
+    // 先匹配请求方法
+    if (route.method.toUpperCase() !== req.method) continue;
+
+    // 再匹配请求路径
+    var paramKeys = [],
+      regex = pathToRegexp(route.path, paramKeys),
+      matchedResult = regex.exec(req.path);
+
+    if (!matchedResult) continue;
+    req.params = getParams(paramKeys, matchedResult);
+
+    // 在此 handler 与 middleware 无异
+    return (route.middlewares || []).concat(route.handler);
   }
-
-  var mdw = this.queue[err ? 'pop' : 'shift']();
-  mdw.call(this, this.req, this.res, this.run);
 };
-
-module.exports = Router;
