@@ -1,10 +1,10 @@
-function QueueRunner (req, res, queue) {
+function Router (req, res, queue) {
   this.req = req;
   this.res = res;
   this.queue = queue;
 }
 
-QueueRunner.prototype.run = function (err) {
+Router.prototype.run = function (err) {
   if (!this.queue.length) {
     throw new Error('中间件队列为空');
   }
@@ -13,4 +13,4 @@ QueueRunner.prototype.run = function (err) {
   mdw.call(this, this.req, this.res, this.run);
 };
 
-module.exports = QueueRunner;
+module.exports = Router;
