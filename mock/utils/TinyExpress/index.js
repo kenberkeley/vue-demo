@@ -1,4 +1,5 @@
-var methods = require('./utils/methods'),
+var typeOf = require('./utils/typeOf'),
+  methods = require('./utils/methods'),
   initReq = require('./utils/initReq'),
   router = require('./router'),
   Queue = require('./Queue');
@@ -15,11 +16,22 @@ var proto = TinyExpress.prototype;
 
 /**
  * app.use(<globalMiddleware>)
+ * app.use(<route[]>)
  */
 proto.use = function (middleware) {
-  this[
-    (this.routes.length ? 'after' : 'before') + 'Middlewares'
-  ].push(middleware);
+  switch (typeOf(middleware)) {
+    case 'array':
+      this.routes = middleware;
+      break;
+    case 'function':
+      this[
+        (this.routes.length ? 'after' : 'before') +
+        'Middlewares'
+      ].push(middleware);
+      break;
+    default:
+      throw new Error('不支持该类型参数');
+  }
 };
 
 // app.VERB(<path>, <middlewares?>, handler)
