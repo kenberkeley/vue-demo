@@ -7,15 +7,6 @@ var pathToRegexp = require('path-to-regexp'),
   simpleLogger = require('./middlewares/simpleLogger'),
   resAjaxReturn = require('./middlewares/res.ajaxReturn');
 
-
-================
-  if (method === 'GET' && body) {
-    originalUrl = path + '?' + qs.stringify(
-      Object.assign(query, body), { encode: false }
-    );
-  }
-
-
 /**
  * 通过重写 xhr 接口来实现运行在浏览器的 Mock Server，以支持纯静态页的演示
  * @param  {String} reqBody.method
