@@ -21,9 +21,6 @@ export default function updateQuery(url, newQsObj) {
 
 /**
  * e.g.
- *
  * updateQuery('http://demo.com?a=1&b=2', { a: '', b: 3 }) => 'http://demo.com?b=3'
- * 
  * updateQuery('http://demo.com?a=1&b=2', { a: '', b: '' }) => 'http://demo.com'
- * 
  */

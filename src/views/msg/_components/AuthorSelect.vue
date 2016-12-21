@@ -35,7 +35,7 @@ export default {
   ready () {
     this.autoSyncWithQuery()
 
-    if (msgService.authorList)
+    if (msgService.authorList) // 使用服务中的缓存
       return this.authorList = msgService.authorList
 
     this.loadOptions()

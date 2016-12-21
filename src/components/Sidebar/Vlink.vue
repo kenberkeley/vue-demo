@@ -17,7 +17,6 @@ export default {
   computed: {
     curMatchedRoute () {
       const { matched } = this.$route
-      // { handler:{路由定义}, isDynamic:{Boolean}, params:{Object} }
       return matched[matched.length - 1]
     },
     curMatchedPath () {
@@ -42,9 +41,6 @@ export default {
     )
   }
 }
-// 考虑到 String.prototype.includes 为 ES6 新特性，
-// 建议此处引入 Polyfill 保证兼容性：
-// https://github.com/mathiasbynens/String.prototype.includes
 </script>
 <style>
 .m-t-0 {

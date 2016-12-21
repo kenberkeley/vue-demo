@@ -1,14 +1,14 @@
 import xhr from './xhr/'
 /**
- * 对应后端的 /msg/* 所有 API
+ * 留言板所用到的 API
  */
 class MsgService {
   /**
-   * @param  {String} options.author   作者名
-   * @param  {Number} options.pageIdx  目标页码（默认是第 1 页）
-   * @param  {Number} options.quantity 单页请求 msg 的数量（默认每页 10 条）
-   * @param  {Number} options.msgId
-   * @return {Promise}
+   * 获取留言信息列表
+   * @param   {String}   query.authors 作者名（逗号隔开）
+   * @param   {String}   query.offset  skip 条数（默认 0）
+   * @param   {String}   query.limit   每页显示条数（默认 5）
+   * @resolve {Object[]} msgs
    */
   fetchList (query) {
     return xhr({
@@ -19,7 +19,7 @@ class MsgService {
 
   /**
    * 获取所有发布者
-   * @resolve {String[]}
+   * @resolve {String[]} authors
    */
   fetchAuthorList () {
     return xhr({
@@ -58,6 +58,7 @@ class MsgService {
    * @resolve {Object} msg
    */
   update (msgBody) {
+    msgBody = { ...msgBody } // 在副本上操作
     const msgId = msgBody.id
     delete msgBody.msgId
 
@@ -82,5 +83,5 @@ class MsgService {
 
 }
 
-// 实例化后再导出
+// 实例化后导出，全局单例
 export default new MsgService()

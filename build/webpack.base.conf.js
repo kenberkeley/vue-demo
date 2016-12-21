@@ -11,7 +11,8 @@ module.exports = {
     vendor: [
       'vue',
       'vue-router',
-      'qs'
+      'qs',
+      'es6-shim'
       // 'vue-resource'
       // 'superagent'
     ]

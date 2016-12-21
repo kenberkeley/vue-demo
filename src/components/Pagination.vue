@@ -24,9 +24,8 @@
 <script>
 import autoSyncWithQuery from 'MIXIN/autoSyncWithQuery'
 /**
- * 表格分页
+ * 分页
  * @props total 记录总数
- * TODO：bug with limit
  */
 export default {
   mixins: [autoSyncWithQuery],
@@ -53,18 +52,17 @@ export default {
     curPageIdx () {
       return Math.ceil(+this.offset$ / this.limit)
     },
-    // 只能显示 9 个按钮，包括两个[上一页][下一页]，因此只计算 7 个按钮
+    // 只显示 9 个按钮，包括两个[上一页][下一页]，因此只计算 7 个按钮
     displayPageBtns () {
-      let n = this.totalPageIdx + 1 // 总页数 为 总页索引加 1
-      let i = this.curPageIdx + 1 // 当前页数 为 当前索引加 1
+      let n = this.totalPageIdx + 1 // 总页数 为 总页索引 加 1
+      let i = this.curPageIdx + 1 // 当前页数 为 当前索引 加 1
 
       // 0 表示 '···' 占位符
-      if (n <= 7)
-        return (n => {
-          let arr = []
-          while (n) { arr.unshift(n--) }
-          return arr
-        })(n)
+      if (n <= 7) return (n => {
+        let arr = []
+        while (n) { arr.unshift(n--) }
+        return arr
+      })(n)
 
       if (i <= 3 || n - i < 3)
         return [1, 2, 3, 0, n - 2, n - 1, n]
@@ -83,7 +81,7 @@ export default {
       this.offset$ = (n - 1) * this.limit
     },
     turnPage (i) {
-      // 设置 class 为 disabled 并不能阻止 @click 
+      // 设置 class 为 disabled 并不能阻止 @click，此处需要再次验证
       if (i < 0 && this.isFirstPage || i > 0 && this.isLastPage) return
       this.offset$ = +this.offset$ + i * this.limit
     }

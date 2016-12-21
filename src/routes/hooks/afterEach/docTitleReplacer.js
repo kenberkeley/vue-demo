@@ -1,3 +1,6 @@
+/**
+ * 替换浏览器标签页标题
+ */
 const docTitleReplacer = ({ to: { matched } }) => {
   let titles = []
   matched.slice().forEach(({ handler: { title } }) => {

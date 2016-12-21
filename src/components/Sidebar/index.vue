@@ -45,7 +45,7 @@ export default {
     this.expand()
   },
   methods: {
-    // 若当前位置是二级路由则展开折叠
+    // 若当前位置是二级路由，则自动展开折叠
     expand () {
       $(this.$el)
         .find('a.matched-route')
