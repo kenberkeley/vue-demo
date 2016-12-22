@@ -1,7 +1,7 @@
 var path = require('path');
 
 /**
- * 便捷求取路径
+ * 便捷求取路径原型函数
  * @param  {String} target
  * @return {String} path to target
  */

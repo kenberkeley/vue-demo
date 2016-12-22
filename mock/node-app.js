@@ -23,8 +23,4 @@ routes.forEach(function (route) {
 
 app.use(notFound);
 
-module.exports = function (port) {
-  app.listen(port, '127.0.0.1', function(err) {
-    err && console.log(err);
-  });
-};
+module.exports = app;

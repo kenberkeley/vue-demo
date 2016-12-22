@@ -2,19 +2,17 @@ var express = require('express'),
   webpack = require('webpack'),
   PATHS = require('./config/PATHS'),
   PORTS = require('./config/PORTS'),
-  // favicon = require('express-favicon'),
   config = require('./webpack.dev.conf'),
   proxy = require('http-proxy-middleware'),
   app = express();
 
 var compiler = webpack(config);
 
-// for highly stable resources
+// 提供静态资源服务
 app.use('/static', express.static(PATHS.STATIC));
-// app.use(favicon(path.join(__dirname, '../favicon.ico')));
 
 // Mock server
-require(PATHS.MOCK.join('node-app'))(PORTS.MOCK_SERVER);
+require(PATHS.MOCK.join('node-app')).listen(PORTS.MOCK_SERVER);
 app.use('/api', proxy({
   target: 'http://127.0.0.1:' + PORTS.MOCK_SERVER,
   changeOrigin: true,
@@ -37,6 +35,4 @@ app.use(require('webpack-dev-middleware')(compiler, {
 // compilation error display
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.listen(PORTS.DEV_SERVER, '127.0.0.1', function(err) {
-  err && console.log(err);
-});
+app.listen(PORTS.DEV_SERVER);

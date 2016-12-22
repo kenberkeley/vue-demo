@@ -1,6 +1,7 @@
 var fs = require('fs'),
-  PATHS = require('./config/PATHS'),
   webpack = require('webpack'),
+  gulp = require('./gulpfile'),
+  PATHS = require('./config/PATHS'),
   config = require('./webpack.prod.conf');
 
 webpack(config, function(err, stats) {
@@ -12,4 +13,6 @@ webpack(config, function(err, stats) {
     PATHS.DIST.join('__build_info__'),
     stats.toString({ color: false })
   );
+
+  gulp.start('default');
 });

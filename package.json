@@ -1,8 +1,8 @@
 {
   "name": "vue-demo",
-  "description": "A Simple Message Board Demo developed by Vue",
+  "description": "A simple message board demo developed by Vue 1.x",
   "author": "Ken Berkeley <kenberkeley@foxmail.com>",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "scripts": {
     "start": "cross-env NODE_ENV=development node build/dev.js",
     "build": "cross-env NODE_ENV=production node build/prod.js"
@@ -36,10 +36,16 @@
     "eslint-loader": "^1.2.0",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.13.3",
-    "express-favicon": "^1.0.1",
     "extract-text-webpack-plugin": "^0.9.1",
     "file-loader": "^0.8.4",
     "fs-extra": "^1.0.0",
+    "gulp": "^3.9.1",
+    "gulp-csso": "^2.0.0",
+    "gulp-filter": "^4.0.0",
+    "gulp-rev": "^7.1.2",
+    "gulp-rev-replace": "^0.4.3",
+    "gulp-uglify": "^2.0.0",
+    "gulp-useref": "^3.1.2",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^1.7.0",
     "http-proxy-middleware": "^0.17.2",

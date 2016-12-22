@@ -1,24 +1,23 @@
 /**
- * 把 index.html 中用标签引入的文件全部打包
- * @export {gulp} 使用方式 gulp.start('default')
+ * @export {gulp}
+ * 1. gulp.start('default')
+ * 2. 命令行执行 gulp
  */
 var gulp = require('gulp'),
   fs = require('fs-extra'),
-  PATHS = require('./config/PATHS'),
   rev = require('gulp-rev'),
   csso = require('gulp-csso'),
   filter = require('gulp-filter'),
   uglify = require('gulp-uglify'),
   useref = require('gulp-useref'),
   revReplace = require('gulp-rev-replace'),
-  config = require('./webpack.base.conf');
+  PATHS = require('./config/PATHS');
 
-gulp.task('bundleExternalFiles', function () {
+// 合并压缩打包 index.html 中 build 标签内的资源
+gulp.task('bundle', function () {
   var jsFilter = filter('**/*.js', { restore: true }),
     cssFilter = filter('**/*.css', { restore: true }),
     userefAssets = useref.assets();
-  
-  console.log('Webpack tasks finished, now run Gulp tasks...');
 
   return gulp.src(PATHS.DIST.join('index.html'))
     .pipe(userefAssets)
@@ -32,17 +31,15 @@ gulp.task('bundleExternalFiles', function () {
     .pipe(userefAssets.restore())
     .pipe(useref())
     .pipe(revReplace())
-    .pipe(gulp.dest(PATHS.DIST))
-    .on('end', function () {
-      gulp.start('clean');
-    });
+    .pipe(gulp.dest(PATHS.DIST));
 });
 
-gulp.task('clean', function () {
-  fs.extra(PATHS.DIST.join('static/plugins'));
+// 由于插件均被合并压缩打包，故可删除以减少生产环境下的文件量
+gulp.task('clean', ['bundle'], function () {
+  fs.remove(PATHS.DIST.join('static/plugins'));
 });
 
-gulp.task('default', ['bundleExternalFiles']);
+gulp.task('default', ['bundle', 'clean']);
 
 if (module.parent) {
   module.exports = gulp;

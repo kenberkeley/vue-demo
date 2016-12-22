@@ -25,16 +25,16 @@ config.module.loaders.push({
   loader: ExtractTextPlugin.extract('style', 'css!sass')
 });
 
-fs.emptyDir(PATHS.DIST);
+fs.emptyDirSync(PATHS.DIST); // 清空 build 目录
 
 config.plugins.push(
   new webpack.optimize.DedupePlugin(),
   new webpack.optimize.OccurenceOrderPlugin(),
-  // new webpack.optimize.UglifyJsPlugin({
-  //   compress: {
-  //     warnings: false
-  //   }
-  // }),
+  new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false
+    }
+  }),
   new webpack.optimize.CommonsChunkPlugin({
     // 公共代码分离打包
     names: ['vendor', 'mainifest']
@@ -44,14 +44,7 @@ config.plugins.push(
   }),
   new HtmlWebpackPlugin({
     filename: '../index.html',
-    template: PATHS.SRC.join('index.html'),
-    minify: {
-      removeComments: true
-      // collapseWhitespace: true,
-      // removeAttributeQuotes: true
-      // more options:
-      // https://github.com/kangax/html-minifier#options-quick-reference
-    },
+    template: PATHS.SRC.join('index.html')
   }),
   new CopyWebpackPlugin([ // 复制高度静态资源
     {
