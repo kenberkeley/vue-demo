@@ -9,7 +9,7 @@
   * [URL 就是应用的状态](development/URL-is-app-level-state.md)
   * [引入服务层](development/Service-layer.md)
   * [Ajax 接口化](development/Ajax-interface.md)
-  * [Webpack 配置](development/Webpack-configuration.md)
+  * [配置](development/Configuration.md)
   * [跨域与代理](development/CORS-and-Proxy.md)
   * [最佳实践](development/Best-practice.md)
 * [实用贴士](Tips.md)

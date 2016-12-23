@@ -12,7 +12,7 @@
 │   ├── routes/            # 路由（ROUTE）
 │   ├── services/          # 服务（SERVICE）
 │   ├── utils/             # 工具类（UTIL）
-│   ├── views/             # 路由视图页（VIEW）
+│   ├── views/             # 路由页面组件（VIEW）
 │   ├── app.js             # 启动文件
 │   ├── index.html         # 静态基页
 ├── static/              # 放置无需经由 Webpack 处理的静态文件

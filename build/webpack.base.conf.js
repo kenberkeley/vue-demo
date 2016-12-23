@@ -9,12 +9,10 @@ module.exports = {
 
     // 框架 / 类库 单独打包
     vendor: [
-      'vue',
-      'vue-router',
+      'es6-shim',
       'qs',
-      'es6-shim'
-      // 'vue-resource'
-      // 'superagent'
+      'vue',
+      'vue-router'
     ]
   },
   output: {

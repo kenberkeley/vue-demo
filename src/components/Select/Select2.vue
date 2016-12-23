@@ -54,8 +54,7 @@ export default {
       if (!this.config.multiple) return
 
       // 清空会导致 model 变成 null
-      if (!this.model) this.model = []
-      this.models = this.model.join(',')
+      this.models = (this.model || []).join(',')
     },
     syncModelWithModels () {
       if (!this.config.multiple) return
