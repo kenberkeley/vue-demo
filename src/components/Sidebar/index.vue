@@ -10,29 +10,29 @@
           <span class="caret"></span>
         </a>
         <div :id="'panel'+$index" class="collapse w-90p m-0-auto">
-          <vlink v-for="subRoute in route.subRoutes"
+          <link v-for="subRoute in route.subRoutes"
             :path="subRoute.fullPath"
             :title="subRoute.title"
             :icon="subRoute.icon">
-          </vlink>
+          </link>
         </div><!-- .collapse -->
       </div><!-- v-if -->
-      <vlink v-else
+      <link v-else
         :path="route.path"
         :title="route.title"
         :icon="route.icon"
         :is-exact="true">
-      </vlink>
+      </link>
     </template>
   </div><!-- #sidebar -->
 </template>
 <script>
-import Vlink from './Vlink'
+import Link from './Link'
 import routesMap from 'ROUTE/map/'
 import _pickBy from 'lodash/pickBy'
 
 export default {
-  components: { Vlink },
+  components: { Link },
   computed: {
     routes: () => _pickBy(routesMap, route => route.showInSidebar)
   },
