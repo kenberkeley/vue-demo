@@ -8,7 +8,7 @@ import _difference from 'lodash/difference'
  */
 export default {
   mixins: [updateQuery],
-  // 须知：Vue 不代理前缀为 $ 或 _ 的变量，皆因这些变量会被视为私有变量
+  // Tips: Vue 不代理前缀为 $ 或 _ 的变量，皆因这些变量会被视为私有变量
   data: () => ({ specialFields_: [] }),
   watch: {
     '$route.query' (curQuery, oldQuery) {

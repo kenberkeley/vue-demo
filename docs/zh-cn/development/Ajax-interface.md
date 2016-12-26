@@ -1,4 +1,4 @@
-# § Ajax 接口
+# § Ajax 接口化
 
 ```
 [路由页面组件 A [普通组件 B [普通组件 C]] ...]
@@ -11,10 +11,10 @@
 |                  xhr                   |  Ajax 接口
 ------------------------------------------
                     ↕
-                   API
+                 API 服务器
 ```
 
-```
+```js
 /**
  * xhr 接口（详见 src/services/xhr/index.js）
  * @param  {String} options.method 请求方法（默认为 get）

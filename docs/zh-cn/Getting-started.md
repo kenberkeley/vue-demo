@@ -1,6 +1,6 @@
 # § 开始
 
-## ⊙ 预备知识
+### ⊙ 预备知识
 
 在开始前，希望您已通读如下资料：
 
@@ -9,13 +9,13 @@
 * [Vue Router docs for Vue 1.x](https://github.com/vuejs/vue-router/tree/1.0/docs/zh-cn)
 
 同时，您还需要熟悉 ES6。例如，请把如下代码转译成 ES5：
-```
+```js
 const foo = ({ hello: { world: bar } }) => ({ bar })
 ```
 
 > 答案请在 [Babel REPL](https://babeljs.io/repl) 自行验证
 
-## ⊙ 安装
+### ⊙ 安装
 
 > **强烈建议**升级到 `node ≥ 6.x / npm ≥ 3.x` 环境  
 > **强烈推荐**往后使用 `cnpm` 替代 `npm` 安装依赖  
@@ -32,9 +32,9 @@ $ cd vue-demo
 $ cnpm i              // 安装本项目依赖
 ```
 
-## ⊙ 命令
+### ⊙ 命令
 
-### 开发
+#### 开发
 ```
 $ npm start
 ```
@@ -42,7 +42,7 @@ $ npm start
 编译完成后，默认浏览器就会自动打开 `localhost:8080`  
 若浏览器没有自动弹出，则请自行手动访问
 
-### 生产
+#### 生产
 ```
 $ npm run build
 ```
