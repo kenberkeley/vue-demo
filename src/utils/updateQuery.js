@@ -1,4 +1,4 @@
-import qs from 'qs'
+import qs from 'query-string'
 import _pickBy from 'lodash/pickBy'
 
 /**

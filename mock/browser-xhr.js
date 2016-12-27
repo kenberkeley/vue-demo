@@ -1,7 +1,7 @@
 window._ = require('lodash'); // lowdb 依赖
 
 var tinyExpress = require('tiny-express'),
-  qs = require('qs'),
+  qs = require('query-string'),
   routes = require('./routes/'),
   notFound = require('./middlewares/notFound'),
   simpleLogger = require('./middlewares/simpleLogger'),

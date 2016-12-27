@@ -10,7 +10,7 @@ module.exports = {
     // 框架 / 类库 单独打包
     vendor: [
       'es6-shim',
-      'qs',
+      'query-string',
       'vue',
       'vue-router'
     ]
