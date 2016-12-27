@@ -69,5 +69,5 @@
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0"
   },
-  "license": "Apache"
+  "license": "Apache-2.0"
 }
