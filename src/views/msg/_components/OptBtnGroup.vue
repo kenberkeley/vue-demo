@@ -6,7 +6,7 @@
         class="btn btn-default">
         <i class="fa fa-pencil"></i>
       </a>
-      <button @click="handleDel" class="btn btn-default">
+      <button type="button" @click="handleDel" class="btn btn-default">
         <i class="fa fa-trash-o"></i>
       </button>
     </template>
