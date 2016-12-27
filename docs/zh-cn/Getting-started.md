@@ -25,7 +25,6 @@ const foo = ({ hello: { world: bar } }) => ({ bar })
 
 ```
 $ npm i cnpm -g       // 全局安装 cnpm
-$ cnpm i cross-env -g // 全局安装 跨平台环境变量配置器
 
 $ git clone https://github.com/kenberkeley/vue-demo.git
 $ cd vue-demo
