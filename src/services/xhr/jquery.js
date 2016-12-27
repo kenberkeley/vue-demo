@@ -1,6 +1,6 @@
 import { rootPath, errHandler } from './config'
 
-const xhr = ({ method = 'get', url, body = null  }) => {
+const xhr = ({ method = 'get', url, body = null }) => {
   // 由于引入了 es6-shim，因此这里完全可以使用原生 Promise
   const defer = $.Deferred()
 

@@ -14,5 +14,6 @@ webpack(config, function(err, stats) {
     stats.toString({ color: false })
   );
 
+  // bundle plugins
   gulp.start('default');
 });

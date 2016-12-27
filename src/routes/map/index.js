@@ -40,7 +40,8 @@ export default {
     showInNavbar: { exact: true },
     showInSidebar: true,
     component (resolve) {
-      // 使用 Webpack 的 Code-Splitting
+      // 统一使用 Code-Splitting 形式引入路由页面组件
+      // build 时可通过 AggressiveMergingPlugin / MinChunkSizePlugin 合并 chunks
       require(['VIEW/'], resolve)
     }
   },
