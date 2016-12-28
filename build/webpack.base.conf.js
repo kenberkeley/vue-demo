@@ -40,9 +40,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.vue$/,
-      loader: 'vue',
-      include: PATHS.SRC,
-      exclude: /node_modules/
+      loader: 'vue'
     }, {
       test: /\.js$/,
       loader: 'babel!eslint',
