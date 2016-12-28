@@ -56,6 +56,13 @@ config.plugins.push(
       from: '**/*',
       ignore: ['*.md']
     }
+  ]),
+  new CopyWebpackPlugin([ // 复制文档
+    {
+      context: PATHS.ROOT.join('docs/_book'),
+      from: '**/*',
+      to: '../docs/'
+    }
   ])
 );
 

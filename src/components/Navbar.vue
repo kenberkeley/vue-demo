@@ -17,9 +17,14 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right m-r-5">
-      <li>
+      <li data-toggle="tooltip" title="Github">
         <a href="https://github.com/kenberkeley/vue-demo" target="_blank">
           <i class="fa fa-github fa-lg"></i>
+        </a>
+      </li>
+      <li data-toggle="tooltip" title="文档">
+        <a href="docs" target="_blank">
+          <i class="fa fa-book fa-lg"></i>
         </a>
       </li>
       <li v-if="$root.userData" class="dropdown">
@@ -54,6 +59,11 @@ export default {
   },
   filters: {
     defaultIcon: icon => icon ? icon : 'fa fa-link'
+  },
+  attached () {
+    $(this.$el).find('[data-toggle=tooltip]').tooltip({
+      placement: 'bottom'
+    })
   }
 }
 </script>
