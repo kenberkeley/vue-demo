@@ -1,43 +1,48 @@
 export default {
-
   '/msg': {
     
     // 基页
+    title: '留言板',
+    icon: 'fa fa-commenting-o',
+    showInNavbar: true,
+    showInSidebar: true,
     component (resolve) {
       require(['VIEW/msg'], resolve)
     },
 
     // 子路由
     subRoutes: {
-      '/': {
-        name: 'msgIndex',
+      '/list': {
+        title: '列表',
+        icon: 'fa fa-list',
         component (resolve) {
-          require(['COMPONENT/Msg/MsgList/'], resolve)
+          require(['VIEW/msg/list'], resolve)
         }
       },
       '/detail/:msgId': {
-        name: 'detailMsg',
+        title: '详情',
+        icon: 'fa fa-search-plus',
         component (resolve) {
-          require(['COMPONENT/Msg/MsgDetail'], resolve)
+          require(['VIEW/msg/detail'], resolve)
         }
       },
-      // 下面两个路由共用同一个组件
       '/add': {
-        name: 'addMsg',
+        title: '新增',
+        icon: 'fa fa-plus',
         component (resolve) {
-          require(['COMPONENT/Msg/MsgForm/'], resolve)
+          require(['VIEW/msg/add'], resolve)
         },
-        needToLogin: true // 用于权限拦截
+        needAuth: true // 用于权限拦截
       },
-      '/modify/:msgId': {
-        name: 'modifyMsg',
+      '/update/:msgId': {
+        title: '修改',
+        icon: 'fa fa-eraser',
         component (resolve) {
-          require(['COMPONENT/Msg/MsgForm/'], resolve)
+          require(['VIEW/msg/update'], resolve)
         },
-        needToLogin: true
+        needAuth: true
       }
     }
 
   }
-
 }

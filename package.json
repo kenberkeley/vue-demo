@@ -1,8 +1,8 @@
 {
   "name": "vue-demo",
-  "description": "A Simple Message Board Demo developed by Vue",
+  "description": "A simple message board demo developed by Vue 1.x",
   "author": "Ken Berkeley <kenberkeley@foxmail.com>",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "scripts": {
     "start": "cross-env NODE_ENV=development node build/dev.js",
     "build": "cross-env NODE_ENV=production node build/prod.js"
@@ -12,9 +12,13 @@
     "url": "https://github.com/kenberkeley/vue-demo.git"
   },
   "dependencies": {
-    "superagent": "^2.0.0",
+    "es6-shim": "^0.35.2",
+    "lodash": "^4.17.2",
+    "lowdb": "^0.14.0",
+    "query-string": "^4.2.3",
+    "tiny-express": "^0.1.0",
+    "uuid": "^3.0.1",
     "vue": "^1.0.18",
-    "vue-resource": "^0.6.1",
     "vue-router": "^0.7.11"
   },
   "devDependencies": {
@@ -24,22 +28,31 @@
     "babel-preset-es2015": "^6.0.0",
     "babel-preset-stage-2": "^6.0.0",
     "babel-runtime": "^6.9.0",
+    "body-parser": "^1.15.2",
     "browser-sync": "^2.11.1",
     "browser-sync-webpack-plugin": "^1.0.1",
-    "clean-webpack-plugin": "^0.1.13",
     "connect-history-api-fallback": "^1.1.0",
     "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^3.1.3",
     "css-loader": "^0.23.0",
     "eslint": "^1.10.3",
     "eslint-friendly-formatter": "^1.2.2",
     "eslint-loader": "^1.2.0",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.13.3",
-    "express-favicon": "^1.0.1",
     "extract-text-webpack-plugin": "^0.9.1",
     "file-loader": "^0.8.4",
+    "fs-extra": "^1.0.0",
+    "gulp": "^3.9.1",
+    "gulp-csso": "^2.0.0",
+    "gulp-filter": "^4.0.0",
+    "gulp-rev": "^7.1.2",
+    "gulp-rev-replace": "^0.4.3",
+    "gulp-uglify": "^2.0.0",
+    "gulp-useref": "2.1.0",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^1.7.0",
+    "http-proxy-middleware": "^0.17.2",
     "inject-loader": "^2.0.1",
     "json-loader": "^0.5.4",
     "less": "^2.6.0",
@@ -57,5 +70,5 @@
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0"
   },
-  "license": "MIT"
+  "license": "Apache-2.0"
 }

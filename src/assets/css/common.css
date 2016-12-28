@@ -1,0 +1,19 @@
+/* 全局样式 */
+.m-0-auto {
+  margin: 0 auto;
+}
+.m-0 {
+  margin: 0;
+}
+.m-r-5 {
+  margin-right: 5px;
+}
+.m-t-5 {
+  margin-top: 5px;
+}
+.p-0 {
+  padding: 0;
+}
+.w-100pct {
+  width: 100%;
+}

@@ -1,4 +1,6 @@
 var webpack = require('webpack'),
+  PATHS = require('./config/PATHS'),
+  PORTS = require('./config/PORTS'),
   config = require('./webpack.base.conf'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   ExtractTextPlugin = require('extract-text-webpack-plugin'),
@@ -39,13 +41,12 @@ config.plugins.push(
   new ExtractTextPlugin('[name].css'),
   new HtmlWebpackPlugin({
     filename: 'index.html',
-    template: config.commonPath.indexHTML
+    template: PATHS.SRC.join('index.html')
   }),
   new BrowserSyncPlugin({
     host: '127.0.0.1',
-    port: 8080,
-    proxy: 'http://127.0.0.1:8000/',
-    logConnections: false,
+    port: PORTS.BROWSER_SYNC,
+    proxy: 'http://127.0.0.1:' + PORTS.DEV_SERVER,
     notify: false
   }, {
     reload: false

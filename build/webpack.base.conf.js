@@ -1,57 +1,50 @@
-var path = require('path'),
-  webpack = require('webpack'),
+var webpack = require('webpack'),
+  PATHS = require('./config/PATHS'),
   ExtractTextPlugin = require('extract-text-webpack-plugin'),
   NyanProgressPlugin = require('nyan-progress-webpack-plugin');
 
-var rootPath = path.resolve(__dirname, '..'), // 项目根目录
-  src = path.join(rootPath, 'src'); // 开发源码目录
-var commonPath = {
-  rootPath: rootPath,
-  dist: path.join(rootPath, 'dist'), // build 后输出目录
-  indexHTML: path.join(src, 'index.html'), // 入口基页
-  staticDir: path.join(rootPath, 'static') // 无需处理的静态资源目录
-};
-
 module.exports = {
-  commonPath: commonPath,
   entry: {
-    app: path.join(src, 'app.js'),
+    app: PATHS.SRC.join('app.js'),
 
     // 框架 / 类库 单独打包
     vendor: [
+      'es6-shim',
+      'query-string',
       'vue',
       'vue-router'
-      // 'vue-resource'
-      // 'superagent'
     ]
   },
   output: {
-    path: path.join(commonPath.dist, 'static'),
+    path: PATHS.DIST.join('static'),
     publicPath: '/static/'
   },
   resolve: {
     extensions: ['', '.js', '.vue'],
     alias: {
       // 自定义路径别名
-      ASSET: path.join(src, 'assets'),
-      COMPONENT: path.join(src, 'components'),
-      SERVICE: path.join(src, 'services'),
-      VIEW: path.join(src, 'views')
+      MOCK: PATHS.MOCK,
+      ASSET: PATHS.SRC.join('assets'),
+      COMPONENT: PATHS.SRC.join('components'),
+      FILTER: PATHS.SRC.join('filters'),
+      MIXIN: PATHS.SRC.join('mixins'),
+      ROUTE: PATHS.SRC.join('routes'),
+      SERVICE: PATHS.SRC.join('services'),
+      UTIL: PATHS.SRC.join('utils'),
+      VIEW: PATHS.SRC.join('views')
     }
   },
   resolveLoader: {
-    root: path.join(rootPath, 'node_modules')
+    root: PATHS.ROOT.join('node_modules')
   },
   module: {
     loaders: [{
       test: /\.vue$/,
-      loader: 'vue',
-      include: src,
-      exclude: /node_modules/
+      loader: 'vue'
     }, {
       test: /\.js$/,
       loader: 'babel!eslint',
-      include: src,
+      include: PATHS.SRC,
       exclude: /node_modules/
     }, {
       test: /\.json$/,
@@ -85,6 +78,7 @@ module.exports = {
   plugins: [
     new NyanProgressPlugin(), // 进度条
     new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV.trim()),
       // 配置开发全局常量
       __DEV__: process.env.NODE_ENV.trim() === 'development',
       __PROD__: process.env.NODE_ENV.trim() === 'production'

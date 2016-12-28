@@ -1,15 +1,19 @@
 var fs = require('fs'),
-  path = require('path'),
   webpack = require('webpack'),
+  gulp = require('./gulpfile'),
+  PATHS = require('./config/PATHS'),
   config = require('./webpack.prod.conf');
 
 webpack(config, function(err, stats) {
   // show build info to console
-  console.log( stats.toString({ chunks: false, color: true }) );
+  console.log(stats.toString({ chunks: false, color: true }));
 
   // save build info to file
   fs.writeFile(
-    path.join(config.commonPath.dist, '__build_info__'),
+    PATHS.DIST.join('__build_info__'),
     stats.toString({ color: false })
   );
+
+  // bundle plugins
+  gulp.start('default');
 });
