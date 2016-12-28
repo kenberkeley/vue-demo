@@ -1,31 +1,31 @@
-Hash: 9608c2c0ac4ed847e586
+Hash: 87f95828586d80a1e502
 Version: webpack 1.13.1
-Time: 36892ms
+Time: 33739ms
                                              Asset     Size  Chunks             Chunk Names
-        font-awesome/fonts/fontawesome-webfont.ttf   166 kB          [emitted]  
+       font-awesome/fonts/fontawesome-webfont.woff    98 kB          [emitted]  
                                        0.87c287.js  22.6 kB    0, 1  [emitted]  
                                      app.043e9a.js   133 kB    2, 1  [emitted]  app
                                   vendor.69a171.js   155 kB    3, 1  [emitted]  vendor
                                     app.0ad153.css  1.15 kB    2, 1  [emitted]  app
-                                     ../index.html  1.47 kB          [emitted]  
+                                     ../index.html  1.45 kB          [emitted]  
   bootstrap/fonts/glyphicons-halflings-regular.eot  20.1 kB          [emitted]  
                    bootstrap/css/bootstrap.min.css   123 kB          [emitted]  
   bootstrap/fonts/glyphicons-halflings-regular.svg   109 kB          [emitted]  
   bootstrap/fonts/glyphicons-halflings-regular.ttf  45.4 kB          [emitted]  
-bootstrap/fonts/glyphicons-halflings-regular.woff2    18 kB          [emitted]  
  bootstrap/fonts/glyphicons-halflings-regular.woff  23.4 kB          [emitted]  
+bootstrap/fonts/glyphicons-halflings-regular.woff2    18 kB          [emitted]  
                      bootstrap/js/bootstrap.min.js  36.8 kB          [emitted]  
              font-awesome/css/font-awesome.min.css    31 kB          [emitted]  
         font-awesome/fonts/fontawesome-webfont.eot   166 kB          [emitted]  
-                               mainifest.72dfb2.js  1.22 kB       1  [emitted]  mainifest
-       font-awesome/fonts/fontawesome-webfont.woff    98 kB          [emitted]  
-                font-awesome/fonts/FontAwesome.otf   135 kB          [emitted]  
+                               mainifest.add60f.js  1.22 kB       1  [emitted]  mainifest
       font-awesome/fonts/fontawesome-webfont.woff2  77.2 kB          [emitted]  
+                font-awesome/fonts/FontAwesome.otf   135 kB          [emitted]  
         font-awesome/fonts/fontawesome-webfont.svg   444 kB          [emitted]  
+        font-awesome/fonts/fontawesome-webfont.ttf   166 kB          [emitted]  
                     plugins/jquery.scrollTo.min.js  2.43 kB          [emitted]  
-                    plugins/jquery.ajax.loading.js  11.3 kB          [emitted]  
-                                     jquery.min.js  84.3 kB          [emitted]  
          plugins/jquery.toast/jquery.toast.min.css  4.51 kB          [emitted]  
+                                     jquery.min.js  84.3 kB          [emitted]  
+                    plugins/jquery.ajax.loading.js  11.3 kB          [emitted]  
           plugins/jquery.toast/jquery.toast.min.js  6.25 kB          [emitted]  
                    plugins/select2/select2.min.css  15.2 kB          [emitted]  
                  plugins/sweetalert/sweetalert.css  22.9 kB          [emitted]  
@@ -108,7 +108,7 @@ chunk    {0} 0.87c287.js 51 kB {2} [rendered]
   [318] ./src/views/msg/index.vue 449 bytes {0} [built]
   [319] ./src/views/msg/list.vue 846 bytes {0} [built]
   [320] ./src/views/msg/update.vue 577 bytes {0} [built]
-chunk    {1} mainifest.72dfb2.js (mainifest) 0 bytes [rendered]
+chunk    {1} mainifest.add60f.js (mainifest) 0 bytes [rendered]
 chunk    {2} app.043e9a.js, app.0ad153.css (app) 720 kB {3} [rendered]
     [0] ./src/app.js 1.15 kB {2} [built]
     [1] ./~/lodash/_root.js 300 bytes {2} [built]
