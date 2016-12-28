@@ -17,7 +17,7 @@ module.exports = {
   },
   output: {
     path: PATHS.DIST.join('static'),
-    publicPath: '/static/'
+    publicPath: 'static/'
   },
   resolve: {
     extensions: ['', '.js', '.vue'],
