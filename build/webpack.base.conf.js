@@ -1,5 +1,6 @@
 var webpack = require('webpack'),
   PATHS = require('./config/PATHS'),
+  env = (process.env.NODE_ENV || 'development').trim(),
   ExtractTextPlugin = require('extract-text-webpack-plugin'),
   NyanProgressPlugin = require('nyan-progress-webpack-plugin');
 
@@ -78,10 +79,10 @@ module.exports = {
   plugins: [
     new NyanProgressPlugin(), // 进度条
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV.trim()),
+      'process.env.NODE_ENV': JSON.stringify(env),
       // 配置开发全局常量
-      __DEV__: process.env.NODE_ENV.trim() === 'development',
-      __PROD__: process.env.NODE_ENV.trim() === 'production'
+      __DEV__: env === 'development',
+      __PROD__: env === 'production'
     })
   ]
 };
