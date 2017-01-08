@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <title>Vue Demo</title>
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-  <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="static/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <!-- build:css static/bundle/plugins.css -->
-  <link href="static/plugins/jquery.toast/jquery.toast.min.css" rel="stylesheet">
-  <link href="static/plugins/sweetalert/sweetalert.css" rel="stylesheet">
-  <link href="static/plugins/select2/select2.min.css" rel="stylesheet">
+  <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- build:css ../static/bundle/plugins.css -->
+  <link href="../static/plugins/jquery.toast/jquery.toast.min.css" rel="stylesheet">
+  <link href="../static/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+  <link href="../static/plugins/select2/select2.min.css" rel="stylesheet">
   <!-- endbuild -->
   {% for (var css in o.htmlWebpackPlugin.files.css) { %}
   <link href="{%=o.htmlWebpackPlugin.files.css[css] %}" rel="stylesheet">
@@ -19,17 +19,17 @@
   
   <div id="app"></div>
 
-<script src="static/jquery.min.js"></script>
-<script src="static/bootstrap/js/bootstrap.min.js"></script>
-<!-- build:js static/bundle/plugins.js -->
-<script src="static/plugins/jquery.toast/jquery.toast.min.js"></script>
-<script src="static/plugins/jquery.ajax.loading.js"></script>
-<script src="static/plugins/jquery.scrollTo.min.js"></script>
-<script src="static/plugins/sweetalert/sweetalert.min.js"></script>
-<script src="static/plugins/select2/select2.min.js"></script>
-<script src="static/plugins/moment.min.js"></script>
+<script src="../static/jquery.min.js"></script>
+<script src="../static/bootstrap/js/bootstrap.min.js"></script>
+<!-- build:js ../static/bundle/plugins.js -->
+<script src="../static/plugins/jquery.toast/jquery.toast.min.js"></script>
+<script src="../static/plugins/jquery.ajax.loading.js"></script>
+<script src="../static/plugins/jquery.scrollTo.min.js"></script>
+<script src="../static/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="../static/plugins/select2/select2.min.js"></script>
+<script src="../static/plugins/moment.min.js"></script>
 <!-- endbuild -->
-<script>$.loading().ajax(true)</script>
+<script>$.loading().ajax(true);</script>
 {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
 <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>
 {% } %}

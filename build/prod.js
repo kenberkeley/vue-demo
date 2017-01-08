@@ -1,19 +1,34 @@
-var fs = require('fs'),
+require('es6-promise').polyfill();
+var fs = require('fs-extra'),
   webpack = require('webpack'),
-  gulp = require('./gulpfile'),
+  I18nPlugin = require('i18n-webpack-plugin'),
   PATHS = require('./config/PATHS'),
+  runGulpTasks = require('./gulpfile'),
+  i18n = require(PATHS.SRC.join('i18n')),
   config = require('./webpack.prod.conf');
 
-webpack(config, function(err, stats) {
-  // show build info to console
-  console.log(stats.toString({ chunks: false, color: true }));
+var langs = Object.keys(i18n);
+var indexHtml = PATHS.DIST.join('index.html');
 
-  // save build info to file
-  // fs.writeFile(
-  //   PATHS.DIST.join('__build_info__'),
-  //   stats.toString({ color: false })
-  // );
+fs.emptyDirSync(PATHS.DIST); // 清空 build 目录
+fs.copySync(PATHS.SRC.join('index.html'), indexHtml);
+fs.copySync(PATHS.STATIC, PATHS.DIST.join('static'));
 
-  // bundle plugins
-  gulp.start('default');
+runGulpTasks().then(function () {
+  return new Promise(function (resolve) {
+    langs.forEach(function (lang, idx) {
+      var conf = Object.assign({}, config);
+      conf.output.path = PATHS.DIST.join(lang);
+      conf.plugins.unshift(new I18nPlugin(i18n[lang]));
+
+      webpack(conf, function (err, stats) {
+        if (err) return console.error(err);
+        if (idx === langs.length - 1) resolve();
+        console.info(stats.toString({ chunks: false, color: true }));
+      });
+    });
+  });
+}).then(function () {
+  fs.remove(indexHtml);
+  fs.remove(PATHS.DIST.join('static/plugins'));
 });

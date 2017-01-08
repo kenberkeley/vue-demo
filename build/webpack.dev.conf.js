@@ -2,6 +2,7 @@ var webpack = require('webpack'),
   PATHS = require('./config/PATHS'),
   PORTS = require('./config/PORTS'),
   config = require('./webpack.base.conf'),
+  I18nPlugin = require('i18n-webpack-plugin'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   ExtractTextPlugin = require('extract-text-webpack-plugin'),
   BrowserSyncPlugin = require('browser-sync-webpack-plugin'),
@@ -35,6 +36,7 @@ config.module.loaders.push({
 });
 
 config.plugins.push(
+  new I18nPlugin(),
   new webpack.optimize.OccurenceOrderPlugin(),
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoErrorsPlugin(),

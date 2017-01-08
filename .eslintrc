@@ -4,6 +4,7 @@
     "node": true
   },
   "globals": {
+    "__": false,
     "__DEV__": false,
     "__PROD__": false,
     "$": true

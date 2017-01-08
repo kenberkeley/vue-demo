@@ -1,10 +1,4 @@
-/**
- * @export {gulp}
- * 1. gulp.start('default')
- * 2. 命令行执行 gulp
- */
 var gulp = require('gulp'),
-  fs = require('fs-extra'),
   rev = require('gulp-rev'),
   csso = require('gulp-csso'),
   filter = require('gulp-filter'),
@@ -34,15 +28,9 @@ gulp.task('bundle', function () {
     .pipe(gulp.dest(PATHS.DIST));
 });
 
-// 由于插件均被合并压缩打包，故可删除以减少生产环境下的文件量
-gulp.task('clean', ['bundle'], function () {
-  fs.remove(PATHS.DIST.join('static/plugins'));
-});
-
-gulp.task('default', ['bundle', 'clean']);
-
-if (module.parent) {
-  module.exports = gulp;
-} else {
-  gulp.start('default');
-}
+module.exports = function () {
+  return new Promise(function (resolve) {
+    gulp.task('default', ['bundle'], resolve);
+    gulp.start('default');
+  });
+};
