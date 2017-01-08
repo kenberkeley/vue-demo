@@ -6,7 +6,7 @@
           <i class="fa fa-user"></i>
         </div>
         <input type="text" v-model="username" required
-          class="form-control" placeholder="仅需输入用户名即可登录">
+          class="form-control" placeholder="__('仅需输入用户名即可登录')">
       </div>
     </div>
     <button type="submit" class="btn btn-block"
@@ -26,7 +26,7 @@ export default {
     handleSubmit () {
       let username = $.trim(this.username)
       if (!username) return $.toast({
-        heading: '用户名为空',
+        heading: __('用户名为空'),
         icon: 'warning',
         stack: false
       })

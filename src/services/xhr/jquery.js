@@ -13,7 +13,7 @@ const xhr = ({ method = 'get', url, body = null }) => {
   })
   .done(({ success, errMsg, data }) => {
     if (!success) return $.toast({
-      heading: '操作失败',
+      heading: __('操作失败'),
       text: errMsg,
       icon: 'warning',
       stack: false

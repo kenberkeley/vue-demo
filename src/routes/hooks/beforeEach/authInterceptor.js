@@ -8,8 +8,8 @@ const authInterceptor = (router) => ({ to, redirect, abort, next }) => {
 
   if (needAuth && !userData) {
     $.toast({
-      heading: '访问该页面需要登录权限',
-      text: '登录成功后将会自动跳转',
+      heading: __('访问该页面需要登录权限'),
+      text: __('登录成功后将会自动跳转'),
       icon: 'info',
       stack: false
     })
@@ -21,8 +21,8 @@ const authInterceptor = (router) => ({ to, redirect, abort, next }) => {
   
   if (forbidAuthed && userData) {
     $.toast({
-      heading: '您已登录，禁止访问该页面',
-      text: '已中断跳转',
+      heading: __('您已登录，禁止访问该页面'),
+      text: __('已中断跳转'),
       icon: 'warning',
       stack: false
     })

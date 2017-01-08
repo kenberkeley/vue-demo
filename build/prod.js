@@ -4,7 +4,7 @@ var fs = require('fs-extra'),
   I18nPlugin = require('i18n-webpack-plugin'),
   PATHS = require('./config/PATHS'),
   runGulpTasks = require('./gulpfile'),
-  i18n = require(PATHS.SRC.join('i18n')),
+  i18n = require(PATHS.ROOT.join('i18n')),
   config = require('./webpack.prod.conf');
 
 var langs = Object.keys(i18n);

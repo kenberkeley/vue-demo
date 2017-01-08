@@ -2,14 +2,14 @@
   <div class="input-group">
     <div v-el:addon @dblclick="loadOptions(true)"
       class="input-group-addon clickable unselectable"
-      data-toggle="tooltip" title="双击我刷新下拉框">
+      data-toggle="tooltip" title="__('双击我刷新下拉框')">
       <i class="fa fa-filter"></i>
-      筛选发布者:
+      __('筛选发布者:')
     </div>
     <select2
       :models.sync="authors$"
       :options="opts"
-      :config="{ multiple: true, placeholder: '请选择发布者...' }">
+      :config="{ multiple: true, placeholder: '__('请选择发布者')...' }">
     </select2>
   </div>
 </template>
@@ -47,7 +47,7 @@ export default {
         this.authorList = msgService.authorList = authorList
 
         shouldNotify && $.toast({
-          heading: '已刷新', icon: 'success', stack: false
+          heading: __('已刷新'), icon: 'success', stack: false
         })
       })
     }

@@ -35,7 +35,7 @@ export default {
   },
 
   '/': {
-    title: '首页',
+    title: __('首页'),
     icon: 'fa fa-home',
     showInNavbar: { exact: true },
     showInSidebar: true,
