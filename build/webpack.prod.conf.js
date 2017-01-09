@@ -3,7 +3,6 @@ var webpack = require('webpack'),
   PATHS = require('./config/PATHS'),
   config = require('./webpack.base.conf'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
-  CopyWebpackPlugin = require('copy-webpack-plugin'),
   ExtractTextPlugin = require('extract-text-webpack-plugin'),
   // SOURCE_MAP = true; // 大多数情况下用不到
   SOURCE_MAP = false;
@@ -24,8 +23,6 @@ config.module.loaders.push({
   test: /\.scss$/,
   loader: ExtractTextPlugin.extract('style', 'css!sass')
 });
-
-fs.emptyDirSync(PATHS.DIST); // 清空 build 目录
 
 config.plugins.push(
   new webpack.optimize.DedupePlugin(),
@@ -49,21 +46,7 @@ config.plugins.push(
   new HtmlWebpackPlugin({
     filename: '../index.html',
     template: PATHS.SRC.join('index.html')
-  }),
-  new CopyWebpackPlugin([ // 复制高度静态资源
-    {
-      context: PATHS.STATIC,
-      from: '**/*',
-      ignore: ['*.md']
-    }
-  ]),
-  new CopyWebpackPlugin([ // 复制文档
-    {
-      context: PATHS.ROOT.join('docs/_book'),
-      from: '**/*',
-      to: '../docs/'
-    }
-  ])
+  })
 );
 
 module.exports = config;
