@@ -2,7 +2,7 @@ export default {
   '/msg': {
     
     // 基页
-    title: '留言板',
+    title: '_#留言板#_',
     icon: 'fa fa-commenting-o',
     showInNavbar: true,
     showInSidebar: true,
@@ -13,21 +13,21 @@ export default {
     // 子路由
     subRoutes: {
       '/list': {
-        title: '列表',
+        title: '_#列表#_',
         icon: 'fa fa-list',
         component (resolve) {
           require(['VIEW/msg/list'], resolve)
         }
       },
       '/detail/:msgId': {
-        title: '详情',
+        title: '_#详情#_',
         icon: 'fa fa-search-plus',
         component (resolve) {
           require(['VIEW/msg/detail'], resolve)
         }
       },
       '/add': {
-        title: '新增',
+        title: '_#新增#_',
         icon: 'fa fa-plus',
         component (resolve) {
           require(['VIEW/msg/add'], resolve)
@@ -35,7 +35,7 @@ export default {
         needAuth: true // 用于权限拦截
       },
       '/update/:msgId': {
-        title: '修改',
+        title: '_#修改#_',
         icon: 'fa fa-eraser',
         component (resolve) {
           require(['VIEW/msg/update'], resolve)

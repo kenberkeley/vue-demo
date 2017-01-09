@@ -1,7 +1,7 @@
 <template>
   <div class="terminal">
     <i class="fa fa-hashtag"></i>
-    欢迎使用 Vue Demo
+    _#欢迎使用 Vue Demo#_
     <i class="fa fa-child"></i>
     <br>
     <i class="fa fa-terminal"></i>
@@ -20,7 +20,7 @@
     <i class="fa fa-beer"></i>
     <br>
     <i class="fa fa-magic"></i>
-    两个命令玩转 <code>Vue</code>
+    _#两个命令玩转 <code>Vue</code>#_
     <i class="fa fa-hand-o-left"></i>
     <i class="fa fa-smile-o"></i>
     <i class="fa fa-hand-peace-o"></i>
