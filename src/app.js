@@ -18,12 +18,12 @@ authService.checkLogin().then(userData => {
 })
 
 if (__DEV__) {
-  console.info('[当前环境] 开发环境')
+  console.info('_#[当前环境] 开发环境#_')
   Vue.config.devtools = true
 }
 
 if (__PROD__) {
-  console.info('[当前环境] 生产环境')
+  console.info('_#[当前环境] 生产环境#_')
   Vue.config.devtools = false
 }
 

@@ -1,8 +1,10 @@
 var webpack = require('webpack'),
   PATHS = require('./config/PATHS'),
+  i18n = require(PATHS.I18N),
   env = (process.env.NODE_ENV || 'development').trim(),
   ExtractTextPlugin = require('extract-text-webpack-plugin'),
-  NyanProgressPlugin = require('nyan-progress-webpack-plugin');
+  NyanProgressPlugin = require('nyan-progress-webpack-plugin'),
+  StringReplacePlugin = require("string-replace-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -39,6 +41,19 @@ module.exports = {
     root: PATHS.ROOT.join('node_modules')
   },
   module: {
+    preLoaders: [{
+      test: /\.*$/,
+      loader: StringReplacePlugin.replace({
+        replacements: [{
+          pattern: /_#(.*?)#_/g,
+          replacement: function (match, target) {
+            console.log(target);
+            console.log(i18n.en[target]);
+            return i18n.en[target];
+          }
+        }]
+      })
+    }],
     loaders: [{
       test: /\.vue$/,
       loader: 'vue'
@@ -77,6 +92,7 @@ module.exports = {
     formatter: require('eslint-friendly-formatter')
   },
   plugins: [
+    new StringReplacePlugin(),
     new NyanProgressPlugin(), // 进度条
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(env),

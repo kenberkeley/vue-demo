@@ -15,6 +15,7 @@ module.exports = {
   ROOT: ROOT,                                // 项目根目录
   BUILD: ROOT.join('build'),                 // 构建工具配置目录
   DIST: ROOT.join('dist'),                   // build 后输出目录
+  I18N: ROOT.join('i18n'),                   // i18n
   MOCK: ROOT.join('mock'),                   // Mock Server 目录
   SRC: ROOT.join('src'),                     // 源码目录
   STATIC: ROOT.join('static')                // 高度静态资源目录
