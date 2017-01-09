@@ -12,11 +12,11 @@
     </li>
     <button @click="refresh" class="btn btn-default btn-xs pull-right">
       <i class="fa fa-refresh m-r-5"></i>
-      __('强制刷新')
+      强制刷新
     </button>
     <button @click="back" class="btn btn-default btn-xs pull-right">
       <i class="fa fa-reply m-r-5"></i>
-      __('返回')
+      返回
     </button>
   </ul>
 </template>

@@ -10,7 +10,7 @@
             <i class="fa fa-comment-o fa-stack-2x"></i>
             <i class="fa fa-plus fa-stack-1x"></i>
           </span>
-          __('添加留言信息')
+          添加留言信息
         </a>
       </div>
     </div>
@@ -44,14 +44,14 @@
         </ul>
 
         <h4 v-show="!total" class="text-muted text-center line-h-150 italic">
-          __('（暂无留言信息）')
+          （暂无留言信息）
         </h4>
       </div>
     </div>
     
     <div class="row">
       <div class="col-sm-6 nowrap">
-        __('共') <span class="badge">{{ total }}</span> __('条记录')，
+        共 <span class="badge">{{ total }}</span> 条记录，
         <limit-select></limit-select>
       </div>
       <div class="col-sm-6 clearfix">

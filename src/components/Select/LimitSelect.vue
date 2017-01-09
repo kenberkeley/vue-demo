@@ -1,6 +1,6 @@
 <template>
   <label>
-    __('每页显示')
+    每页显示
     <select
       class="form-control input-sm inline-select"
       v-model="limit$">
@@ -11,7 +11,7 @@
       <option value="80">80</option>
       <option value="100">100</option>
     </select>
-  ___('条')</label>
+  条</label>
 </template>
 <script>
 import autoSyncWithQuery from 'MIXIN/autoSyncWithQuery'

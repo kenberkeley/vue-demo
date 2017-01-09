@@ -1,12 +1,12 @@
 <template>
   <div class="panel panel-default">
     <div class="panel-heading clearfix">
-      __('标题：')<strong>{{ msg.title }}</strong>
+      标题：<strong>{{ msg.title }}</strong>
       <span class="badge pull-right">
         {{ msg.ctime | dateTimeFormatter }}
       </span>
       <br>
-      __('发布者：')
+      发布者：
       <a v-link="`/msg?authors=${msg.author}`">
         {{ msg.author }}
       </a>

@@ -14,6 +14,7 @@ var ROOT = path.resolve(__dirname, '../..');
 module.exports = {
   ROOT: ROOT,                                // 项目根目录
   BUILD: ROOT.join('build'),                 // 构建工具配置目录
+  I18N: ROOT.join('i18n'),                   // i18n
   DIST: ROOT.join('dist'),                   // build 后输出目录
   MOCK: ROOT.join('mock'),                   // Mock Server 目录
   SRC: ROOT.join('src'),                     // 源码目录

@@ -61,7 +61,9 @@
     "less-loader": "^2.2.2",
     "node-sass": "^3.4.2",
     "nyan-progress-webpack-plugin": "^1.1.4",
+    "raw-loader": "^0.5.1",
     "sass-loader": "^3.2.0",
+    "string-replace-loader": "^1.0.5",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "vue-hot-reload-api": "^1.2.0",
@@ -69,6 +71,7 @@
     "vue-loader": "^8.0.0",
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.12.2",
+    "webpack-combine-loaders": "^2.0.3",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0"
   },

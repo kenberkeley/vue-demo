@@ -1,6 +1,8 @@
 var webpack = require('webpack'),
   PATHS = require('./config/PATHS'),
+  i18n = require(PATHS.I18N),
   env = (process.env.NODE_ENV || 'development').trim(),
+  combineLoaders = require('webpack-combine-loaders'),
   ExtractTextPlugin = require('extract-text-webpack-plugin'),
   NyanProgressPlugin = require('nyan-progress-webpack-plugin');
 
@@ -70,7 +72,21 @@ module.exports = {
       js: 'babel!eslint',
       css: ExtractTextPlugin.extract('vue-style', 'css'),
       less: ExtractTextPlugin.extract('vue-style', 'css!less'),
-      sass: ExtractTextPlugin.extract('vue-style', 'css!sass')
+      sass: ExtractTextPlugin.extract('vue-style', 'css!sass'),
+      html: combineLoaders([{
+        loader: 'string-replace',
+        query: {
+          multiple: (function () {
+            var _multiple = Object.keys(i18n.en);
+            _multiple = _multiple.map(function (cn) {
+              return { search: cn, replace: i18n.en[cn] };
+            });
+            return _multiple;
+          })()
+        }
+      }, {
+        loader: 'raw'
+      }])
     }
   },
   eslint: {
