@@ -14,7 +14,8 @@ config.module.preLoaders = [{
   include: PATHS.SRC,
   exclude: /node_modules/
 }];
-config.vue.loaders.html = stringReplaceLoader + '!raw';
+config.vue.loaders.js = stringReplaceLoader + '!babel!eslint';
+config.vue.loaders.html = stringReplaceLoader + '!vue-html';
 
 var compiler = webpack(config);
 
