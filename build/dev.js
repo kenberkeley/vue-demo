@@ -20,6 +20,7 @@ var compiler = webpack(config);
 
 // 提供静态资源服务
 app.use('/static', express.static(PATHS.STATIC));
+app.use('/docs', express.static(PATHS.DOCS));
 
 // Mock server
 require(PATHS.MOCK.join('node-app')).listen(PORTS.MOCK_SERVER);
