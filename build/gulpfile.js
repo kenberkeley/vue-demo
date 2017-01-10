@@ -11,6 +11,7 @@ var gulp = require('gulp'),
   uglify = require('gulp-uglify'),
   useref = require('gulp-useref'),
   revReplace = require('gulp-rev-replace'),
+  i18n = require('./i18n/'),
   PATHS = require('./config/PATHS');
 
 // 合并压缩打包 index.html 中 build 标签内的资源
@@ -19,7 +20,7 @@ gulp.task('bundle', function () {
     cssFilter = filter('**/*.css', { restore: true }),
     userefAssets = useref.assets();
 
-  return gulp.src(PATHS.DIST.join('index.html'))
+  return gulp.src(PATHS.DIST.join('zh-cn/index.html'))
     .pipe(userefAssets)
     .pipe(jsFilter)
     .pipe(uglify())
@@ -31,7 +32,7 @@ gulp.task('bundle', function () {
     .pipe(userefAssets.restore())
     .pipe(useref())
     .pipe(revReplace())
-    .pipe(gulp.dest(PATHS.DIST));
+    .pipe(gulp.dest(PATHS.DIST.join('zh-cn')));
 });
 
 // 由于插件均被合并压缩打包，故可删除以减少生产环境下的文件量
@@ -39,7 +40,12 @@ gulp.task('clean', ['bundle'], function () {
   fs.remove(PATHS.DIST.join('static/plugins'));
 });
 
-gulp.task('default', ['bundle', 'clean']);
+// 国际化
+gulp.task('i18n', ['bundle', 'clean'], function () {
+
+});
+
+gulp.task('default', ['i18n']);
 
 if (module.parent) {
   module.exports = gulp;

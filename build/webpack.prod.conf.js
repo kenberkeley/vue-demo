@@ -44,7 +44,7 @@ config.plugins.push(
     allChunks : true // 若要按需加载 CSS 则请注释掉该行
   }),
   new HtmlWebpackPlugin({
-    filename: '../index.html',
+    filename: 'index.html',
     template: PATHS.SRC.join('index.html')
   })
 );

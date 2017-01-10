@@ -20,8 +20,6 @@ config.entry.app = [
   config.entry.app
 ];
 
-config.output.publicPath = '/';
-
 // 开发环境下直接内嵌 CSS 以支持热替换
 config.module.loaders.push({
   test: /\.css$/,
