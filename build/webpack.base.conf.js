@@ -17,7 +17,7 @@ module.exports = {
     ]
   },
   output: {
-    path: PATHS.I18N_SRC,
+    path: PATHS.I18N_DIST,
     publicPath: ''
   },
   resolve: {

@@ -13,8 +13,8 @@ var gulp = require('gulp'),
   useref = require('gulp-useref'),
   replace = require('gulp-replace'),
   revReplace = require('gulp-rev-replace'),
-  i18n = require('./i18n/'),
-  PATHS = require('./config/PATHS');
+  PATHS = require('./config/PATHS'),
+  i18n = require(PATHS.I18N);
 
 // 合并压缩打包 index.html 中 build 标签内的资源
 gulp.task('bundle', function () {
@@ -22,7 +22,7 @@ gulp.task('bundle', function () {
     cssFilter = filter('**/*.css', { restore: true }),
     userefAssets = useref.assets();
 
-  return gulp.src(PATHS.I18N_SRC.join('index.html'))
+  return gulp.src(PATHS.I18N_DIST.join('index.html'))
     .pipe(userefAssets)
     .pipe(jsFilter)
     .pipe(uglify())
@@ -34,7 +34,7 @@ gulp.task('bundle', function () {
     .pipe(userefAssets.restore())
     .pipe(useref())
     .pipe(revReplace())
-    .pipe(gulp.dest(PATHS.I18N_SRC));
+    .pipe(gulp.dest(PATHS.I18N_DIST));
 });
 
 // 由于插件均被合并压缩打包，故可删除以减少生产环境下的文件量
@@ -49,7 +49,7 @@ gulp.task('i18n', ['bundle', 'clean'], function () {
   
   langs.forEach(function (lang) {
     var targetDir = PATHS.DIST.join(lang);
-    fs.copySync(PATHS.I18N_SRC, targetDir);
+    fs.copySync(PATHS.I18N_DIST, targetDir);
 
     gulp.src(['*.js', '!mainifest.*.js', '!vendor.*.js'], { cwd: targetDir })
       .pipe(debug({ title: 'translating ' + lang + ' :' }))

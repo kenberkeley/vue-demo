@@ -1,4 +1,3 @@
-// src/
 module.exports = {
   /* components/ */
     /** Select/ */

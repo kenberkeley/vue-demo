@@ -21,6 +21,7 @@ var PATHS = {
   STATIC: ROOT.join('static')                // 高度静态资源目录
 };
 
-PATHS.I18N_SRC = PATHS.DIST.join('i18n-source');
+PATHS.I18N = PATHS.SRC.join('_i18n');           // 语言包
+PATHS.I18N_DIST = PATHS.DIST.join('i18n-dist'); // Webpack output
 
 module.exports = PATHS;
