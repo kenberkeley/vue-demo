@@ -7,7 +7,7 @@ export const rootPath = '/api'
 // XHR 错误处理
 export const errHandler = (e) => {
   $.toast({
-    heading: '请求 API 失败',
+    heading: '_#请求 API 失败#_',
     icon: 'error',
     stack: false
   })

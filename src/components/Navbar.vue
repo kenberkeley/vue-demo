@@ -22,8 +22,8 @@
           <i class="fa fa-github fa-lg"></i>
         </a>
       </li>
-      <li data-toggle="tooltip" title="文档">
-        <a href="docs" target="_blank">
+      <li data-toggle="tooltip" title="_#文档#_">
+        <a href="/docs" target="_blank">
           <i class="fa fa-book fa-lg"></i>
         </a>
       </li>
@@ -36,14 +36,14 @@
         <ul class="dropdown-menu">
           <li><a v-link="`/auth/logout`">
             <i class="fa fa-sign-out fa-lg m-r-5"></i>
-            注销登录
+            _#注销登录#_
           </a></li>
         </ul>
       </li>
       <li v-else v-link-active>
         <a v-link="{ path: '/auth/login', activeClass: 'active' }">
           <i class="fa fa-sign-in fa-lg m-r-5"></i>
-          登录
+          _#登录#_
         </a>
       </li>
     </ul>

@@ -17,7 +17,7 @@ module.exports = {
     ]
   },
   output: {
-    path: PATHS.DIST.join('zh-cn'),
+    path: PATHS.I18N_SRC,
     publicPath: ''
   },
   resolve: {

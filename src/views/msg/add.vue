@@ -19,8 +19,8 @@ export default {
     handleSubmit () {
       msgService.add(this.msg).then(({ id }) => {
         $.toast({
-          heading: '发布成功',
-          text: '已自动跳转到详情页',
+          heading: '_#发布成功#_',
+          text: '_#已自动跳转到详情页#_',
           icon: 'success'
         })
         this.$router.replace(`/msg/detail/${id}`)

@@ -14,7 +14,7 @@ module.exports = {
     /** Navbar.vue */
     '注销登录': 'Log out',
     '登录': 'Login',
-    '文档': 'documentation',
+    '文档': 'Documentation',
   /* routes/ */
     /** hooks/ **/
       /*** afterEach/ ***/
@@ -53,7 +53,7 @@ module.exports = {
       /*** _components/ ***/
         /**** AuthorSelect.vue ****/
         '双击我刷新下拉框': 'Double click to refresh',
-        '筛选发布者:': 'Authors:',
+        '筛选发布者': 'Authors',
         '请选择发布者': 'Select authors',
         '已刷新': 'Refresh done',
         /**** MsgForm.vue ****/
@@ -78,14 +78,14 @@ module.exports = {
       '添加留言信息': 'Add a message',
       '（暂无留言信息）': 'No messages for now',
       '共': 'Total ',
-      '条记录': ' records',
+      '条记录，': ' records, ',
       /*** update.vue ***/
       '更新成功': 'Update succeeded',
       // '已自动跳转到详情页': 'Now in detail page', // 已有重复
       '非法访问': 'Illegal access',
     /** index.vue */
     '欢迎使用': 'Welcome to ',
-    '两个命令玩转 <code>Vue</code>': 'Have fun with Vue in 2 commands',
+    '两个命令玩转 <code>Vue</code>': 'Explore <code>Vue</code> with 2 cmds',
   /* app.js */
   '[当前环境] 开发环境': "[Environment] Development",
   '[当前环境] 生产环境': "[Environment] Production"

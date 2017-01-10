@@ -6,14 +6,14 @@
           <i class="fa fa-user"></i>
         </div>
         <input type="text" v-model="username" required
-          class="form-control" placeholder="仅需输入用户名即可登录">
+          class="form-control" placeholder="_#仅需输入用户名即可登录#_">
       </div>
     </div>
     <button type="submit" class="btn btn-block"
       :class="{ 'btn-success': username.length }"
       :disabled="!username.length">
       <i class="fa fa-sign-in m-r-5"></i>
-      登录
+      _#登录#_
     </button>
   </form>
 </template>
@@ -26,7 +26,7 @@ export default {
     handleSubmit () {
       let username = $.trim(this.username)
       if (!username) return $.toast({
-        heading: '用户名为空',
+        heading: '_#用户名为空#_',
         icon: 'warning',
         stack: false
       })

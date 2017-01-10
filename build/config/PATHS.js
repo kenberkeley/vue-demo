@@ -11,7 +11,7 @@ String.prototype.join = function (target) {
 
 var ROOT = path.resolve(__dirname, '../..');
 
-module.exports = {
+var PATHS = {
   ROOT: ROOT,                                // 项目根目录
   BUILD: ROOT.join('build'),                 // 构建工具配置目录
   DIST: ROOT.join('dist'),                   // build 后输出目录
@@ -20,3 +20,7 @@ module.exports = {
   SRC: ROOT.join('src'),                     // 源码目录
   STATIC: ROOT.join('static')                // 高度静态资源目录
 };
+
+PATHS.I18N_SRC = PATHS.DIST.join('i18n-source');
+
+module.exports = PATHS;

@@ -27,8 +27,8 @@ export default {
     handleSubmit () {
       msgService.update(this.msg).then(({ id }) => {
         $.toast({
-          heading: '更新成功',
-          text: '已自动跳转到详情页',
+          heading: '_#更新成功#_',
+          text: '_#已自动跳转到详情页#_',
           icon: 'success'
         })
         this.$router.replace(`/msg/detail/${id}`)
@@ -39,7 +39,7 @@ export default {
     MSG_LOADED () {
       // 检测当前用户是否有权限修改本留言信息
       if (this.msg.author !== this.$root.userData.username) {
-        $.toast({ heading: '非法访问', icon: 'error' })
+        $.toast({ heading: '_#非法访问#_', icon: 'error' })
         this.$router.replace('/msg')
       }
     }

@@ -32,19 +32,19 @@ export default {
   methods: {
     handleDel () {
       window.swal({
-        title: '确认删除？',
-        text: '删除后不可恢复',
+        title: '_#确认删除？#_',
+        text: '_#删除后不可恢复#_',
         type: 'warning',
         showCancelButton: true,
-        cancelButtonText: '取消',
+        cancelButtonText: '_#取消#_',
         confirmButtonColor: '#DD6B55',
-        confirmButtonText: '删除'
+        confirmButtonText: '_#删除#_'
       }, v => {
         if (!v) return
         
         const { id: msgId } = this.msg
         msgService.del(msgId).then(() => {
-          $.toast({ heading: '删除成功', icon: 'success' })
+          $.toast({ heading: '_#删除成功#_', icon: 'success' })
           this.autoJump
               // 跳回列表页面
             ? this.$router.replace('/msg')

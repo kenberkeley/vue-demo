@@ -6,6 +6,16 @@ var express = require('express'),
   proxy = require('http-proxy-middleware'),
   app = express();
 
+// 开发环境下直接将 _# 及 #_ 去掉
+var stringReplaceLoader = 'string-replace?search=(_#|#_)&replace=&flags=g';
+config.module.preLoaders = [{
+  test: /.*$/,
+  loader: stringReplaceLoader,
+  include: PATHS.SRC,
+  exclude: /node_modules/
+}];
+config.vue.loaders.html = stringReplaceLoader + '!raw';
+
 var compiler = webpack(config);
 
 // 提供静态资源服务

@@ -34,7 +34,7 @@ export default {
     if (!this.isDynamicPath) return
     $(this.$el).on('click', () =>
       $.toast({
-        heading: '动态路由不可直接点击访问',
+        heading: '_#动态路由不可直接点击访问#_',
         icon: 'info',
         stack: false
       })

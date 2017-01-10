@@ -10,7 +10,7 @@
             <i class="fa fa-comment-o fa-stack-2x"></i>
             <i class="fa fa-plus fa-stack-1x"></i>
           </span>
-          添加留言信息
+          _#添加留言信息#_
         </a>
       </div>
     </div>
@@ -44,14 +44,14 @@
         </ul>
 
         <h4 v-show="!total" class="text-muted text-center line-h-150 italic">
-          （暂无留言信息）
+          _#（暂无留言信息）#_
         </h4>
       </div>
     </div>
     
     <div class="row">
       <div class="col-sm-6 nowrap">
-        共 <span class="badge">{{ total }}</span> 条记录，
+        _#共#_ <span class="badge">{{ total }}</span> _#条记录，#_
         <limit-select></limit-select>
       </div>
       <div class="col-sm-6 clearfix">
