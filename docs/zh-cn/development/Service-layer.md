@@ -2,7 +2,7 @@
 
 服务层的主要功能是：**封装好与后端 API 一一对应的请求类**。  
 例如，用户登录的 API 为 `/auth/login`，  
-那么 `services/authService.js` 这个类中就对应存在一个名为 `login` 的函数，  
+那么 `src/services/authService.js` 这个类中就对应存在一个名为 `login` 的函数，  
 只需要调用 `authService.login({ 帐号, 密码 })` 即可实现请求。
 
 这样做的好处是：**轻量化组件，统一管理 XHR 请求，提高代码复用，方便 mock**，  

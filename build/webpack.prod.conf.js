@@ -1,9 +1,9 @@
 var webpack = require('webpack'),
-  fs = require('fs-extra'),
   PATHS = require('./config/PATHS'),
   config = require('./webpack.base.conf'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   ExtractTextPlugin = require('extract-text-webpack-plugin'),
+  OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin'),
   // SOURCE_MAP = true; // 大多数情况下用不到
   SOURCE_MAP = false;
 
@@ -28,9 +28,7 @@ config.plugins.push(
   new webpack.optimize.DedupePlugin(),
   new webpack.optimize.OccurenceOrderPlugin(),
   new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false
-    }
+    compress: { warnings: false }
   }),
   new webpack.optimize.CommonsChunkPlugin({
     // 公共代码分离打包
@@ -43,6 +41,7 @@ config.plugins.push(
   new ExtractTextPlugin('[name].[contenthash:6].css', {
     allChunks : true // 若要按需加载 CSS 则请注释掉该行
   }),
+  new OptimizeCssAssetsPlugin(), // 优化 CSS（去重/压缩）
   new HtmlWebpackPlugin({
     filename: '../index.html',
     template: PATHS.SRC.join('index.html')

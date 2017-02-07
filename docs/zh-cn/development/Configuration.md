@@ -34,7 +34,7 @@
 但在这里其实是会引起歧义的  
 试问：`import createBrowserHistory from 'history/lib/createBrowserHistory'`  
 您可能会觉得这是 `src/history/lib/createBrowserHistory.js`  
-但实际上 [history](https://github.com/mjackson/history) 是一个 npm package  
+但实际上 [`history`](https://github.com/mjackson/history) 是一个 npm package  
 同样地，您又怎么知道 [`services`](https://www.npmjs.com/package/services) 不是一个 npm package？  
 而且重构之后，文件夹的变动会导致相对路径的变化，`services/` 目录未必仍在 `src/` 下    
 因此，路径别名相当有必要。其**常量**的形式，让人一看就知道不是一个 npm package

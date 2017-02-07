@@ -36,7 +36,7 @@
 ***
 
 `vue-router` 提供的 [`data`](https://github.com/vuejs/vue-router/blob/1.0/docs/zh-cn/pipeline/data.md) 函数，极其方便地让我们响应 URL 的变化以进行 xhr 请求  
-当然，如果并非路由页面组件（`views/`），是不能够享受到 `data` 函数的便利  
+当然，如果并非路由页面组件，是不能够享受到 `data` 函数的便利  
 不过我们可以通过计算属性来实现同样的功能：
 
 ```js

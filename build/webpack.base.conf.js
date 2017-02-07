@@ -36,7 +36,7 @@ module.exports = {
     }
   },
   resolveLoader: {
-    root: PATHS.ROOT.join('node_modules')
+    root: PATHS.NODE_MODULES
   },
   module: {
     loaders: [{
