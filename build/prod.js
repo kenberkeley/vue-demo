@@ -6,6 +6,7 @@ var fs = require('fs-extra'),
 
 fs.emptyDirSync(PATHS.DIST); // 清空 build 目录
 fs.copySync(PATHS.STATIC, PATHS.DIST.join('static')); // 复制高度静态资源
+fs.copySync(PATHS.DOCS, PATHS.DIST.join('docs')); // 复制文档
 
 webpack(config, function(err, stats) {
   // show build info to console
