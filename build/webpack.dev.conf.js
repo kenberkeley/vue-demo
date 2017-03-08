@@ -46,9 +46,9 @@ config.plugins.push(
     template: PATHS.SRC.join('index.html')
   }),
   new BrowserSyncPlugin({
-    host: '127.0.0.1',
+    host: 'localhost',
     port: PORTS.BROWSER_SYNC,
-    proxy: 'http://127.0.0.1:' + PORTS.DEV_SERVER,
+    proxy: 'localhost:' + PORTS.DEV_SERVER,
     notify: false
   }, {
     reload: false
