@@ -37,7 +37,7 @@
 
 `vue-router` 提供的 [`data`](https://github.com/vuejs/vue-router/blob/1.0/docs/zh-cn/pipeline/data.md) 函数，极其方便地让我们响应 URL 的变化以进行 xhr 请求  
 当然，如果并非路由页面组件，是不能够享受到 `data` 函数的便利  
-不过我们仍可以通过计算属性来实现同样的功能：
+不过我们仍可以通过 [`watch`](http://v1.vuejs.org/api/#watch) 来实现同样的功能：
 
 ```js
 watch: {
@@ -54,6 +54,7 @@ watch: {
 
 > 上述 `autoSyncWithQuery` 的原理相当简单：  
 > **约定**组件 `data` 属性中后缀带 `$` 的字段，使用 `$watch` 同步其变化到 query string  
-> 同时，也对 `$route.query` 设置 `$watch`，同步其变化到对应的组件本地状态
-> 
+> 同时，也对 `$route.query` 设置 `$watch`，同步其变化到对应的组件本地状态  
 > 特别注意：由于状态与路由是双向同步的，因此**安全性**是必须考量的
+
+> **更新：**已封装出设计更为合理的 [`vue-sync-query-mixin`](https://github.com/kenberkeley/vue-sync-query-mixin) npm 包，诚邀品鉴！

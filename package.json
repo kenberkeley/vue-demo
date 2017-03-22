@@ -5,7 +5,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "cross-env NODE_ENV=development node build/dev.js",
-    "build": "cross-env NODE_ENV=production node build/prod.js"
+    "build": "cross-env NODE_ENV=production node build/prod.js",
+    "docs": "gitbook build docs/"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,7 @@
     "extract-text-webpack-plugin": "^0.9.1",
     "file-loader": "^0.8.4",
     "fs-extra": "^1.0.0",
+    "gitbook-cli": "^2.3.0",
     "gulp": "^3.9.1",
     "gulp-csso": "^2.0.0",
     "gulp-filter": "^4.0.0",

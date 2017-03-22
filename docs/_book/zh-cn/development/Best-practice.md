@@ -43,7 +43,7 @@ import FooBar from './FooBar'     // Good
 
 ***
 
-* 最小化引入类库（除非您使用 [rollup](https://github.com/rollup/rollup)）
+* 最小化引入类库（除非您使用了 [rollup](https://github.com/rollup/rollup) 或 [`lodash-webpack-plugin`](https://github.com/lodash/lodash-webpack-plugin) 等）
 
 ```js
 import _ from 'lodash'               // Bad
@@ -79,7 +79,7 @@ import isEmpty from 'lodash/isEmpty' // Good
 
 ***
 
-* 一般来说，涉及到权限的必须用 `v-if`，否则可选用 `v-show`
+* 一般来说，涉及到权限的必须用 `v-if` 而非 `v-show`
 
 > 例如，用户必须登录后才能查看的，请用 `v-if`
 
