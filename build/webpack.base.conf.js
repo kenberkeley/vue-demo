@@ -1,21 +1,15 @@
 var webpack = require('webpack'),
+  ENV = require('./config/ENV'),
   PATHS = require('./config/PATHS'),
-  env = (process.env.NODE_ENV || 'development').trim(),
-  ExtractTextPlugin = require('extract-text-webpack-plugin'),
+  styleRules = require('./config/style-rules'),
   NyanProgressPlugin = require('nyan-progress-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: PATHS.SRC.join('app.js'),
-
-    // 框架 / 类库 单独打包
-    vendor: [
-      'es6-shim',
-      'query-string',
-      'vue',
-      'vue-router'
-    ]
+    app: PATHS.SRC.join('app.js')
   },
+  // devtool - source map 配置详见 http://webpack.github.io/docs/configuration.html#devtool
+  devtools: false,
   output: {
     path: PATHS.DIST.join('static'),
     publicPath: 'static/'
@@ -25,14 +19,7 @@ module.exports = {
     alias: {
       // 自定义路径别名
       MOCK: PATHS.MOCK,
-      ASSET: PATHS.SRC.join('assets'),
-      COMPONENT: PATHS.SRC.join('components'),
-      FILTER: PATHS.SRC.join('filters'),
-      MIXIN: PATHS.SRC.join('mixins'),
-      ROUTE: PATHS.SRC.join('routes'),
-      SERVICE: PATHS.SRC.join('services'),
-      UTIL: PATHS.SRC.join('utils'),
-      VIEW: PATHS.SRC.join('views')
+      '@': PATHS.SRC
     }
   },
   resolveLoader: {
@@ -63,26 +50,26 @@ module.exports = {
     }, {
       test: /\.(woff2?|eot|ttf|otf)$/,
       loader: 'url-loader?limit=10240&name=fonts/[name]-[hash:6].[ext]'
-    }]
+    }].concat(styleRules.basic)
   },
   vue: {
-    loaders: {
-      js: 'babel!eslint',
-      css: ExtractTextPlugin.extract('vue-style', 'css'),
-      less: ExtractTextPlugin.extract('vue-style', 'css!less'),
-      sass: ExtractTextPlugin.extract('vue-style', 'css!sass')
-    }
+    loaders: Object.assign({
+      js: 'babel!eslint'
+    }, styleRules.vueLoader)
   },
   eslint: {
     formatter: require('eslint-friendly-formatter')
   },
   plugins: [
     new NyanProgressPlugin(), // 进度条
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(env),
-      // 配置开发全局常量
-      __DEV__: env === 'development',
-      __PROD__: env === 'production'
+    new webpack.DefinePlugin(Object.assign({
+      'process.env.NODE_ENV': JSON.stringify(ENV.__ENV__)
+    }, ENV)),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: function (module) {
+        return module.context && module.context.indexOf('node_modules') !== -1;
+      }
     })
   ]
 };

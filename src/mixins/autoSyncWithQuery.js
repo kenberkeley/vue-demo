@@ -1,4 +1,4 @@
-import updateQuery from 'MIXIN/updateQuery'
+import updateQuery from '@/mixins/updateQuery'
 import _difference from 'lodash/difference'
 /**
  * 引入本 mixin 的组件，相应字段须以 $ 结尾

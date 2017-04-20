@@ -4,7 +4,7 @@ export default {
     title: '用户登录',
     icon: 'fa fa-sign-in',
     component (resolve) {
-      require(['VIEW/auth/login'], resolve)
+      require(['@/views/auth/login'], resolve)
     },
     forbidAuthed: true
   },
@@ -13,7 +13,7 @@ export default {
     title: '注销登录',
     icon: 'fa fa-sign-out',
     component (resolve) {
-      require(['VIEW/auth/logout'], resolve)
+      require(['@/views/auth/logout'], resolve)
     },
     needAuth: true
   }

@@ -14,9 +14,9 @@
   </div>
 </template>
 <script>
-import Select2 from 'COMPONENT/Select/Select2'
-import autoSyncWithQuery from 'MIXIN/autoSyncWithQuery'
-import msgService from 'SERVICE/msgService'
+import Select2 from '@/components/Select/Select2'
+import autoSyncWithQuery from '@/mixins/autoSyncWithQuery'
+import msgService from '@/services/msgService'
 
 export default {
   mixins: [autoSyncWithQuery],

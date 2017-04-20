@@ -12,5 +12,6 @@
   * [配置](development/Configuration.md)
   * [跨域与代理](development/CORS-and-Proxy.md)
   * [最佳实践](development/Best-practice.md)
+* [参考](Reference.md)
 * [问题反馈（issues）](https://github.com/kenberkeley/vue-demo/issues)
 * [版本迭代（releases）](https://github.com/kenberkeley/vue-demo/releases)

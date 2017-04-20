@@ -21,7 +21,7 @@
   </ul>
 </template>
 <script>
-import trimQs from 'UTIL/trimQs'
+import trimQs from '@/utils/trimQs'
 
 export default {
   computed: {

@@ -10,7 +10,7 @@
 </template>
 <script>
 import MsgForm from './_components/MsgForm'
-import msgService from 'SERVICE/msgService'
+import msgService from '@/services/msgService'
 
 export default {
   components: { MsgForm },

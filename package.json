@@ -2,7 +2,7 @@
   "name": "vue-demo",
   "description": "A simple message board demo developed by Vue 1.x",
   "author": "Ken Berkeley <kenberkeley@foxmail.com>",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "scripts": {
     "start": "cross-env NODE_ENV=development node build/dev.js",
     "build": "cross-env NODE_ENV=production node build/prod.js",

@@ -1,4 +1,4 @@
-import updateQuery from 'UTIL/updateQuery'
+import updateQuery from '@/utils/updateQuery'
 
 export default {
   methods: {

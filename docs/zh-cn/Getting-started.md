@@ -24,11 +24,11 @@ const foo = ({ hello: { world: bar } }) => ({ bar })
 > 并不能解决 `node-sass` 的二进制源码包下载极慢的问题
 
 ```
-$ npm i cnpm -g       // 全局安装 cnpm
+$ npm install -g cnpm --registry=https://registry.npm.taobao.org # 全局安装 cnpm
 
 $ git clone https://github.com/kenberkeley/vue-demo.git
 $ cd vue-demo
-$ cnpm i              // 安装本项目依赖
+$ cnpm i
 ```
 
 ### ⊙ 命令

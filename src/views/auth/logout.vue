@@ -2,7 +2,7 @@
   <div></div>
 </template>
 <script>
-import authService from 'SERVICE/authService' 
+import authService from '@/services/authService' 
 
 export default {
   init () {

@@ -57,6 +57,8 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="../Reference.html" />
+    
     
     <link rel="prev" href="CORS-and-Proxy.html" />
     
@@ -249,7 +251,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6" >
+        <li class="chapter " data-level="1.6" data-path="../Reference.html">
+            
+                <a href="../Reference.html">
+            
+                    
+                    参考
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
             
                 <a target="_blank" href="https://github.com/kenberkeley/vue-demo/issues">
             
@@ -262,7 +277,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7" >
+        <li class="chapter " data-level="1.8" >
             
                 <a target="_blank" href="https://github.com/kenberkeley/vue-demo/releases">
             
@@ -347,10 +362,10 @@
 </blockquote>
 <hr>
 <ul>
-<li>&#x5584;&#x7528; Webpack &#x7684;&#x8DEF;&#x5F84;&#x522B;&#x540D;(&#x89C1; <a href="Configuration.html">&#x914D;&#x7F6E;</a>&#xB7;Webpack&#xB7;&#x8DEF;&#x5F84;&#x522B;&#x540D;)</li>
+<li>&#x5584;&#x7528; Webpack &#x7684;&#x8DEF;&#x5F84;&#x522B;&#x540D;</li>
 </ul>
 <pre><code class="lang-js"><span class="hljs-keyword">import</span> FooBar <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../../../../components/FooBar&apos;</span> <span class="hljs-comment">// Bad  </span>
-<span class="hljs-keyword">import</span> FooBar <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;COMPONENT/FooBar&apos;</span>              <span class="hljs-comment">// Good</span>
+<span class="hljs-keyword">import</span> FooBar <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@/components/FooBar&apos;</span>           <span class="hljs-comment">// Good</span>
 </code></pre>
 <hr>
 <ul>
@@ -419,34 +434,34 @@
 <ul>
 <li>&#x5C3D;&#x91CF;&#x907F;&#x514D;&#x5728;&#x6A21;&#x677F;&#x4E2D;&#x8BBE;&#x7F6E;&#x8FC7;&#x591A;&#x7684;&#x5224;&#x65AD;&#x6761;&#x4EF6;&#xFF0C;&#x5584;&#x7528;<a href="http://v1.vuejs.org/guide/computed.html" target="_blank">&#x8BA1;&#x7B97;&#x5C5E;&#x6027;</a></li>
 </ul>
-<pre><code class="lang-vue">&lt;template&gt;
-  &lt;div&gt;
-    &lt;p v-if=&quot;i===0&quot;&gt;Zero&lt;/p&gt;
-    &lt;p v-if=&quot;i===1&quot;&gt;One&lt;/p&gt;
-    &lt;p v-if=&quot;i===2&quot;&gt;Two&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
-&lt;script&gt;
-export default {
-  data: () =&gt; ({ i: 0 })
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;i===0&quot;</span>&gt;</span>Zero<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;i===1&quot;</span>&gt;</span>One<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;i===2&quot;</span>&gt;</span>Two<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  data: () =&gt; ({ i: <span class="hljs-number">0</span> })
 }
-&lt;/script&gt;
-&lt;!-- &#x2191; Bad &#xB7; Good &#x2193; --&gt;
-&lt;template&gt;
-  &lt;div&gt;
-    &lt;p&gt;&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
-&lt;script&gt;
-export default {
-  data: () =&gt; ({ i: 0 }),
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- &#x2191; Bad &#xB7; Good &#x2193; --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  data: () =&gt; ({ i: <span class="hljs-number">0</span> }),
   computed: {
     text () {
-      return [&apos;Zero&apos;, &apos;One&apos;, &apos;Two&apos;][this.i]
+      <span class="hljs-keyword">return</span> [<span class="hljs-string">&apos;Zero&apos;</span>, <span class="hljs-string">&apos;One&apos;</span>, <span class="hljs-string">&apos;Two&apos;</span>][<span class="hljs-keyword">this</span>.i]
     }
   }
 }
-&lt;/script&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
 <hr>
 <ul>
@@ -497,10 +512,14 @@ export default {
 
             
                 
-                <a href="CORS-and-Proxy.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 跨域与代理">
+                <a href="CORS-and-Proxy.html" class="navigation navigation-prev " aria-label="Previous page: 跨域与代理">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="../Reference.html" class="navigation navigation-next " aria-label="Next page: 参考">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -509,7 +528,7 @@ export default {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"最佳实践","level":"1.5.7","depth":2,"next":{"title":"问题反馈（issues）","level":"1.6","depth":1,"url":"https://github.com/kenberkeley/vue-demo/issues","ref":"https://github.com/kenberkeley/vue-demo/issues","articles":[]},"previous":{"title":"跨域与代理","level":"1.5.6","depth":2,"path":"development/CORS-and-Proxy.md","ref":"development/CORS-and-Proxy.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"zh-cn","gitbook":"*"},"file":{"path":"development/Best-practice.md","mtime":"2017-03-22T02:30:19.005Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-22T02:45:04.734Z"},"basePath":"..","book":{"language":"zh-cn"}});
+            gitbook.page.hasChanged({"page":{"title":"最佳实践","level":"1.5.7","depth":2,"next":{"title":"参考","level":"1.6","depth":1,"path":"Reference.md","ref":"Reference.md","articles":[]},"previous":{"title":"跨域与代理","level":"1.5.6","depth":2,"path":"development/CORS-and-Proxy.md","ref":"development/CORS-and-Proxy.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"zh-cn","gitbook":"*"},"file":{"path":"development/Best-practice.md","mtime":"2017-04-20T05:51:51.195Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-20T05:54:19.512Z"},"basePath":"..","book":{"language":"zh-cn"}});
         });
     </script>
 </div>

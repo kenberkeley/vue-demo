@@ -1,4 +1,4 @@
-// import router from 'ROUTE/' // 为避免循环依赖，改用如下传入的方式
+// import router from '@/routes/' // 为避免循环依赖，改用如下传入的方式
 
 // 权限拦截
 const authInterceptor = (router) => ({ to, redirect, abort, next }) => {

@@ -14,7 +14,7 @@
   条</label>
 </template>
 <script>
-import autoSyncWithQuery from 'MIXIN/autoSyncWithQuery'
+import autoSyncWithQuery from '@/mixins/autoSyncWithQuery'
 /**
  * 每页显示多少条的选择框
  */

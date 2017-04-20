@@ -22,7 +22,7 @@
   </ul>
 </template>
 <script>
-import autoSyncWithQuery from 'MIXIN/autoSyncWithQuery'
+import autoSyncWithQuery from '@/mixins/autoSyncWithQuery'
 /**
  * 分页
  * @props total 记录总数

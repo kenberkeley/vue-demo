@@ -50,7 +50,7 @@
   </nav>
 </template>
 <script>
-import routesMap from 'ROUTE/map/'
+import routesMap from '@/routes/map/'
 import _pickBy from 'lodash/pickBy'
 
 export default {

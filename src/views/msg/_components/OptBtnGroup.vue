@@ -13,7 +13,7 @@
   </div>
 </template>
 <script>
-import msgService from 'SERVICE/msgService'
+import msgService from '@/services/msgService'
 
 export default {
   props: {

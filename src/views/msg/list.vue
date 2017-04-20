@@ -61,12 +61,12 @@
   </div>
 </template>
 <script>
-import Pagination from 'COMPONENT/Pagination'
-import LimitSelect from 'COMPONENT/Select/LimitSelect'
+import Pagination from '@/components/Pagination'
+import LimitSelect from '@/components/Select/LimitSelect'
 import AuthorSelect from './_components/AuthorSelect'
 import OptBtnGroup from './_components/OptBtnGroup'
-import updateQuery from 'MIXIN/updateQuery'
-import msgService from 'SERVICE/msgService'
+import updateQuery from '@/mixins/updateQuery'
+import msgService from '@/services/msgService'
 
 export default {
   mixins: [updateQuery],

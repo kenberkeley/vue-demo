@@ -1,4 +1,4 @@
-import trimQs from 'UTIL/trimQs'
+import trimQs from '@/utils/trimQs'
 /**
  * 不同页面间的跳转，把视图拉回顶部
  */

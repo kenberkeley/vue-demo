@@ -17,9 +17,9 @@
 </template>
 <script>
 /* 根组件就像是 AngularJS 的 $rootScope，同时也负责全局布局 */
-import Navbar from 'COMPONENT/Navbar'
-import Sidebar from 'COMPONENT/Sidebar/'
-import Breadcrumb from 'COMPONENT/Breadcrumb'
+import Navbar from '@/components/Navbar'
+import Sidebar from '@/components/Sidebar/'
+import Breadcrumb from '@/components/Breadcrumb'
 
 export default {
   // 路由会自动将该组件挂载到 #app 上

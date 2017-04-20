@@ -23,11 +23,11 @@
 
 ***
 
-* 善用 Webpack 的路径别名(见 [配置](./Configuration.md)·Webpack·路径别名)
+* 善用 Webpack 的路径别名
 
 ```js
 import FooBar from '../../../../components/FooBar' // Bad  
-import FooBar from 'COMPONENT/FooBar'              // Good
+import FooBar from '@/components/FooBar'           // Good
 ```
 
 ***
@@ -105,7 +105,7 @@ import isEmpty from 'lodash/isEmpty' // Good
 
 * 尽量避免在模板中设置过多的判断条件，善用[计算属性](http://v1.vuejs.org/guide/computed.html)
 
-```vue
+```html
 <template>
   <div>
     <p v-if="i===0">Zero</p>

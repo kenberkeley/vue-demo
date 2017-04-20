@@ -42,7 +42,7 @@ export default {
     component (resolve) {
       // 统一使用 Code-Splitting 形式引入路由页面组件
       // build 时可通过 AggressiveMergingPlugin / MinChunkSizePlugin 合并 chunks
-      require(['VIEW/'], resolve)
+      require(['@/views/'], resolve)
     }
   },
 

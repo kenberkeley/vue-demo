@@ -16,7 +16,7 @@
 <script>
 import MsgForm from './_components/MsgForm'
 import OptBtnGroup from './_components/OptBtnGroup'
-import msgService from 'SERVICE/msgService'
+import msgService from '@/services/msgService'
 import autoLoadByParams from './_mixins/autoLoadByParams'
 
 export default {

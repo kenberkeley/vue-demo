@@ -10,23 +10,27 @@
 > （您也可以使用 [Nodemon](https://github.com/remy/nodemon)、[Supervisor](https://github.com/Supervisor/supervisor) 等工具进行自动监控重启）
 
 #### 1. 框架 / 类库 单独分离打包
-> 见 `build/webpack.base.conf.js` 中的 `entry.vendor`
+> ~~见 `build/webpack.base.conf.js` 中的 `entry.vendor`~~
   
-当然，您也可以自行配置 [DllPlugin](http://webpack.github.io/docs/list-of-plugins.html#dllplugin) 以实现**真正的分离**打包
+~~当然，您也可以自行配置 [DllPlugin](http://webpack.github.io/docs/list-of-plugins.html#dllplugin) 以实现**真正的分离**打包~~
 
-实际上该步骤可通过读取 `package.json` 的 `dependencies` 字段实现自动化，但其灵活度不够高，必要性也不大  
-（例如，我们仅使用了 `lodash` 的某几个函数，就没必要将整个 `lodash` 打包进来）
+~~实际上该步骤可通过读取 `package.json` 的 `dependencies` 字段实现自动化，但其灵活度不够高，必要性也不大  
+（例如，我们仅使用了 `lodash` 的某几个函数，就没必要将整个 `lodash` 打包进来）~~
 
-对此我们还有别的替代方案：[split-by-name-webpack-plugin](https://github.com/soundcloud/split-by-name-webpack-plugin)、[webpack-split-by-path](https://github.com/BohdanTkachenko/webpack-split-by-path)  
-本项目不引入上述插件主要是考虑到非官方、维护不稳定等因素
+~~对此我们还有别的替代方案：[split-by-name-webpack-plugin](https://github.com/soundcloud/split-by-name-webpack-plugin)、[webpack-split-by-path](https://github.com/BohdanTkachenko/webpack-split-by-path)~~  
+~~本项目不引入上述插件主要是考虑到非官方、维护不稳定等因素~~
+
+参考 Webpack 2.x 的 [Code Splitting](https://webpack.js.org/guides/code-splitting-libraries/)，
+已实现 框架 / 类库 自动打包成 `vendor.js`  
+详见 `build/webpack.base.conf.js` 中的 `CommonsChunkPlugin` 配置
 
 #### 2. 路径别名
-> 见 `build/webpack.base.conf.js` 中的 `resolve.alias`
+> 源码目录位置可简写为 `@`，见 `build/webpack.base.conf.js` 中的 `resolve.alias`
 
-路径别名的好处是显而易见的，皆因对引入与重构都很方便
+路径别名的好处是显而易见的
 
 例如，在某组件中，引入 `authService` 需要 `import authService from '../../../services/authService'`  
-但有了路径别名后，只需要 `import authService from 'SERVICE/authService'`  
+但有了路径别名后，只需要 `import authService from '@/services/authService'`  
 相比于 AngularJS 中的依赖注入，这种方式依赖于构建工具，显得更为简单  
 
 您可能会说，Webpack 只需要设定了 `resolve.root` 为 `src/`  
@@ -36,13 +40,13 @@
 您可能会觉得这是 `src/history/lib/createBrowserHistory.js`  
 但实际上 [`history`](https://github.com/mjackson/history) 是一个 npm package  
 同样地，您又怎么知道 [`services`](https://www.npmjs.com/package/services) 不是一个 npm package？  
-而且重构之后，文件夹的变动会导致相对路径的变化，`services/` 目录未必仍在 `src/` 下    
-因此，路径别名相当有必要。其**常量**的形式，让人一看就知道不是一个 npm package
+综上，引入路径别名可以满足简约与避免歧义的需求
 
 #### 3. 环境变量
-> 见 `build/webpack.dev.conf.js` 中的 `plugins`：[DefinePlugin](http://webpack.github.io/docs/list-of-plugins.html#defineplugin)
+> 由 `build/webpack.dev.conf.js` 中的 [DefinePlugin](http://webpack.github.io/docs/list-of-plugins.html#defineplugin) 提供
 
-默认有 `__DEV__` 与 `__PROD__` 两个全局变量  
+默认有这些全局变量： `process.env.NODE_ENV`、`__ENV__`、`__DEV__` 与 `__PROD__`
+（后三者在 `build/config/ENV.js` 中定义）  
 若要继续添加，则还需要在 `.eslintrc` 中 `globals` 同步写入  
 由此即可根据当前运行环境执行对应的代码：
 ```js

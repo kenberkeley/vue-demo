@@ -1,11 +1,11 @@
 /* 启动文件 */
 import 'es6-shim'
-import 'ASSET/css/common.css'
+import '@/assets/css/common.css'
 import Vue from 'vue'
-import 'FILTER/'
-import router from 'ROUTE/'
-import App from 'COMPONENT/App'
-import authService from 'SERVICE/authService'
+import '@/filters/'
+import router from '@/routes/'
+import App from '@/components/App'
+import authService from '@/services/authService'
 
 // 先检测登录状态再挂载根组件以便控权
 authService.checkLogin().then(userData => {
@@ -29,12 +29,12 @@ if (__PROD__) {
 
 // === 以下是 Webpack 处理其他 assets 的测试，取消注释即可进行测试 === //
 /* 处理 less / sass */
-// import 'ASSET/less/normalize.less'
-// import 'ASSET/scss/normalize.scss'
+// import '@/assets/less/normalize.less'
+// import '@/assets/scss/normalize.scss'
 
 /* 处理 img，小于 10KB 的转为 base64，否则使用 URL */
-// import base64 from 'ASSET/img/smaller.png'
-// import url from 'ASSET/img/larger.png'
+// import base64 from '@/assets/img/smaller.png'
+// import url from '@/assets/img/larger.png'
 
 // appendImgToBody(base64)
 // appendImgToBody(url)

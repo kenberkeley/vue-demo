@@ -7,7 +7,7 @@ export default {
     showInNavbar: true,
     showInSidebar: true,
     component (resolve) {
-      require(['VIEW/msg'], resolve)
+      require(['@/views/msg'], resolve)
     },
 
     // 子路由
@@ -16,21 +16,21 @@ export default {
         title: '列表',
         icon: 'fa fa-list',
         component (resolve) {
-          require(['VIEW/msg/list'], resolve)
+          require(['@/views/msg/list'], resolve)
         }
       },
       '/detail/:msgId': {
         title: '详情',
         icon: 'fa fa-search-plus',
         component (resolve) {
-          require(['VIEW/msg/detail'], resolve)
+          require(['@/views/msg/detail'], resolve)
         }
       },
       '/add': {
         title: '新增',
         icon: 'fa fa-plus',
         component (resolve) {
-          require(['VIEW/msg/add'], resolve)
+          require(['@/views/msg/add'], resolve)
         },
         needAuth: true // 用于权限拦截
       },
@@ -38,7 +38,7 @@ export default {
         title: '修改',
         icon: 'fa fa-eraser',
         component (resolve) {
-          require(['VIEW/msg/update'], resolve)
+          require(['@/views/msg/update'], resolve)
         },
         needAuth: true
       }
