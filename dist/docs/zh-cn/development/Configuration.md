@@ -14,8 +14,8 @@
   
 ~~当然，您也可以自行配置 [DllPlugin](http://webpack.github.io/docs/list-of-plugins.html#dllplugin) 以实现**真正的分离**打包~~
 
-~~实际上该步骤可通过读取 `package.json` 的 `dependencies` 字段实现自动化，但其灵活度不够高，必要性也不大  
-（例如，我们仅使用了 `lodash` 的某几个函数，就没必要将整个 `lodash` 打包进来）~~
+~~实际上该步骤可通过读取 `package.json` 的 `dependencies` 字段实现自动化，但其灵活度不够高，必要性也不大~~  
+~~（例如，我们仅使用了 `lodash` 的某几个函数，就没必要将整个 `lodash` 打包进来）~~
 
 ~~对此我们还有别的替代方案：[split-by-name-webpack-plugin](https://github.com/soundcloud/split-by-name-webpack-plugin)、[webpack-split-by-path](https://github.com/BohdanTkachenko/webpack-split-by-path)~~  
 ~~本项目不引入上述插件主要是考虑到非官方、维护不稳定等因素~~
