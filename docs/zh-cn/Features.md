@@ -20,4 +20,4 @@
 > 
 > 仅为文档撰写所需  
 > 您往后的开发中，可以删掉上述四个依赖与 `mock/`、`docs/` 目录  
-> 以及 `package.json` 中的 `scripts: docs` 与 `build/prod.js` 中的 *复制文档* 代码
+> 以及 `package.json` 中的 `scripts: docs` 与 `build/prod.js` 中的 *移动文档* 代码
