@@ -10,14 +10,18 @@
 * [jQuery](http://jquery.com/) + [BootStrap 3.x](http://getbootstrap.com/) (UI)
 
 > #### 注意：
-> `package.json` 的 `dependencies` 字段中：  
+> `package.json` 的 `dependencies` 中的：  
 > * [`lowdb`](https://github.com/typicode/lowdb)
 > * [`uuid`](https://github.com/kelektiv/node-uuid)
 > * [`tiny-express`](https://github.com/kenberkeley/tiny-express)
 > 
-> 仅为留言板 Mock 服务器所需。同样地：  
+> 仅为留言板 Mock 服务器所需。同样地，`devDependencies` 中的：  
 > * [`gitbook-cli`](https://github.com/GitbookIO/gitbook-cli)
 > 
 > 仅为文档撰写所需  
-> 您往后的开发中，可以删掉上述四个依赖与 `mock/`、`docs/` 目录  
-> 以及 `package.json` 中的 `scripts: docs` 与 `build/prod.js` 中的 *移动文档* 代码
+> 您往后的开发中，可以删掉：
+> * 上述四个依赖
+> * `build/prod.js` 中的 *移动文档* 代码
+> * `docs/` 与 `mock/` 目录
+> * `src/services/xhr/index.js` 中的 Mock Server 相关代码
+> * `package.json` 中的 `npm-scripts: prebuild`
