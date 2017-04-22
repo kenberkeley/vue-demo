@@ -2,6 +2,7 @@ var webpack = require('webpack'),
   ENV = require('./config/ENV'),
   PATHS = require('./config/PATHS'),
   styleRules = require('./config/style-rules'),
+  HtmlWebpackPlugin = require('html-webpack-plugin'),
   NyanProgressPlugin = require('nyan-progress-webpack-plugin');
 
 module.exports = {
@@ -11,8 +12,8 @@ module.exports = {
   // devtool - source map 配置详见 http://webpack.github.io/docs/configuration.html#devtool
   devtools: false,
   output: {
-    path: PATHS.DIST.join('static'),
-    publicPath: 'static/'
+    path: PATHS.DIST,
+    publicPath: ''
   },
   resolve: {
     extensions: ['', '.js', '.vue'],
@@ -70,6 +71,10 @@ module.exports = {
       minChunks: function (module) {
         return module.context && module.context.indexOf('node_modules') !== -1;
       }
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: PATHS.SRC.join('index.html')
     })
   ]
 };

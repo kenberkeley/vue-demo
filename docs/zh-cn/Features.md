@@ -21,7 +21,6 @@
 > 仅为文档撰写所需  
 > 您往后的开发中，可以删掉：
 > * 上述四个依赖
-> * `build/prod.js` 中的 *移动文档* 代码
 > * `docs/` 与 `mock/` 目录
 > * `src/services/xhr/index.js` 中的 Mock Server 相关代码
-> * `package.json` 中的 `npm-scripts: prebuild`
+> * `package.json` 中的 `npm-scripts: build:docs`

@@ -2,7 +2,6 @@ var webpack = require('webpack'),
   PATHS = require('./config/PATHS'),
   PORTS = require('./config/PORTS'),
   config = require('./webpack.base.conf'),
-  HtmlWebpackPlugin = require('html-webpack-plugin'),
   ExtractTextPlugin = require('extract-text-webpack-plugin'),
   BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
@@ -16,16 +15,10 @@ config.entry.app = [
   config.entry.app
 ];
 
-config.output.publicPath = '';
-
 config.plugins.push(
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoErrorsPlugin(),
   new ExtractTextPlugin('[name].css'),
-  new HtmlWebpackPlugin({
-    filename: 'index.html',
-    template: PATHS.SRC.join('index.html')
-  }),
   new BrowserSyncPlugin({
     host: 'localhost',
     port: PORTS.BROWSER_SYNC,

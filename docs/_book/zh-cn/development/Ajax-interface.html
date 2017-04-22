@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>跨域与代理 · GitBook</title>
+        <title>Ajax 接口化 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Best-practice.html" />
+    <link rel="next" href="Configuration.html" />
     
     
-    <link rel="prev" href="Configuration.html" />
+    <link rel="prev" href="Service-layer.html" />
     
 
     </head>
@@ -194,7 +194,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.4" data-path="Ajax-interface.html">
+        <li class="chapter active" data-level="1.5.4" data-path="Ajax-interface.html">
             
                 <a href="Ajax-interface.html">
             
@@ -220,7 +220,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.5.6" data-path="CORS-and-Proxy.html">
+        <li class="chapter " data-level="1.5.6" data-path="CORS-and-Proxy.html">
             
                 <a href="CORS-and-Proxy.html">
             
@@ -320,7 +320,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >跨域与代理</a>
+        <a href=".." >Ajax 接口化</a>
     </h1>
 </div>
 
@@ -335,28 +335,31 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#xA7;-&#x8DE8;&#x57DF;&#x4E0E;&#x4EE3;&#x7406;">&#xA7; &#x8DE8;&#x57DF;&#x4E0E;&#x4EE3;&#x7406;</h1>
-<p>&#x76EE;&#x524D;&#x4E3B;&#x8981;&#x662F;&#x4E24;&#x79CD;&#x65B9;&#x6848;&#xFF1A;&#x76F4;&#x63A5;&#x8DE8;&#x57DF;&#x4E0E;&#x4EE3;&#x7406;&#x8F6C;&#x53D1;</p>
-<h3 id="&#x2299;-&#x76F4;&#x63A5;&#x8DE8;&#x57DF;&#xFF08;&#x4E0D;&#x63A8;&#x8350;&#xFF09;">&#x2299; &#x76F4;&#x63A5;&#x8DE8;&#x57DF;&#xFF08;&#x4E0D;&#x63A8;&#x8350;&#xFF09;</h3>
-<pre><code>xhr &#x63A5;&#x53E3;  &lt;--&#xFF08;&#x76F4;&#x63A5;&#x8DE8;&#x57DF;&#xFF09;--&gt; API &#x670D;&#x52A1;&#x5668;
-</code></pre><blockquote>
-<p>&#x5F00;&#x53D1;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;Chrome &#x53EF;&#x4EE5;&#x4F7F;&#x7528; <a href="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi" target="_blank">Allow-Control-Allow-Origin: *</a> &#x63D2;&#x4EF6;&#x89E3;&#x9664;&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x9650;&#x5236;</p>
-</blockquote>
-<h3 id="&#x2299;-&#x4EE3;&#x7406;&#x8F6C;&#x53D1;&#xFF08;&#x63A8;&#x8350;&#xFF09;">&#x2299; &#x4EE3;&#x7406;&#x8F6C;&#x53D1;&#xFF08;&#x63A8;&#x8350;&#xFF09;</h3>
-<pre><code>xhr &#x63A5;&#x53E3; &lt;--&#xFF08;&#x5F00;&#x53D1;&#x670D;&#x52A1;&#x5668;&#x4EE3;&#x7406;&#x8F6C;&#x53D1;&#xFF09;--&gt; API &#x670D;&#x52A1;&#x5668;
-</code></pre><blockquote>
-<p>&#x5B9E;&#x9645;&#x4E0A; <code>xhr &#x63A5;&#x53E3;</code> &#x4E0E; <code>&#x5F00;&#x53D1;&#x670D;&#x52A1;&#x5668;</code> &#x4E2D;&#x95F4;&#x8FD8;&#x6709;&#x4E00;&#x5C42; <a href="https://browsersync.io/" target="_blank"><code>BrowserSync</code></a> &#x4EE3;&#x7406;&#xFF08;&#x7528;&#x4E8E;&#x591A;&#x7AEF;&#x8054;&#x5408;&#x540C;&#x6B65;&#x8C03;&#x8BD5;&#xFF09;&#xFF0C;&#x4F46;&#x4E0E;&#x672C;&#x7BC7;&#x8BA8;&#x8BBA;&#x7684;&#x8DE8;&#x57DF;&#x4EE3;&#x7406;&#x65E0;&#x5173;</p>
-</blockquote>
-<hr>
-<h4 id="&#x76F8;&#x5173;&#x914D;&#x7F6E;">&#x76F8;&#x5173;&#x914D;&#x7F6E;</h4>
+                                <h1 id="&#xA7;-ajax-&#x63A5;&#x53E3;&#x5316;">&#xA7; Ajax &#x63A5;&#x53E3;&#x5316;</h1>
+<pre><code>[&#x8DEF;&#x7531;&#x9875;&#x9762;&#x7EC4;&#x4EF6; A [&#x666E;&#x901A;&#x7EC4;&#x4EF6; B [&#x666E;&#x901A;&#x7EC4;&#x4EF6; C]] ...]
+      &#x2195;             &#x2195;          &#x2195;
+------------------------------------------
+| aService      bService   cService      |  &#x670D;&#x52A1;&#x5C42;
+------------------------------------------
+      &#x2195;             &#x2195;          &#x2195;
+------------------------------------------
+|                  xhr                   |  Ajax &#x63A5;&#x53E3;
+------------------------------------------
+                    &#x2195;
+                 API &#x670D;&#x52A1;&#x5668;
+</code></pre><pre><code class="lang-js"><span class="hljs-comment">/**
+ * xhr &#x63A5;&#x53E3;&#xFF08;&#x8BE6;&#x89C1; src/services/xhr/index.js&#xFF09;
+ * @param  {String} options.method &#x8BF7;&#x6C42;&#x65B9;&#x6CD5;&#xFF08;&#x9ED8;&#x8BA4;&#x4E3A; get&#xFF09;
+ * @param  {String} options.url    &#x8BF7;&#x6C42;&#x8DEF;&#x5F84;&#xFF08;&#x57FA;&#x4E8E; rootPath &#x5730;&#x5740;&#xFF09;
+ * @param  {Object} options.body   &#x8BF7;&#x6C42;&#x4F53;&#xFF08;&#x4F8B;&#x5982;&#x540E;&#x7AEF; Express &#x53EF;&#x4F7F;&#x7528; req.body &#x83B7;&#x53D6;&#x8BE5;&#x5BF9;&#x8C61;&#xFF09;
+ * @return {Promise}
+ */</span>
+</code></pre>
+<p>&#x5C01;&#x88C5; xhr &#x63A5;&#x53E3;&#x7684;&#x597D;&#x5904;&#x662F;&#x663E;&#x800C;&#x6613;&#x89C1;&#x7684;&#xFF1A;</p>
 <ul>
-<li><code>xhr &#x63A5;&#x53E3;</code>&#xFF1A;&#x89C1; <code>src/services/xhr/</code>  </li>
-<li><code>&#x5F00;&#x53D1;&#x670D;&#x52A1;&#x5668;&#x4EE3;&#x7406;&#x8F6C;&#x53D1;</code>&#xFF1A;&#x89C1; <code>build/dev.js</code> &#x4E2D;&#x4F7F;&#x7528; <a href="https://github.com/chimurai/http-proxy-middleware" target="_blank"><code>http-proxy-middleware</code></a> &#x5B9E;&#x73B0;</li>
-<li><code>BrowserSync</code>&#xFF1A;&#x89C1; <code>build/webpack.dev.conf.js</code> &#x4E2D;&#x7684; <a href="https://github.com/Va1/browser-sync-webpack-plugin" target="_blank"><code>BrowserSyncPlugin</code></a> &#x914D;&#x7F6E;</li>
-<li>&#x4E0A;&#x8FF0;&#x5404;&#x9879;&#x670D;&#x52A1;&#x7684;&#x7AEF;&#x53E3;&#x914D;&#x7F6E;&#xFF1A;<code>build/config/PORTS.js</code></li>
+<li>&#x82E5;&#x9879;&#x76EE;&#x5347;&#x7EA7;&#x9700;&#x8981;&#x66FF;&#x6362; Ajax &#x8BF7;&#x6C42;&#x5E93;&#xFF0C;&#x5219;&#x4EC5;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x5B9E;&#x73B0; xhr &#x5373;&#x53EF;&#xFF0C;&#x670D;&#x52A1;&#x5C42;&#x4E0E;&#x7EC4;&#x4EF6;&#x5C42;&#x5B8C;&#x5168;&#x4E0D;&#x9700;&#x8981;&#x6539;&#x52A8;</li>
+<li>&#x7EDF;&#x4E00;&#x5316;&#x5904;&#x7406;&#xFF1A;&#x81EA;&#x5B9A;&#x4E49;&#x62E6;&#x622A;&#x3001;API &#x683C;&#x5F0F;&#x53D8;&#x66F4;&#x3001;&#x6570;&#x636E;&#x683C;&#x5F0F;&#x8F6C;&#x6362;&#x3001;&#x9519;&#x8BEF;&#x5904;&#x7406;&#x3001;mock &#x7B49;</li>
 </ul>
-<h4 id="&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E0B;&#x7684;&#x4EE3;&#x7406;">&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E0B;&#x7684;&#x4EE3;&#x7406;</h4>
-<p>&#x4E00;&#x822C;&#x662F;&#x4F7F;&#x7528; Nginx &#x90E8;&#x7F72; <code>dist/</code>&#xFF0C;&#x914D;&#x7F6E; <code>proxy_pass</code> &#x5230;&#x5BF9;&#x5E94;&#x7684;&#x540E;&#x7AEF;&#x670D;&#x52A1;&#xFF08;&#x8BE6;&#x60C5;&#x8BF7;&#x81EA;&#x884C;&#x67E5;&#x9605;&#x76F8;&#x5173;&#x8D44;&#x6599;&#xFF09;</p>
 
                                 
                                 </section>
@@ -384,12 +387,12 @@
 
             
                 
-                <a href="Configuration.html" class="navigation navigation-prev " aria-label="Previous page: 配置">
+                <a href="Service-layer.html" class="navigation navigation-prev " aria-label="Previous page: 引入服务层">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="Best-practice.html" class="navigation navigation-next " aria-label="Next page: 最佳实践">
+                <a href="Configuration.html" class="navigation navigation-next " aria-label="Next page: 配置">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -400,7 +403,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"跨域与代理","level":"1.5.6","depth":2,"next":{"title":"最佳实践","level":"1.5.7","depth":2,"path":"development/Best-practice.md","ref":"development/Best-practice.md","articles":[]},"previous":{"title":"配置","level":"1.5.5","depth":2,"path":"development/Configuration.md","ref":"development/Configuration.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"zh-cn","gitbook":"*"},"file":{"path":"development/CORS-and-Proxy.md","mtime":"2017-03-30T08:45:45.837Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-20T06:48:05.399Z"},"basePath":"..","book":{"language":"zh-cn"}});
+            gitbook.page.hasChanged({"page":{"title":"Ajax 接口化","level":"1.5.4","depth":2,"next":{"title":"配置","level":"1.5.5","depth":2,"path":"development/Configuration.md","ref":"development/Configuration.md","articles":[]},"previous":{"title":"引入服务层","level":"1.5.3","depth":2,"path":"development/Service-layer.md","ref":"development/Service-layer.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"zh-cn","gitbook":"*"},"file":{"path":"development/Ajax-interface.md","mtime":"2016-12-28T14:26:53.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-22T13:44:37.529Z"},"basePath":"..","book":{"language":"zh-cn"}});
         });
     </script>
 </div>

@@ -1,7 +1,6 @@
 var webpack = require('webpack'),
   PATHS = require('./config/PATHS'),
   config = require('./webpack.base.conf'),
-  HtmlWebpackPlugin = require('html-webpack-plugin'),
   ExtractTextPlugin = require('extract-text-webpack-plugin'),
   OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
@@ -25,12 +24,7 @@ config.plugins.push(
   new ExtractTextPlugin('css/[name].[contenthash:6].css', {
     allChunks : true // 若要按需加载 CSS 则请注释掉该行
   }),
-  new OptimizeCssAssetsPlugin(), // 优化 CSS（去重/压缩）
-  new HtmlWebpackPlugin({
-    filename: '../index.html',
-    template: PATHS.SRC.join('index.html'),
-    chunksSortMode: 'none'
-  })
+  new OptimizeCssAssetsPlugin() // 优化 CSS（去重/压缩）
 );
 
 module.exports = config;

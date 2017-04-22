@@ -23,7 +23,7 @@
         </a>
       </li>
       <li data-toggle="tooltip" title="文档">
-        <a href="docs" target="_blank">
+        <a href="../docs/_book" target="_blank">
           <i class="fa fa-book fa-lg"></i>
         </a>
       </li>
