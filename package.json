@@ -4,6 +4,7 @@
   "author": "Ken Berkeley <kenberkeley@foxmail.com>",
   "version": "1.1.0",
   "scripts": {
+    "clear": "rd /s /q dist & rd /s /q node_modules",
     "start": "cross-env NODE_ENV=development node build/dev.js",
     "build": "cross-env NODE_ENV=production node build/prod.js",
     "build:docs": "gitbook build docs/"
